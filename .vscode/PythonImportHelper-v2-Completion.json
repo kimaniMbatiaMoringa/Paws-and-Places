@@ -1,0 +1,89 @@
+[
+    {
+        "label": "SQLAlchemy",
+        "importPath": "flask_sqlalchemy",
+        "description": "flask_sqlalchemy",
+        "isExtraImport": true,
+        "detail": "flask_sqlalchemy",
+        "documentation": {}
+    },
+    {
+        "label": "SQLAlchemy",
+        "importPath": "flask_sqlalchemy",
+        "description": "flask_sqlalchemy",
+        "isExtraImport": true,
+        "detail": "flask_sqlalchemy",
+        "documentation": {}
+    },
+    {
+        "label": "cloudinary",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "cloudinary",
+        "description": "cloudinary",
+        "detail": "cloudinary",
+        "documentation": {}
+    },
+    {
+        "label": "cloudinary.uploader",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "cloudinary.uploader",
+        "description": "cloudinary.uploader",
+        "detail": "cloudinary.uploader",
+        "documentation": {}
+    },
+    {
+        "label": "cloudinary.api",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "cloudinary.api",
+        "description": "cloudinary.api",
+        "detail": "cloudinary.api",
+        "documentation": {}
+    },
+    {
+        "label": "os",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "os",
+        "description": "os",
+        "detail": "os",
+        "documentation": {}
+    },
+    {
+        "label": "SerializerMixin",
+        "importPath": "sqlalchemy_serializer",
+        "description": "sqlalchemy_serializer",
+        "isExtraImport": true,
+        "detail": "sqlalchemy_serializer",
+        "documentation": {}
+    },
+    {
+        "label": "db",
+        "kind": 5,
+        "importPath": "server.app",
+        "description": "server.app",
+        "peekOfCode": "db = SQLAlchemy()\n# Cloudinary configuration\ncloudinary.config(\n    cloud_name=os.environ.get(\"CLOUDINARY_CLOUD_NAME\"),\n    api_key=os.environ.get(\"CLOUDINARY_API_KEY\"),\n    api_secret=os.environ.get(\"CLOUDINARY_API_SECRET\"),\n)",
+        "detail": "server.app",
+        "documentation": {}
+    },
+    {
+        "label": "User",
+        "kind": 6,
+        "importPath": "server.models",
+        "description": "server.models",
+        "peekOfCode": "class User(db.Model, SerializerMixin):\n    __tablename__ = \"users\"\n    serialize_rules = \"\"\n    id = db.Column(db.Integer(), primary_key=True)\n    username = db.Column(db.String())\n    email = db.Column(db.String())\n    password = db.Column(db.String())\n    created_at = db.Column(db.DateTime(), primary_key=True)",
+        "detail": "server.models",
+        "documentation": {}
+    },
+    {
+        "label": "db",
+        "kind": 5,
+        "importPath": "server.models",
+        "description": "server.models",
+        "peekOfCode": "db = SQLAlchemy\nclass User(db.Model, SerializerMixin):\n    __tablename__ = \"users\"\n    serialize_rules = \"\"\n    id = db.Column(db.Integer(), primary_key=True)\n    username = db.Column(db.String())\n    email = db.Column(db.String())\n    password = db.Column(db.String())\n    created_at = db.Column(db.DateTime(), primary_key=True)",
+        "detail": "server.models",
+        "documentation": {}
+    }
+]
