@@ -3,7 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import ForeignKey
 from sqlalchemy_serializer import SerializerMixin
 
-db = SQLAlchemy
+db = SQLAlchemy()
 
 
 # User Model

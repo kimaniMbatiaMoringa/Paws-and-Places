@@ -64,7 +64,7 @@
         "kind": 5,
         "importPath": "server.models",
         "description": "server.models",
-        "peekOfCode": "db = SQLAlchemy\n# User Model\nclass User(db.Model, SerializerMixin):\n    __tablename__ = \"users\"\n    serialize_rules = \"-reviews.user\"\n    id = db.Column(db.Integer(), primary_key=True)\n    username = db.Column(db.String(250), nullable=False)\n    email = db.Column(db.String(120), unique=True, nullable=False)\n    password = db.Column(db.String(), nullable=False)\n    created_at = db.Column(db.DateTime(), default=datetime.utcnow)",
+        "peekOfCode": "db = SQLAlchemy()\n# User Model\nclass User(db.Model, SerializerMixin):\n    __tablename__ = \"users\"\n    serialize_rules = \"-reviews.user\"\n    id = db.Column(db.Integer(), primary_key=True)\n    username = db.Column(db.String(250), nullable=False)\n    email = db.Column(db.String(120), unique=True, nullable=False)\n    password = db.Column(db.String(), nullable=False)\n    created_at = db.Column(db.DateTime(), default=datetime.utcnow)",
         "detail": "server.models",
         "documentation": {}
     }
