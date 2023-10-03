@@ -111,9 +111,8 @@ class User(db.Model, SerializerMixin):
     username = db.Column(db.String(250), nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
     password = db.Column(db.String(), nullable=False)
-    created_at = db.Column(db.DateTime, default=db.func.current_timestamp())
-    updated_at = db.Column(db.DateTime, default=db.func.current_timestamp(), onupdate=db.func.current_timestamp())
-
+    created_at = db.Column(db.DateTime, server_default=db.func.now())
+    updated_at = db.Column(db.DateTime, onupdate=db.func.now())
     # one-to-many Relationship between Users and Reviews
     reviews = db.relationship("Reviews", backref="user")
 
@@ -146,8 +145,8 @@ class DogHouse(db.Model, SerializerMixin):
     price_per_night = db.Column(db.Float())
     image_url = db.Column(db.String())
     amenities = db.Column(db.String())
-    created_at = db.Column(db.DateTime, default=db.func.current_timestamp())
-    updated_at = db.Column(db.DateTime, default=db.func.current_timestamp(), onupdate=db.func.current_timestamp())
+    created_at = db.Column(db.DateTime, server_default=db.func.now())
+    updated_at = db.Column(db.DateTime, onupdate=db.func.now())
 
     # one-to-many Relationship between DogHouse and Reviews
     reviews = db.relationship("Reviews", backref="doghouse")
@@ -177,9 +176,10 @@ class Review(db.Model, SerializerMixin):
     user_id = db.Column(db.Integer(), ForeignKey("users.id"))
     doghouse_id = db.Column(db.Integer(), ForeignKey(column="doghouses.id"))
     status = db.Column(db.String(150))
-    created_at = db.Column(db.DateTime, default=db.func.current_timestamp())
-    updated_at = db.Column(db.DateTime, default=db.func.current_timestamp(), onupdate=db.func.current_timestamp())
-
+    created_at = db.Column(db.DateTime, server_default=db.func.now())
+    updated_at = db.Column(db.DateTime, onupdate=db.func.now())
+    
+    
     def to_dict(self):
         return {
             "id": self.id,
