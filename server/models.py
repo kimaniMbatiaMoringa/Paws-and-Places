@@ -7,34 +7,6 @@ from sqlalchemy_serializer import SerializerMixin
 
 db = SQLAlchemy()
 
-# Reviews Model
-class Review(db.Model, SerializerMixin):
-    __tablename__ = "reviews"
-
-    id = db.Column(db.Integer(), primary_key=True)
-    title = db.Column(db.String(100))
-    body = db.Column(db.String(500))
-    user_id = db.Column(db.Integer(), ForeignKey("users.id"))
-    doghouse_id = db.Column(db.Integer(), ForeignKey(column="doghouses.id"))
-    status = db.Column(db.String(150))
-    created_at = db.Column(db.DateTime, server_default=db.func.now())
-    updated_at = db.Column(db.DateTime, onupdate=db.func.now())
-    
-    
-    def to_dict(self):
-        return {
-            "id": self.id,
-            "title": self.title,
-            "body": self.body,
-            "user_id": self.user_id,
-            "doghouse_id": self.doghouse_id,
-            "status": self.status,
-        }
-
-    def __repr__(self):
-        return f"Review: {self.id} | {self.title}"
-
-
 
 # User Model
 class User(db.Model, SerializerMixin):
@@ -99,3 +71,30 @@ class DogHouse(db.Model, SerializerMixin):
     def __repr__(self):
         return f" DogHouse: {self.id} | {self.name} | {self.location} "
 
+
+# Reviews Model
+class Review(db.Model, SerializerMixin):
+    __tablename__ = "reviews"
+
+    id = db.Column(db.Integer(), primary_key=True)
+    title = db.Column(db.String(100))
+    body = db.Column(db.String(500))
+    user_id = db.Column(db.Integer(), ForeignKey("users.id"))
+    doghouse_id = db.Column(db.Integer(), ForeignKey(column="doghouses.id"))
+    status = db.Column(db.String(150))
+    created_at = db.Column(db.DateTime, server_default=db.func.now())
+    updated_at = db.Column(db.DateTime, onupdate=db.func.now())
+    
+    
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "title": self.title,
+            "body": self.body,
+            "user_id": self.user_id,
+            "doghouse_id": self.doghouse_id,
+            "status": self.status,
+        }
+
+    def __repr__(self):
+        return f"Review: {self.id} | {self.title}"
