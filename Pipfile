@@ -15,6 +15,7 @@ cloudinary = "*"
 flask-cors = "*"
 flask-marshmallow = "*"
 marshmallow-sqlalchemy = "*"
+faker = "*"
 
 [dev-packages]
 
