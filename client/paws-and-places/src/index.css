@@ -1,3 +1,13 @@
+@font-face {
+  font-family: 'Forte-Regular';
+  src: url(./fonts/Forte\ Regular.ttf);
+}
+
+@font-face {
+  font-family:'Nirmala-Bold' ;
+  src: url(./fonts/NirmalaB.ttf);
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
