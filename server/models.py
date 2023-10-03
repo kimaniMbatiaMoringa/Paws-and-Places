@@ -3,9 +3,10 @@ from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import ForeignKey
 from sqlalchemy_serializer import SerializerMixin
 
-db = SQLAlchemy
+db = SQLAlchemy()
 
 
+# User Model
 class User(db.Model, SerializerMixin):
     __tablename__ = "users"
 
@@ -16,6 +17,9 @@ class User(db.Model, SerializerMixin):
     password = db.Column(db.String(), nullable=False)
     created_at = db.Column(db.DateTime(), default=datetime.utcnow)
     updated_at = db.Column(db.DateTime(), default=datetime.utcnow)
+
+    # one-to-many Relationship between Users and Reviews
+    reviews = db.relationship("Reviews", backref="user")
 
     def to_dict(self):
         return {
@@ -29,6 +33,7 @@ class User(db.Model, SerializerMixin):
         return f" User: {self.id} | {self.username}"
 
 
+# User DogHouse
 class DogHouse(db.Model, SerializerMixin):
     __tablename__ = "doghouses"
 
@@ -42,6 +47,9 @@ class DogHouse(db.Model, SerializerMixin):
     amenities = db.Column(db.String())
     created_at = db.Column(db.DateTime(), default=datetime.utcnow)
     updated_at = db.Column(db.DateTime(), default=datetime.utcnow)
+
+    # one-to-many Relationship between DogHouse and Reviews
+    reviews = db.relationship("Reviews", backref="doghouse")
 
     def to_dict(self):
         return {
@@ -58,7 +66,8 @@ class DogHouse(db.Model, SerializerMixin):
         return f" DogHouse: {self.id} | {self.name} | {self.location} "
 
 
-class Reviews(db.Model, SerializerMixin):
+# Reviews Model
+class Review(db.Model, SerializerMixin):
     __tablename__ = "reviews"
 
     id = db.Column(db.Integer(), primary_key=True)
