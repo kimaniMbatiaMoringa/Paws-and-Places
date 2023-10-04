@@ -136,6 +136,30 @@
         "documentation": {}
     },
     {
+        "label": "User",
+        "importPath": "models",
+        "description": "models",
+        "isExtraImport": true,
+        "detail": "models",
+        "documentation": {}
+    },
+    {
+        "label": "DogHouse",
+        "importPath": "models",
+        "description": "models",
+        "isExtraImport": true,
+        "detail": "models",
+        "documentation": {}
+    },
+    {
+        "label": "Review",
+        "importPath": "models",
+        "description": "models",
+        "isExtraImport": true,
+        "detail": "models",
+        "documentation": {}
+    },
+    {
         "label": "Marshmallow",
         "importPath": "flask_marshmallow",
         "description": "flask_marshmallow",
@@ -300,6 +324,15 @@
     },
     {
         "label": "datetime",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "datetime",
+        "description": "datetime",
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
         "importPath": "datetime",
         "description": "datetime",
         "isExtraImport": true,
@@ -320,6 +353,39 @@
         "description": "sqlalchemy_serializer",
         "isExtraImport": true,
         "detail": "sqlalchemy_serializer",
+        "documentation": {}
+    },
+    {
+        "label": "app",
+        "importPath": "app",
+        "description": "app",
+        "isExtraImport": true,
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "db",
+        "importPath": "app",
+        "description": "app",
+        "isExtraImport": true,
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "Faker",
+        "importPath": "faker",
+        "description": "faker",
+        "isExtraImport": true,
+        "detail": "faker",
+        "documentation": {}
+    },
+    {
+        "label": "random",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "random",
+        "description": "random",
+        "detail": "random",
         "documentation": {}
     },
     {
@@ -662,6 +728,15 @@
         "description": "server.models",
         "peekOfCode": "db = SQLAlchemy()\n# Reviews Model\nclass Review(db.Model, SerializerMixin):\n    __tablename__ = \"reviews\"\n    id = db.Column(db.Integer(), primary_key=True)\n    title = db.Column(db.String(100))\n    body = db.Column(db.String(500))\n    rating = db.Column(db.Integer())\n    user_id = db.Column(db.Integer(), ForeignKey(\"users.id\"))\n    doghouse_id = db.Column(db.Integer(), ForeignKey(column=\"doghouses.id\"))",
         "detail": "server.models",
+        "documentation": {}
+    },
+    {
+        "label": "fake",
+        "kind": 5,
+        "importPath": "server.seed",
+        "description": "server.seed",
+        "peekOfCode": "fake = Faker()\n# Create a Flask application context\nwith app.app_context():\n    # Delete existing records in the tables\n    User.query.delete()\n    DogHouse.query.delete()\n    Review.query.delete()\n    # Create fake users\n    users = []\n    for _ in range(10):",
+        "detail": "server.seed",
         "documentation": {}
     }
 ]

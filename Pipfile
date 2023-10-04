@@ -15,6 +15,13 @@ cloudinary = "*"
 flask-cors = "*"
 flask-marshmallow = "*"
 marshmallow-sqlalchemy = "*"
+faker = "*"
+flask-wtf = "*"
+email-validator = "*"
+python-dotenv = "*"
+sqlalchemy = "*"
+honcho = "*"
+importlib-metadata = "*"
 
 [dev-packages]
 
