@@ -134,7 +134,7 @@ api = Api(app)
 class Index(Resource):
     def get(self):
         response_dict = {
-            "index": "Welcome to the Newsletter RESTful API",
+            "index": "Welcome to the Paws and Places RESTful API",
         }
 
         response = make_response(jsonify(response_dict), 200)
@@ -146,7 +146,7 @@ class Index(Resource):
 @app.route("/")
 def home():
     response_dict = {
-        "index": "Welcome to the Newsletter RESTful API",
+        "index": "Welcome to Paws and Places RESTful API",
     }
     response = make_response(jsonify(response_dict), 200)
 
