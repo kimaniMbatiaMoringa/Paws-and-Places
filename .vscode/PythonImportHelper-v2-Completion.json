@@ -1,11 +1,42 @@
 [
     {
-        "label": "datetime",
-        "kind": 6,
+        "label": "load_dotenv",
+        "importPath": "dotenv",
+        "description": "dotenv",
         "isExtraImport": true,
-        "importPath": "datetime",
-        "description": "datetime",
-        "detail": "datetime",
+        "detail": "dotenv",
+        "documentation": {}
+    },
+    {
+        "label": "Flask",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "jsonify",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "make_response",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "request",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
         "documentation": {}
     },
     {
@@ -14,6 +45,265 @@
         "description": "flask_sqlalchemy",
         "isExtraImport": true,
         "detail": "flask_sqlalchemy",
+        "documentation": {}
+    },
+    {
+        "label": "SQLAlchemy",
+        "importPath": "flask_sqlalchemy",
+        "description": "flask_sqlalchemy",
+        "isExtraImport": true,
+        "detail": "flask_sqlalchemy",
+        "documentation": {}
+    },
+    {
+        "label": "Migrate",
+        "importPath": "flask_migrate",
+        "description": "flask_migrate",
+        "isExtraImport": true,
+        "detail": "flask_migrate",
+        "documentation": {}
+    },
+    {
+        "label": "CORS",
+        "importPath": "flask_cors",
+        "description": "flask_cors",
+        "isExtraImport": true,
+        "detail": "flask_cors",
+        "documentation": {}
+    },
+    {
+        "label": "CORS",
+        "importPath": "flask_cors",
+        "description": "flask_cors",
+        "isExtraImport": true,
+        "detail": "flask_cors",
+        "documentation": {}
+    },
+    {
+        "label": "Api",
+        "importPath": "flask_restful",
+        "description": "flask_restful",
+        "isExtraImport": true,
+        "detail": "flask_restful",
+        "documentation": {}
+    },
+    {
+        "label": "Resource",
+        "importPath": "flask_restful",
+        "description": "flask_restful",
+        "isExtraImport": true,
+        "detail": "flask_restful",
+        "documentation": {}
+    },
+    {
+        "label": "reqparse",
+        "importPath": "flask_restful",
+        "description": "flask_restful",
+        "isExtraImport": true,
+        "detail": "flask_restful",
+        "documentation": {}
+    },
+    {
+        "label": "db",
+        "importPath": "models",
+        "description": "models",
+        "isExtraImport": true,
+        "detail": "models",
+        "documentation": {}
+    },
+    {
+        "label": "DogHouse",
+        "importPath": "models",
+        "description": "models",
+        "isExtraImport": true,
+        "detail": "models",
+        "documentation": {}
+    },
+    {
+        "label": "User",
+        "importPath": "models",
+        "description": "models",
+        "isExtraImport": true,
+        "detail": "models",
+        "documentation": {}
+    },
+    {
+        "label": "Review",
+        "importPath": "models",
+        "description": "models",
+        "isExtraImport": true,
+        "detail": "models",
+        "documentation": {}
+    },
+    {
+        "label": "Marshmallow",
+        "importPath": "flask_marshmallow",
+        "description": "flask_marshmallow",
+        "isExtraImport": true,
+        "detail": "flask_marshmallow",
+        "documentation": {}
+    },
+    {
+        "label": "FlaskForm",
+        "importPath": "flask_wtf",
+        "description": "flask_wtf",
+        "isExtraImport": true,
+        "detail": "flask_wtf",
+        "documentation": {}
+    },
+    {
+        "label": "StringField",
+        "importPath": "wtforms",
+        "description": "wtforms",
+        "isExtraImport": true,
+        "detail": "wtforms",
+        "documentation": {}
+    },
+    {
+        "label": "PasswordField",
+        "importPath": "wtforms",
+        "description": "wtforms",
+        "isExtraImport": true,
+        "detail": "wtforms",
+        "documentation": {}
+    },
+    {
+        "label": "SubmitField",
+        "importPath": "wtforms",
+        "description": "wtforms",
+        "isExtraImport": true,
+        "detail": "wtforms",
+        "documentation": {}
+    },
+    {
+        "label": "BooleanField",
+        "importPath": "wtforms",
+        "description": "wtforms",
+        "isExtraImport": true,
+        "detail": "wtforms",
+        "documentation": {}
+    },
+    {
+        "label": "TextAreaField",
+        "importPath": "wtforms",
+        "description": "wtforms",
+        "isExtraImport": true,
+        "detail": "wtforms",
+        "documentation": {}
+    },
+    {
+        "label": "SelectField",
+        "importPath": "wtforms",
+        "description": "wtforms",
+        "isExtraImport": true,
+        "detail": "wtforms",
+        "documentation": {}
+    },
+    {
+        "label": "IntegerField",
+        "importPath": "wtforms",
+        "description": "wtforms",
+        "isExtraImport": true,
+        "detail": "wtforms",
+        "documentation": {}
+    },
+    {
+        "label": "InputRequired",
+        "importPath": "wtforms.validators",
+        "description": "wtforms.validators",
+        "isExtraImport": true,
+        "detail": "wtforms.validators",
+        "documentation": {}
+    },
+    {
+        "label": "Length",
+        "importPath": "wtforms.validators",
+        "description": "wtforms.validators",
+        "isExtraImport": true,
+        "detail": "wtforms.validators",
+        "documentation": {}
+    },
+    {
+        "label": "Email",
+        "importPath": "wtforms.validators",
+        "description": "wtforms.validators",
+        "isExtraImport": true,
+        "detail": "wtforms.validators",
+        "documentation": {}
+    },
+    {
+        "label": "EqualTo",
+        "importPath": "wtforms.validators",
+        "description": "wtforms.validators",
+        "isExtraImport": true,
+        "detail": "wtforms.validators",
+        "documentation": {}
+    },
+    {
+        "label": "ValidationError",
+        "importPath": "wtforms.validators",
+        "description": "wtforms.validators",
+        "isExtraImport": true,
+        "detail": "wtforms.validators",
+        "documentation": {}
+    },
+    {
+        "label": "NumberRange",
+        "importPath": "wtforms.validators",
+        "description": "wtforms.validators",
+        "isExtraImport": true,
+        "detail": "wtforms.validators",
+        "documentation": {}
+    },
+    {
+        "label": "cloudinary",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "cloudinary",
+        "description": "cloudinary",
+        "detail": "cloudinary",
+        "documentation": {}
+    },
+    {
+        "label": "upload",
+        "importPath": "cloudinary.uploader",
+        "description": "cloudinary.uploader",
+        "isExtraImport": true,
+        "detail": "cloudinary.uploader",
+        "documentation": {}
+    },
+    {
+        "label": "cloudinary_url",
+        "importPath": "cloudinary.utils",
+        "description": "cloudinary.utils",
+        "isExtraImport": true,
+        "detail": "cloudinary.utils",
+        "documentation": {}
+    },
+    {
+        "label": "cloudinary.api",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "cloudinary.api",
+        "description": "cloudinary.api",
+        "detail": "cloudinary.api",
+        "documentation": {}
+    },
+    {
+        "label": "os",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "os",
+        "description": "os",
+        "detail": "os",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
         "documentation": {}
     },
     {
@@ -33,11 +323,326 @@
         "documentation": {}
     },
     {
+        "label": "UserRegistrationForm",
+        "kind": 6,
+        "importPath": "server.app",
+        "description": "server.app",
+        "peekOfCode": "class UserRegistrationForm(FlaskForm):\n    username = StringField(\"Username\", validators=[InputRequired(), Length(min=4, max=30)])\n    email = StringField(\"Email\", validators=[InputRequired(), Email(), Length(max=120)])\n    password = PasswordField(\"Password\", validators=[InputRequired(), Length(min=6)])\n    confirm_password = PasswordField(\"ConfirmPassword\", validators=[InputRequired(), EqualTo(\"password\")])\n    submit = SubmitField(\"Sign Up\")\n    def validate_username(self, field):\n        if User.query.filter_by(username=field.data).first():\n            raise ValidationError(\"Username already exists\")\n    def validate_email(self, field):",
+        "detail": "server.app",
+        "documentation": {}
+    },
+    {
+        "label": "LoginForm",
+        "kind": 6,
+        "importPath": "server.app",
+        "description": "server.app",
+        "peekOfCode": "class LoginForm(FlaskForm):\n    email = StringField(\"Email\", validators=[InputRequired(), Email(), Length(max=120)])\n    password = PasswordField(\"Password\", validators=[InputRequired(), Length(6)])\n    remember = BooleanField(\"Remember Me\")\n    submit = SubmitField(\"Login\")\nclass CreateNewReviewForm(FlaskForm):\n    title = StringField(\"Title\", validators=[InputRequired(), Length(min=1, max=100)])\n    body = TextAreaField(\"Body\", validators=[InputRequired(), Length(min=1, max=500)])\n    user_id = IntegerField(\"User ID\", validators=[InputRequired(), NumberRange(min=1)])\n    doghouse_id = IntegerField(\"Dog House ID\", validators=[InputRequired(), NumberRange(min=1)])",
+        "detail": "server.app",
+        "documentation": {}
+    },
+    {
+        "label": "CreateNewReviewForm",
+        "kind": 6,
+        "importPath": "server.app",
+        "description": "server.app",
+        "peekOfCode": "class CreateNewReviewForm(FlaskForm):\n    title = StringField(\"Title\", validators=[InputRequired(), Length(min=1, max=100)])\n    body = TextAreaField(\"Body\", validators=[InputRequired(), Length(min=1, max=500)])\n    user_id = IntegerField(\"User ID\", validators=[InputRequired(), NumberRange(min=1)])\n    doghouse_id = IntegerField(\"Dog House ID\", validators=[InputRequired(), NumberRange(min=1)])\n    status = SelectField(\"Status\", choices=[(\"Booked\", \"Booked\"), (\"Available\", \"Available\"), (\"Draft\", \"Draft\")])\n    submit = SubmitField(\"Create Review\")\nclass UserSchema(ma.Schema):\n    class Meta:\n        model = User",
+        "detail": "server.app",
+        "documentation": {}
+    },
+    {
+        "label": "UserSchema",
+        "kind": 6,
+        "importPath": "server.app",
+        "description": "server.app",
+        "peekOfCode": "class UserSchema(ma.Schema):\n    class Meta:\n        model = User\n        load_instance = True\n        fields = (\"id\", \"username\", \"email\", \"password\")\nuser_schema = UserSchema()\nusers_schema = UserSchema(many=True)\nclass DogHouseSchema(ma.Schema):\n    class Meta:\n        model = DogHouse",
+        "detail": "server.app",
+        "documentation": {}
+    },
+    {
+        "label": "DogHouseSchema",
+        "kind": 6,
+        "importPath": "server.app",
+        "description": "server.app",
+        "peekOfCode": "class DogHouseSchema(ma.Schema):\n    class Meta:\n        model = DogHouse\n        load_instance = True\n        # Fields to expose\n        fields = (\n            \"id\",\n            \"name\",\n            \"location\",\n            \"description\",",
+        "detail": "server.app",
+        "documentation": {}
+    },
+    {
+        "label": "ReviewSchema",
+        "kind": 6,
+        "importPath": "server.app",
+        "description": "server.app",
+        "peekOfCode": "class ReviewSchema(ma.Schema):\n    class Meta:\n        load_instance = True\n        # Fields to expose\n        fields = (\"id\", \"title\", \"body\", \"user_id\", \"doghouse_id\", \"status\")\nreview_schema = ReviewSchema()\nreviews_schema = ReviewSchema(many=True)\n# RESTFUL API Endpoints\napi = Api(app)\nclass Index(Resource):",
+        "detail": "server.app",
+        "documentation": {}
+    },
+    {
+        "label": "Index",
+        "kind": 6,
+        "importPath": "server.app",
+        "description": "server.app",
+        "peekOfCode": "class Index(Resource):\n    def get(self):\n        response_dict = {\n            \"index\": \"Welcome to the Newsletter RESTful API\",\n        }\n        response = make_response(jsonify(response_dict), 200)\n        return response\n# Route Home\n@app.route(\"/\")\ndef home():",
+        "detail": "server.app",
+        "documentation": {}
+    },
+    {
+        "label": "home",
+        "kind": 2,
+        "importPath": "server.app",
+        "description": "server.app",
+        "peekOfCode": "def home():\n    response_dict = {\n        \"index\": \"Welcome to the Newsletter RESTful API\",\n    }\n    response = make_response(jsonify(response_dict), 200)\n    return response\n# User ROUTES\n# -----------------------------------------------------------------------------------------#\n# Route GET users\n@app.route(\"/users\", methods=[\"GET\"])",
+        "detail": "server.app",
+        "documentation": {}
+    },
+    {
+        "label": "get_user",
+        "kind": 2,
+        "importPath": "server.app",
+        "description": "server.app",
+        "peekOfCode": "def get_user():\n    users = [user.to_dict() for user in User.query.all()]\n    result = users_schema.dump(users)\n    return jsonify(result), 200\n# Route to GET, PATCH, DELETE a user by ID\n@app.route(\"/users/<int:user_id>\", methods=[\"GET\", \"PATCH\"])\ndef get_user_by_id(user_id):\n    user = User.query.filter_by(id=user_id).first()\n    if user is None:  # Does not exist\n        return jsonify({\"message\": \"User not found\"}), 404",
+        "detail": "server.app",
+        "documentation": {}
+    },
+    {
+        "label": "get_user_by_id",
+        "kind": 2,
+        "importPath": "server.app",
+        "description": "server.app",
+        "peekOfCode": "def get_user_by_id(user_id):\n    user = User.query.filter_by(id=user_id).first()\n    if user is None:  # Does not exist\n        return jsonify({\"message\": \"User not found\"}), 404\n    else:\n        if request.method == \"GET\":\n            result = user_schema.dump(user)\n            response = make_response(jsonify(result), 200)\n            return response\n        elif request.method == \"PATCH\":",
+        "detail": "server.app",
+        "documentation": {}
+    },
+    {
+        "label": "create_user",
+        "kind": 2,
+        "importPath": "server.app",
+        "description": "server.app",
+        "peekOfCode": "def create_user():\n    data = request.json()\n    errors = user_schema.validate(data)\n    if errors:\n        return jsonify(errors), 400\n    new_user = User(**data)\n    db.session.add(new_user)\n    db.session.commit()\n    result = user_schema.dump(new_user)\n    return jsonify(result), 201",
+        "detail": "server.app",
+        "documentation": {}
+    },
+    {
+        "label": "get_doghouses",
+        "kind": 2,
+        "importPath": "server.app",
+        "description": "server.app",
+        "peekOfCode": "def get_doghouses():\n    doghouses = [house.to_dict() for house in DogHouse.query.all()]\n    result = doghouses_schema.dump(doghouses)\n    return jsonify(result), 200\n# Route to GET, PATCH, DELETE a DogHouse\n@app.route(\"/doghouses/<int:doghouse_id>\", methods=[\"GET\", \"PATCH\", \"DELETE\"])\ndef get_doghouse_by_id(doghouse_id):\n    doghouse = DogHouse.query.filter_by(id=doghouse_id).first()\n    if doghouse is None:\n        return jsonify({\"message\": \"Dog house not found\"}), 404",
+        "detail": "server.app",
+        "documentation": {}
+    },
+    {
+        "label": "get_doghouse_by_id",
+        "kind": 2,
+        "importPath": "server.app",
+        "description": "server.app",
+        "peekOfCode": "def get_doghouse_by_id(doghouse_id):\n    doghouse = DogHouse.query.filter_by(id=doghouse_id).first()\n    if doghouse is None:\n        return jsonify({\"message\": \"Dog house not found\"}), 404\n    # GET\n    if request.method == \"GET\":\n        result = doghouse_schema.dump(doghouse)\n        return jsonify(result), 200\n    # PATCH\n    elif request.method == \"PATCH\":",
+        "detail": "server.app",
+        "documentation": {}
+    },
+    {
+        "label": "create_dog_house_listing",
+        "kind": 2,
+        "importPath": "server.app",
+        "description": "server.app",
+        "peekOfCode": "def create_dog_house_listing():\n    data = request.json\n    # Serialize the amenities list to a string\n    amenities = data.get(\"amenities\")\n    if amenities:\n        data[\"amenities\"] = \",\".join(amenities)\n    # Handling image uploads to Cloudinary\n    image = request.files.get(\"image\")\n    if image:\n        result = upload(image)",
+        "detail": "server.app",
+        "documentation": {}
+    },
+    {
+        "label": "get_reviews",
+        "kind": 2,
+        "importPath": "server.app",
+        "description": "server.app",
+        "peekOfCode": "def get_reviews():\n    reviews = [review.to_dict() for review in Review.query.all()]\n    result = reviews_schema.dump(reviews)\n    return jsonify(result), 200\n# Route to create a new review\n@app.route(\"/reviews\", methods=[\"POST\"])\ndef create_review():\n    data = request.json\n    errors = review_schema.validate(data)\n    if errors:",
+        "detail": "server.app",
+        "documentation": {}
+    },
+    {
+        "label": "create_review",
+        "kind": 2,
+        "importPath": "server.app",
+        "description": "server.app",
+        "peekOfCode": "def create_review():\n    data = request.json\n    errors = review_schema.validate(data)\n    if errors:\n        return jsonify(errors), 400\n    new_review = Review(**data)\n    db.session.add(new_review)\n    db.session.commit()\n    result = review_schema.dump(new_review)\n    return jsonify(result), 201",
+        "detail": "server.app",
+        "documentation": {}
+    },
+    {
+        "label": "get_review_by_id",
+        "kind": 2,
+        "importPath": "server.app",
+        "description": "server.app",
+        "peekOfCode": "def get_review_by_id(review_id):\n    review = Review.query.filter_by(id=review_id).first()\n    if review is None:\n        return jsonify({\"message\": \"Review not found\"}), 404\n    result = review_schema.dump(review)\n    return jsonify(result), 200\n# Route to update a review by ID\n@app.route(\"/reviews/<int:review_id>\", methods=[\"PUT\"])\ndef update_review_by_id(review_id):\n    data = request.json",
+        "detail": "server.app",
+        "documentation": {}
+    },
+    {
+        "label": "update_review_by_id",
+        "kind": 2,
+        "importPath": "server.app",
+        "description": "server.app",
+        "peekOfCode": "def update_review_by_id(review_id):\n    data = request.json\n    review = Review.query.filter_by(id=review_id).first()\n    if review is None:\n        return jsonify({\"message\": \"Review not found\"}), 404\n    for key, value in data.items():\n        setattr(review, key, value)\n    db.session.commit()\n    result = review_schema.dump(review)\n    return jsonify(result), 200",
+        "detail": "server.app",
+        "documentation": {}
+    },
+    {
+        "label": "delete_review_by_id",
+        "kind": 2,
+        "importPath": "server.app",
+        "description": "server.app",
+        "peekOfCode": "def delete_review_by_id(review_id):\n    review = Review.query.filter_by(id=review_id).first()\n    if review is None:\n        return jsonify({\"message\": \"Review not found\"}), 404\n    db.session.delete(review)\n    db.session.commit()\n    return jsonify({\"message\": \"Review deleted\"}), 204\nif __name__ == \"__main__\":\n    app.run(debug=True, port=5555)",
+        "detail": "server.app",
+        "documentation": {}
+    },
+    {
+        "label": "app",
+        "kind": 5,
+        "importPath": "server.app",
+        "description": "server.app",
+        "peekOfCode": "app = Flask(__name__)\nma = Marshmallow(app)\napi = Api(app)\n# app.config[\"SECRET_KEY\"] = \"your_secret_key_here\"\napp.config[\"SQLALCHEMY_DATABASE_URI\"] = os.environ.get(\"DATABASE_URL\")\napp.config[\"SQLALCHEMY_TRACK_MODIFICATIONS\"] = False\napp.config[\"JSONIFY_PRETTYPRINT_REGULAR\"] = True\ncors = CORS(app)\nmigrate = Migrate(app, db)\ndb.init_app(app)",
+        "detail": "server.app",
+        "documentation": {}
+    },
+    {
+        "label": "ma",
+        "kind": 5,
+        "importPath": "server.app",
+        "description": "server.app",
+        "peekOfCode": "ma = Marshmallow(app)\napi = Api(app)\n# app.config[\"SECRET_KEY\"] = \"your_secret_key_here\"\napp.config[\"SQLALCHEMY_DATABASE_URI\"] = os.environ.get(\"DATABASE_URL\")\napp.config[\"SQLALCHEMY_TRACK_MODIFICATIONS\"] = False\napp.config[\"JSONIFY_PRETTYPRINT_REGULAR\"] = True\ncors = CORS(app)\nmigrate = Migrate(app, db)\ndb.init_app(app)\n# # Cloudinary configuration",
+        "detail": "server.app",
+        "documentation": {}
+    },
+    {
+        "label": "api",
+        "kind": 5,
+        "importPath": "server.app",
+        "description": "server.app",
+        "peekOfCode": "api = Api(app)\n# app.config[\"SECRET_KEY\"] = \"your_secret_key_here\"\napp.config[\"SQLALCHEMY_DATABASE_URI\"] = os.environ.get(\"DATABASE_URL\")\napp.config[\"SQLALCHEMY_TRACK_MODIFICATIONS\"] = False\napp.config[\"JSONIFY_PRETTYPRINT_REGULAR\"] = True\ncors = CORS(app)\nmigrate = Migrate(app, db)\ndb.init_app(app)\n# # Cloudinary configuration\ncloudinary.config(",
+        "detail": "server.app",
+        "documentation": {}
+    },
+    {
+        "label": "app.config[\"SQLALCHEMY_DATABASE_URI\"]",
+        "kind": 5,
+        "importPath": "server.app",
+        "description": "server.app",
+        "peekOfCode": "app.config[\"SQLALCHEMY_DATABASE_URI\"] = os.environ.get(\"DATABASE_URL\")\napp.config[\"SQLALCHEMY_TRACK_MODIFICATIONS\"] = False\napp.config[\"JSONIFY_PRETTYPRINT_REGULAR\"] = True\ncors = CORS(app)\nmigrate = Migrate(app, db)\ndb.init_app(app)\n# # Cloudinary configuration\ncloudinary.config(\n    cloud_name=os.environ.get(\"CLOUDINARY_CLOUD_NAME\"),\n    api_key=os.environ.get(\"CLOUDINARY_API_KEY\"),",
+        "detail": "server.app",
+        "documentation": {}
+    },
+    {
+        "label": "app.config[\"SQLALCHEMY_TRACK_MODIFICATIONS\"]",
+        "kind": 5,
+        "importPath": "server.app",
+        "description": "server.app",
+        "peekOfCode": "app.config[\"SQLALCHEMY_TRACK_MODIFICATIONS\"] = False\napp.config[\"JSONIFY_PRETTYPRINT_REGULAR\"] = True\ncors = CORS(app)\nmigrate = Migrate(app, db)\ndb.init_app(app)\n# # Cloudinary configuration\ncloudinary.config(\n    cloud_name=os.environ.get(\"CLOUDINARY_CLOUD_NAME\"),\n    api_key=os.environ.get(\"CLOUDINARY_API_KEY\"),\n    api_secret=os.environ.get(\"CLOUDINARY_API_SECRET\"),",
+        "detail": "server.app",
+        "documentation": {}
+    },
+    {
+        "label": "app.config[\"JSONIFY_PRETTYPRINT_REGULAR\"]",
+        "kind": 5,
+        "importPath": "server.app",
+        "description": "server.app",
+        "peekOfCode": "app.config[\"JSONIFY_PRETTYPRINT_REGULAR\"] = True\ncors = CORS(app)\nmigrate = Migrate(app, db)\ndb.init_app(app)\n# # Cloudinary configuration\ncloudinary.config(\n    cloud_name=os.environ.get(\"CLOUDINARY_CLOUD_NAME\"),\n    api_key=os.environ.get(\"CLOUDINARY_API_KEY\"),\n    api_secret=os.environ.get(\"CLOUDINARY_API_SECRET\"),\n)",
+        "detail": "server.app",
+        "documentation": {}
+    },
+    {
+        "label": "cors",
+        "kind": 5,
+        "importPath": "server.app",
+        "description": "server.app",
+        "peekOfCode": "cors = CORS(app)\nmigrate = Migrate(app, db)\ndb.init_app(app)\n# # Cloudinary configuration\ncloudinary.config(\n    cloud_name=os.environ.get(\"CLOUDINARY_CLOUD_NAME\"),\n    api_key=os.environ.get(\"CLOUDINARY_API_KEY\"),\n    api_secret=os.environ.get(\"CLOUDINARY_API_SECRET\"),\n)\n# ----------------------------------------Forms for Input Validation---------------------------------------------------#",
+        "detail": "server.app",
+        "documentation": {}
+    },
+    {
+        "label": "migrate",
+        "kind": 5,
+        "importPath": "server.app",
+        "description": "server.app",
+        "peekOfCode": "migrate = Migrate(app, db)\ndb.init_app(app)\n# # Cloudinary configuration\ncloudinary.config(\n    cloud_name=os.environ.get(\"CLOUDINARY_CLOUD_NAME\"),\n    api_key=os.environ.get(\"CLOUDINARY_API_KEY\"),\n    api_secret=os.environ.get(\"CLOUDINARY_API_SECRET\"),\n)\n# ----------------------------------------Forms for Input Validation---------------------------------------------------#\n# Forms for Input Validation",
+        "detail": "server.app",
+        "documentation": {}
+    },
+    {
+        "label": "user_schema",
+        "kind": 5,
+        "importPath": "server.app",
+        "description": "server.app",
+        "peekOfCode": "user_schema = UserSchema()\nusers_schema = UserSchema(many=True)\nclass DogHouseSchema(ma.Schema):\n    class Meta:\n        model = DogHouse\n        load_instance = True\n        # Fields to expose\n        fields = (\n            \"id\",\n            \"name\",",
+        "detail": "server.app",
+        "documentation": {}
+    },
+    {
+        "label": "users_schema",
+        "kind": 5,
+        "importPath": "server.app",
+        "description": "server.app",
+        "peekOfCode": "users_schema = UserSchema(many=True)\nclass DogHouseSchema(ma.Schema):\n    class Meta:\n        model = DogHouse\n        load_instance = True\n        # Fields to expose\n        fields = (\n            \"id\",\n            \"name\",\n            \"location\",",
+        "detail": "server.app",
+        "documentation": {}
+    },
+    {
+        "label": "doghouse_schema",
+        "kind": 5,
+        "importPath": "server.app",
+        "description": "server.app",
+        "peekOfCode": "doghouse_schema = DogHouseSchema()\ndoghouses_schema = DogHouseSchema(many=True)\nclass ReviewSchema(ma.Schema):\n    class Meta:\n        load_instance = True\n        # Fields to expose\n        fields = (\"id\", \"title\", \"body\", \"user_id\", \"doghouse_id\", \"status\")\nreview_schema = ReviewSchema()\nreviews_schema = ReviewSchema(many=True)\n# RESTFUL API Endpoints",
+        "detail": "server.app",
+        "documentation": {}
+    },
+    {
+        "label": "doghouses_schema",
+        "kind": 5,
+        "importPath": "server.app",
+        "description": "server.app",
+        "peekOfCode": "doghouses_schema = DogHouseSchema(many=True)\nclass ReviewSchema(ma.Schema):\n    class Meta:\n        load_instance = True\n        # Fields to expose\n        fields = (\"id\", \"title\", \"body\", \"user_id\", \"doghouse_id\", \"status\")\nreview_schema = ReviewSchema()\nreviews_schema = ReviewSchema(many=True)\n# RESTFUL API Endpoints\napi = Api(app)",
+        "detail": "server.app",
+        "documentation": {}
+    },
+    {
+        "label": "review_schema",
+        "kind": 5,
+        "importPath": "server.app",
+        "description": "server.app",
+        "peekOfCode": "review_schema = ReviewSchema()\nreviews_schema = ReviewSchema(many=True)\n# RESTFUL API Endpoints\napi = Api(app)\nclass Index(Resource):\n    def get(self):\n        response_dict = {\n            \"index\": \"Welcome to the Newsletter RESTful API\",\n        }\n        response = make_response(jsonify(response_dict), 200)",
+        "detail": "server.app",
+        "documentation": {}
+    },
+    {
+        "label": "reviews_schema",
+        "kind": 5,
+        "importPath": "server.app",
+        "description": "server.app",
+        "peekOfCode": "reviews_schema = ReviewSchema(many=True)\n# RESTFUL API Endpoints\napi = Api(app)\nclass Index(Resource):\n    def get(self):\n        response_dict = {\n            \"index\": \"Welcome to the Newsletter RESTful API\",\n        }\n        response = make_response(jsonify(response_dict), 200)\n        return response",
+        "detail": "server.app",
+        "documentation": {}
+    },
+    {
+        "label": "api",
+        "kind": 5,
+        "importPath": "server.app",
+        "description": "server.app",
+        "peekOfCode": "api = Api(app)\nclass Index(Resource):\n    def get(self):\n        response_dict = {\n            \"index\": \"Welcome to the Newsletter RESTful API\",\n        }\n        response = make_response(jsonify(response_dict), 200)\n        return response\n# Route Home\n@app.route(\"/\")",
+        "detail": "server.app",
+        "documentation": {}
+    },
+    {
+        "label": "Review",
+        "kind": 6,
+        "importPath": "server.models",
+        "description": "server.models",
+        "peekOfCode": "class Review(db.Model, SerializerMixin):\n    __tablename__ = \"reviews\"\n    id = db.Column(db.Integer(), primary_key=True)\n    title = db.Column(db.String(100))\n    body = db.Column(db.String(500))\n    rating = db.Column(db.Integer())\n    user_id = db.Column(db.Integer(), ForeignKey(\"users.id\"))\n    doghouse_id = db.Column(db.Integer(), ForeignKey(column=\"doghouses.id\"))\n    status = db.Column(db.String(150))\n    created_at = db.Column(db.DateTime, default=db.func.current_timestamp())",
+        "detail": "server.models",
+        "documentation": {}
+    },
+    {
         "label": "User",
         "kind": 6,
         "importPath": "server.models",
         "description": "server.models",
-        "peekOfCode": "class User(db.Model, SerializerMixin):\n    __tablename__ = \"users\"\n    serialize_rules = \"-reviews.user\"\n    id = db.Column(db.Integer(), primary_key=True)\n    username = db.Column(db.String(250), nullable=False)\n    email = db.Column(db.String(120), unique=True, nullable=False)\n    password = db.Column(db.String(), nullable=False)\n    created_at = db.Column(db.DateTime(), default=datetime.utcnow)\n    updated_at = db.Column(db.DateTime(), default=datetime.utcnow)\n    # one-to-many Relationship between Users and Reviews",
+        "peekOfCode": "class User(db.Model, SerializerMixin):\n    __tablename__ = \"users\"\n    serialize_rules = \"-reviews.user\"\n    id = db.Column(db.Integer(), primary_key=True)\n    username = db.Column(db.String(250), nullable=False)\n    email = db.Column(db.String(120), unique=True, nullable=False)\n    password = db.Column(db.String(), nullable=False)\n    created_at = db.Column(db.DateTime, default=db.func.current_timestamp())\n    updated_at = db.Column(db.DateTime, default=db.func.current_timestamp(), onupdate=db.func.current_timestamp())\n    # one-to-many Relationship between Users and Reviews",
         "detail": "server.models",
         "documentation": {}
     },
@@ -46,16 +651,7 @@
         "kind": 6,
         "importPath": "server.models",
         "description": "server.models",
-        "peekOfCode": "class DogHouse(db.Model, SerializerMixin):\n    __tablename__ = \"doghouses\"\n    serialize_rules = \"-reviews.doghouse\"\n    id = db.Column(db.Integer(), primary_key=True)\n    name = db.Column(db.String(200))\n    location = db.Column(db.String())\n    description = db.Column(db.String(500))\n    price_per_night = db.Column(db.Float())\n    images = db.Column(db.String())\n    amenities = db.Column(db.String())",
-        "detail": "server.models",
-        "documentation": {}
-    },
-    {
-        "label": "Review",
-        "kind": 6,
-        "importPath": "server.models",
-        "description": "server.models",
-        "peekOfCode": "class Review(db.Model, SerializerMixin):\n    __tablename__ = \"reviews\"\n    id = db.Column(db.Integer(), primary_key=True)\n    title = db.Column(db.String(100))\n    body = db.Column(db.String(500))\n    user_id = db.Column(db.Integer(), ForeignKey(\"users.id\"))\n    doghouse_id = db.Column(db.Integer(), ForeignKey(column=\"doghouses.id\"))\n    status = db.Column(db.String(150))\n    created_at = db.Column(db.DateTime(), default=datetime.utcnow)\n    updated_at = db.Column(db.DateTime(), default=datetime.utcnow)",
+        "peekOfCode": "class DogHouse(db.Model, SerializerMixin):\n    __tablename__ = \"doghouses\"\n    serialize_rules = \"-reviews.doghouse\"\n    id = db.Column(db.Integer(), primary_key=True)\n    name = db.Column(db.String(200))\n    location = db.Column(db.String())\n    description = db.Column(db.String(500))\n    price_per_night = db.Column(db.Float())\n    image_url = db.Column(db.String())\n    amenities = db.Column(db.String())",
         "detail": "server.models",
         "documentation": {}
     },
@@ -64,7 +660,7 @@
         "kind": 5,
         "importPath": "server.models",
         "description": "server.models",
-        "peekOfCode": "db = SQLAlchemy()\n# User Model\nclass User(db.Model, SerializerMixin):\n    __tablename__ = \"users\"\n    serialize_rules = \"-reviews.user\"\n    id = db.Column(db.Integer(), primary_key=True)\n    username = db.Column(db.String(250), nullable=False)\n    email = db.Column(db.String(120), unique=True, nullable=False)\n    password = db.Column(db.String(), nullable=False)\n    created_at = db.Column(db.DateTime(), default=datetime.utcnow)",
+        "peekOfCode": "db = SQLAlchemy()\n# Reviews Model\nclass Review(db.Model, SerializerMixin):\n    __tablename__ = \"reviews\"\n    id = db.Column(db.Integer(), primary_key=True)\n    title = db.Column(db.String(100))\n    body = db.Column(db.String(500))\n    rating = db.Column(db.Integer())\n    user_id = db.Column(db.Integer(), ForeignKey(\"users.id\"))\n    doghouse_id = db.Column(db.Integer(), ForeignKey(column=\"doghouses.id\"))",
         "detail": "server.models",
         "documentation": {}
     }
