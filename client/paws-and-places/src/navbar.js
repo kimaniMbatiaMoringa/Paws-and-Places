@@ -1,9 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 import logo from './assets/Asset 1.png'
 import logo2 from './assets/Asset 2.png'
-
+import { LoginForm, SignupForm } from './LoginForm';
 
 function Navbar(){
+  const [showLogin, setShowLogin] = useState(false);
+  const [showSignup, setShowSignup] = useState(false);
+
+  const toggleLoginModal = () => {
+    setShowLogin(!showLogin);
+  };
+
+  const toggleSignupModal = () => {
+    setShowSignup(!showSignup);
+  };
+
 
     const navbarStyle={
         //position: 'relative',
@@ -77,7 +88,10 @@ function Navbar(){
                     </div>
                     <div className='col'>
                         <div className='container'style={colcontainer}>
-                            <button style={buttonStyle}>Login</button>
+                          <button style={buttonStyle} onClick={toggleLoginModal}>
+                          Login
+                         </button>
+                         {showLogin && <LoginForm />}
                         </div>
                     </div>
                 </div>
