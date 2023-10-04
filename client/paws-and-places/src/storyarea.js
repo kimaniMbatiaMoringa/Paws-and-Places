@@ -7,14 +7,15 @@ const mainBackground ={
 }
 const cardStyle = {
   width: "300px",
-  height: "550px",
-  paddingTop: "20px",
-  display: "inline"
+  height: "750px",
+  margin: "20px",
+  display: "inline",
+  //border: "2px solid black"
 }
 
 const cardImageStyle = {
   width: "100%",
-  height: "70%",
+  height: "50%",
   backgroundColor: "grey",
   borderRadius: "10px 10px 2px 2px"
 }
@@ -30,7 +31,7 @@ const cardInfoStyle = {
   height: "30%",
   width: "100%",
   backgroundColor: "white",
-  fontFamily: "fantasy",
+  fontFamily: "Nirmala-Bold",
   textAlign: "center",
   fontSize: "16px",
   lineHeight: "0.6",
@@ -41,35 +42,53 @@ const cardInfoStyle = {
 
 
 const cardFooterStyle={
-    backgroundColor:"#BA4D39",
-    height:"10%",
+    position:"relative",
+    height:"8%",
     width: "100%",
+    top: "-5%",
+    textAlign:"center",
+    backgroundColor: "#87a630",
+    borderRadius: "1px 1px 20px 20px"
+}
+
+const buttonStyle={
+    //marginLeft:"100px",
+    //marginTop: "-15%",
+    position: 'relative',
+    backgroundColor: "#87a630",
+    width: "150px",
+    height:'30px',
+    color: "white",
+    borderRadius: '20px',
+    fontFamily:'Nirmala-Bold',
+    marginTop: '10px',
+    border: "2pt solid white",
 }
 
 function StoryArea() {
   const [places, setPlaces] = useState([]);
+  const [showMore, setShowMore]= useState(false)
+  const [searchFilter, setSearchFilter] = useState("")
 
-  let tempPlaces = [
-    {
-      "name": "Cozy Pet Haven",
-      "location": "123 Main Street",
-      "description": "A cozy place for your furry friends.",
-      "price_per_night": 50,
-      "image_url": "https://photos.bringfido.com/photo/2023/09/28/OR_Thumb.jpeg?size=tile&density=2x",
-      "amenities": ["WiFi", "Pet Spa"],
-      "email": "cozy@pethaven.com",
-      "date_created": "2023-10-01"
-    },
-   
-    
-  ];
+  const BASE_URL = "https://paws-and-places-server.onrender.com/doghouses"
 
   useEffect(() => {
-    setPlaces(tempPlaces);
+    fetch(BASE_URL)
+    .then((response)=> response.json())
+    .then((data)=>{
+        setPlaces(data)
+    })
   }, []);
 
+  function runShowMore(event){
+    //setShowMore(true)
+    //alert(event.id)
+
+  }
+
   return (
-    <div className='row'>
+    <div className='container-fluid' style={mainBackground}>
+        <div className='row'>
       {places.map((place, index) => (
         <div className='container-fluid' style={cardStyle} key={index}>
           <div className='container' style={cardImageStyle}>
@@ -79,13 +98,18 @@ function StoryArea() {
             <h3>{place.name}</h3>
             <h6>{place.location}</h6>
             <p>{place.description}</p><p>Price per night: ${place.price_per_night}</p>
-            <p>Amenities: {place.amenities.join(', ')}</p>
-            <p>Email: {place.email}</p>
-            <p>Date Created: {place.date_created}</p>
+            {/* <p style={{fontSize:"12px"}}>Amenities: {place.amenities}</p> */}
+            {/* <p>Email: {place.email}</p>
+            <p>Date Created: {place.date_created}</p> */}
+          </div>
+          <div className='container' style={cardFooterStyle} id={place.id}>
+            <button style={buttonStyle}>Show More</button>
           </div>
         </div>
       ))}
+        </div>
     </div>
+
   )
 }
 
