@@ -21,7 +21,8 @@ from wtforms.validators import InputRequired, Length, Email, EqualTo, Validation
 # ---------------------------------------------------------#
 
 import cloudinary
-import cloudinary.uploader
+from cloudinary.uploader import upload
+from cloudinary.utils import cloudinary_url
 import cloudinary.api
 import os
 
@@ -262,6 +263,13 @@ def create_dog_house_listing():
     if amenities:
         data["amenities"] = ",".join(amenities)
 
+    # Handling image uploads to Cloudinary
+    image = request.files.get("image")
+    if image:
+        result = upload(image)
+        image_url = result["secure_url"]  # Getting the Cloudinary URL
+        data["image_url"] = image_url
+
     errors = doghouse_schema.validate(data)
     if errors:
         return jsonify(errors), 400
@@ -273,33 +281,6 @@ def create_dog_house_listing():
 
     result = doghouse_schema.dump(new_doghouse)
     return jsonify(result), 201
-
-
-# Route to create (POST) a DogHouse
-# @app.route("/doghouses", methods=["POST"])
-# def create_dog_house():
-#     data = request.json
-#     errors = doghouses_schema.validate(data)
-#     if errors:
-#         return jsonify(errors), 400
-
-#     # Handling image uploads to Cloudinary
-#     image = request.files.get("image")
-#     if image:
-#         result = upload(image)
-#         image_url = result["secure_url"]  # Getting the Cloudinary URL
-
-#         # Adding the image URL to the data before creating the DogHouse
-#         data["image_url"] = image_url
-
-#     # Creating a new dog house and save it to the dB
-#     new_dog_house = DogHouse(**data)
-#     db.session.add(new_dog_house)
-#     db.session.commit()
-
-#     # Serialize the newly created dog house and return it
-#     result = doghouses_schema.dump(new_dog_house)
-#     return jsonify(result), 201
 
 
 # Reviews ROUTES

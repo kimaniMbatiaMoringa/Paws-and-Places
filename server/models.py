@@ -20,7 +20,7 @@ class User(db.Model, SerializerMixin):
     created_at = db.Column(db.DateTime, server_default=db.func.now())
     updated_at = db.Column(db.DateTime, onupdate=db.func.now())
     # one-to-many Relationship between Users and Reviews
-    reviews = db.relationship("Reviews", backref="user")
+    reviews = db.relationship("Review", backref="user")
 
     def __init__(self, username, email, password):
         self.username = username
@@ -55,7 +55,7 @@ class DogHouse(db.Model, SerializerMixin):
     updated_at = db.Column(db.DateTime, onupdate=db.func.now())
 
     # one-to-many Relationship between DogHouse and Reviews
-    reviews = db.relationship("Reviews", backref="doghouse")
+    reviews = db.relationship("Review", backref="doghouse")
 
     def to_dict(self):
         return {
