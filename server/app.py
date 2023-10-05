@@ -339,7 +339,7 @@ def create_dog_house_listing():
         if errors:
             return jsonify({"message": "Validation error", "errors": errors}), 400
 
-        # Create a new DogHouse object and save it to the database
+        # Create a new DogHouse object and save it to the database.
         new_doghouse = DogHouse(**data)
         db.session.add(new_doghouse)
         db.session.commit()
