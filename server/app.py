@@ -10,16 +10,16 @@ from flask_restful import Api, Resource, reqparse
 from models import db, DogHouse, User, Review
 from flask_cors import CORS
 from flask_marshmallow import Marshmallow
-
+from werkzeug.security import check_password_hash
 # --------------------------------------------------------#
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField, BooleanField, TextAreaField, SelectField, IntegerField
 from wtforms.validators import InputRequired, Length, Email, EqualTo, ValidationError, NumberRange
-
-# from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
+from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
+from flask_bcrypt import Bcrypt
 
 # ---------------------------------------------------------#
-
+import logging
 import cloudinary
 from cloudinary.uploader import upload
 from cloudinary.utils import cloudinary_url
@@ -30,6 +30,13 @@ import os
 app = Flask(__name__)
 ma = Marshmallow(app)
 api = Api(app)
+
+logger = logging.getLogger(__name__)
+bcrypt = Bcrypt(app) 
+
+login_manager = LoginManager()
+login_manager.login_view = "login"
+login_manager.init_app(app)
 
 # app.config["SECRET_KEY"] = "your_secret_key_here"
 app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("DATABASE_URL")
@@ -79,7 +86,7 @@ class CreateNewReviewForm(FlaskForm):
     body = TextAreaField("Body", validators=[InputRequired(), Length(min=1, max=500)])
     user_id = IntegerField("User ID", validators=[InputRequired(), NumberRange(min=1)])
     doghouse_id = IntegerField("Dog House ID", validators=[InputRequired(), NumberRange(min=1)])
-    # is_booked = SelectField("is_booked", choices=[("Booked", "Booked"), ("Available", "Available"), ("Draft", "Draft")])
+    is_booked = SelectField("is_booked", choices=[("Booked", "Booked"), ("Available", "Available"), ("Draft", "Draft")])
     submit = SubmitField("Create Review")
 
 
@@ -152,6 +159,75 @@ def home():
     response = make_response(jsonify(response_dict), 200)
 
     return response
+
+
+#-----------------------------Routes for Login and Logout------------------------------#
+@app.route("/login", methods=["POST"])
+def login():
+    email = request.json.get("email")
+    password = request.json.get("password")
+
+    user = User.query.filter_by(email=email).first()
+
+    if user and check_password_hash(user.password, password):
+        login_user(user)
+
+        # Return a response indicating successful login
+        return jsonify({"message": "Login successful"}), 200
+    else:
+        return jsonify({"message": "Invalid login credentials"}), 401
+    
+    
+# Users will be redirected to the login page if they haven't logged in
+@app.route("/profile")
+@login_required
+def profile():
+    return jsonify({"user_id": current_user.id, "username": current_user.username}), 200
+
+
+
+@app.route("/logout")
+@login_required
+def logout():
+    logout_user()
+    return jsonify({"message": "Logout successful"}), 200
+
+
+
+#----------------------------Routes for SignUp----------------------------------#
+
+from flask import render_template, redirect, url_for, flash
+
+@app.route("/signup", methods=["GET", "POST"])
+def signup():
+    data = request.json
+    form = UserRegistrationForm(data=data)
+    if form.validate_on_submit():
+            # Creating a new user and adding them to the database
+            new_user = User(
+                username=form.username.data,
+                email=form.email.data,
+                password=bcrypt.generate_password_hash(form.password.data).decode("utf-8")
+            )
+            db.session.add(new_user)
+            db.session.commit()
+
+            # This will Log the registration event
+            logger.info(f"User registered: {new_user.username}, {new_user.email}")
+
+            # Return a success response
+            return jsonify({"message": "Registration successful"}), 201
+    else:
+        # This will Log registration errors
+        errors = form.errors
+        logger.error(f"Registration failed due to errors: {errors}")
+
+        # Return an error response with status code 400
+        return jsonify({"message": "Registration failed", "errors": errors}), 400
+
+    
+    
+
 
 # User ROUTES
 # -----------------------------------------------------------------------------------------#
@@ -252,43 +328,26 @@ def get_doghouse_by_id(doghouse_id):
         db.session.commit()
         return jsonify({"message": "Dog house deleted"}), 204
 
-
+# Route to POST a doghouse
 @app.route("/doghouses", methods=["POST"])
 def create_dog_house_listing():
-    try:
-        data = request.json
 
-        # Ensure required fields are present
-        required_fields = ["name", "location", "description", "price_per_night"]
-        for field in required_fields:
-            if field not in data:
-                return jsonify({"message": f"'{field}' is required"}), 400
+        data = request.json
 
         # Validate the "is_booked" attribute
         if "is_booked" in data and data["is_booked"] not in ["Booked", "Available"]:
             return jsonify({"message": "Invalid value for 'is_booked'. It must be 'Booked' or 'Available'"}), 400
 
-        # Serialize the amenities list to a string
-        amenities = data.get("amenities")
-        if amenities:
-            data["amenities"] = ",".join(amenities)
 
-
-        errors = doghouse_schema.validate(data)
-        if errors:
-            return jsonify({"message": "Validation error", "errors": errors}), 400
-
-        # Create a new DogHouse object and save it to the database.
+        # Create a new DogHouse object and save it to the database
         new_doghouse = DogHouse(**data)
+
+
         db.session.add(new_doghouse)
         db.session.commit()
 
         result = doghouse_schema.dump(new_doghouse)
         return jsonify(result), 201
-    except Exception as e:
-        # Handle any exceptions and return an error response
-        return jsonify({"message": str(e)}), 500
-
 
 
 # Reviews ROUTES
