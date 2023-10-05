@@ -23,7 +23,7 @@ python-dotenv
 SQLAlchemy
 SQLAlchemy-serializer
 urllib3
-Werkzeug==2.3.0
+Werkzeug
 WTForms
 zipp
 flask-bcrypt
