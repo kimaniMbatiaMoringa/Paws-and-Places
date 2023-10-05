@@ -9,6 +9,7 @@ Flask-Migrate
 Flask-RESTful
 Flask-SQLAlchemy
 Flask-WTF
+Flask-Login
 gunicorn
 honcho
 importlib-metadata

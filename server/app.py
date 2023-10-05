@@ -16,8 +16,6 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField, BooleanField, TextAreaField, SelectField, IntegerField
 from wtforms.validators import InputRequired, Length, Email, EqualTo, ValidationError, NumberRange
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
-
-
 # ---------------------------------------------------------#
 
 import cloudinary
