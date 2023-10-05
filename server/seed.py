@@ -34,6 +34,7 @@ with app.app_context():
     Review.query.delete()
     User.query.delete()
     DogHouse.query.delete()
+    
 
     # Create fake users
     users = []
