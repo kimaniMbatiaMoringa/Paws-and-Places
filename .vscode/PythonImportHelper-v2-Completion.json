@@ -623,7 +623,7 @@
         "kind": 6,
         "importPath": "server.app",
         "description": "server.app",
-        "peekOfCode": "class Index(Resource):\n    def get(self):\n        response_dict = {\n            \"index\": \"Welcome to the Paws and Places RESTful API\",\n        }\n        response = make_response(jsonify(response_dict), 200)\n        return response\n# Route Home\n@app.route(\"/\")\ndef home():",
+        "peekOfCode": "class Index(Resource):\n    def get(self):\n        response_dict = {\n            \"index\": \"Welcome to the Newsletter RESTful API\",\n        }\n        response = make_response(jsonify(response_dict), 200)\n        return response\n# Route Home\n@app.route(\"/\")\ndef home():",
         "detail": "server.app",
         "documentation": {}
     },
@@ -632,7 +632,7 @@
         "kind": 2,
         "importPath": "server.app",
         "description": "server.app",
-        "peekOfCode": "def home():\n    response_dict = {\n        \"index\": \"Welcome to Paws and Places RESTful API\",\n    }\n    response = make_response(jsonify(response_dict), 200)\n    return response\n# User ROUTES\n# -----------------------------------------------------------------------------------------#\n# Route GET users\n@app.route(\"/users\", methods=[\"GET\"])",
+        "peekOfCode": "def home():\n    response_dict = {\n        \"index\": \"Welcome to the Newsletter RESTful API\",\n    }\n    response = make_response(jsonify(response_dict), 200)\n    return response\n# User ROUTES\n# -----------------------------------------------------------------------------------------#\n# Route GET users\n@app.route(\"/users\", methods=[\"GET\"])",
         "detail": "server.app",
         "documentation": {}
     },
@@ -687,15 +687,6 @@
         "importPath": "server.app",
         "description": "server.app",
         "peekOfCode": "def create_dog_house_listing():\n    data = request.json\n    # Serialize the amenities list to a string\n    amenities = data.get(\"amenities\")\n    if amenities:\n        data[\"amenities\"] = \",\".join(amenities)\n    # Handling image uploads to Cloudinary\n    image = request.files.get(\"image\")\n    if image:\n        result = upload(image)",
-        "detail": "server.app",
-        "documentation": {}
-    },
-    {
-        "label": "get_reviews_by_doghouse_id",
-        "kind": 2,
-        "importPath": "server.app",
-        "description": "server.app",
-        "peekOfCode": "def get_reviews_by_doghouse_id(doghouse_id):\n    reviews = Review.query.filter_by(doghouse_id=doghouse_id).all()\n    result = reviews_schema.dump(reviews)\n    return jsonify(result), 200\n# Reviews ROUTES\n# -----------------------------------------------------------------------------------------#\n# Route to retrieve all reviews\n@app.route(\"/reviews/\", methods=[\"GET\"])\n@app.route(\"/reviews\", methods=[\"GET\"])\ndef get_reviews():",
         "detail": "server.app",
         "documentation": {}
     },
@@ -857,7 +848,7 @@
         "kind": 5,
         "importPath": "server.app",
         "description": "server.app",
-        "peekOfCode": "review_schema = ReviewSchema()\nreviews_schema = ReviewSchema(many=True)\n# RESTFUL API Endpoints\napi = Api(app)\nclass Index(Resource):\n    def get(self):\n        response_dict = {\n            \"index\": \"Welcome to the Paws and Places RESTful API\",\n        }\n        response = make_response(jsonify(response_dict), 200)",
+        "peekOfCode": "review_schema = ReviewSchema()\nreviews_schema = ReviewSchema(many=True)\n# RESTFUL API Endpoints\napi = Api(app)\nclass Index(Resource):\n    def get(self):\n        response_dict = {\n            \"index\": \"Welcome to the Newsletter RESTful API\",\n        }\n        response = make_response(jsonify(response_dict), 200)",
         "detail": "server.app",
         "documentation": {}
     },
@@ -866,7 +857,7 @@
         "kind": 5,
         "importPath": "server.app",
         "description": "server.app",
-        "peekOfCode": "reviews_schema = ReviewSchema(many=True)\n# RESTFUL API Endpoints\napi = Api(app)\nclass Index(Resource):\n    def get(self):\n        response_dict = {\n            \"index\": \"Welcome to the Paws and Places RESTful API\",\n        }\n        response = make_response(jsonify(response_dict), 200)\n        return response",
+        "peekOfCode": "reviews_schema = ReviewSchema(many=True)\n# RESTFUL API Endpoints\napi = Api(app)\nclass Index(Resource):\n    def get(self):\n        response_dict = {\n            \"index\": \"Welcome to the Newsletter RESTful API\",\n        }\n        response = make_response(jsonify(response_dict), 200)\n        return response",
         "detail": "server.app",
         "documentation": {}
     },
@@ -875,7 +866,7 @@
         "kind": 5,
         "importPath": "server.app",
         "description": "server.app",
-        "peekOfCode": "api = Api(app)\nclass Index(Resource):\n    def get(self):\n        response_dict = {\n            \"index\": \"Welcome to the Paws and Places RESTful API\",\n        }\n        response = make_response(jsonify(response_dict), 200)\n        return response\n# Route Home\n@app.route(\"/\")",
+        "peekOfCode": "api = Api(app)\nclass Index(Resource):\n    def get(self):\n        response_dict = {\n            \"index\": \"Welcome to the Newsletter RESTful API\",\n        }\n        response = make_response(jsonify(response_dict), 200)\n        return response\n# Route Home\n@app.route(\"/\")",
         "detail": "server.app",
         "documentation": {}
     },
