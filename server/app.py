@@ -282,6 +282,14 @@ def create_dog_house_listing():
     result = doghouse_schema.dump(new_doghouse)
     return jsonify(result), 201
 
+# Route for Fetching Reviews by Doghouse ID
+@app.route("/doghouses/<int:doghouse_id>/reviews", methods=["GET"])
+def get_reviews_by_doghouse_id(doghouse_id):
+    reviews = Review.query.filter_by(doghouse_id=doghouse_id).all()
+    result = reviews_schema.dump(reviews)
+    return jsonify(result), 200
+
+
 
 # Reviews ROUTES
 # -----------------------------------------------------------------------------------------#
