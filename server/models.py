@@ -17,12 +17,8 @@ class Review(db.Model, SerializerMixin):
     rating = db.Column(db.Integer())
     user_id = db.Column(db.Integer(), ForeignKey("users.id"))
     doghouse_id = db.Column(db.Integer(), ForeignKey(column="doghouses.id"))
-    status = db.Column(db.String(150))
     created_at = db.Column(db.DateTime, default=db.func.current_timestamp())
     updated_at = db.Column(db.DateTime, default=db.func.current_timestamp(), onupdate=db.func.current_timestamp())
-    
-
-    
     
 
     def to_dict(self):
@@ -33,7 +29,6 @@ class Review(db.Model, SerializerMixin):
             "rating": self.rating,
             "user_id": self.user_id,
             "doghouse_id": self.doghouse_id,
-            "status": self.status,
         }
 
     def __repr__(self):
@@ -100,6 +95,7 @@ class DogHouse(db.Model, SerializerMixin):
     price_per_night = db.Column(db.Float())
     image_url = db.Column(db.String())
     amenities = db.Column(db.String())
+    is_booked = db.Column(db.String(150))
     created_at = db.Column(db.DateTime, default=db.func.current_timestamp())
     updated_at = db.Column(db.DateTime, default=db.func.current_timestamp(), onupdate=db.func.current_timestamp())
 
@@ -115,7 +111,8 @@ class DogHouse(db.Model, SerializerMixin):
             "price_per_night": self.price_per_night,
             "image_url": self.image_url,
             "amenities": self.amenities,
+            "is_booked": self.is_booked,
         }
 
     def __repr__(self):
-        return f" DogHouse: {self.id} | {self.name} | {self.location} "
+        return f" DogHouse: {self.id} | {self.name} | {self.location} {self.is_booked}"

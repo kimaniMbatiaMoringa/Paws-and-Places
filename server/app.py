@@ -81,7 +81,7 @@ class CreateNewReviewForm(FlaskForm):
     body = TextAreaField("Body", validators=[InputRequired(), Length(min=1, max=500)])
     user_id = IntegerField("User ID", validators=[InputRequired(), NumberRange(min=1)])
     doghouse_id = IntegerField("Dog House ID", validators=[InputRequired(), NumberRange(min=1)])
-    status = SelectField("Status", choices=[("Booked", "Booked"), ("Available", "Available"), ("Draft", "Draft")])
+    # is_booked = SelectField("is_booked", choices=[("Booked", "Booked"), ("Available", "Available"), ("Draft", "Draft")])
     submit = SubmitField("Create Review")
 
 
@@ -111,6 +111,7 @@ class DogHouseSchema(ma.Schema):
             "price_per_night",
             "image_url",
             "amenities",
+            "is_booked"
         )
 
 
@@ -185,6 +186,33 @@ def profile():
 def logout():
     logout_user()
     return jsonify({"message": "Logout successful"}), 200
+
+
+
+#----------------------------Routes for SignUp----------------------------------#
+
+from flask import render_template, redirect, url_for, flash
+
+@app.route("/signup", methods=["GET", "POST"])
+def signup():
+    form = UserRegistrationForm()
+    if form.validate_on_submit():
+        # Create a new user and add them to the database
+        new_user = User(
+            username=form.username.data,
+            email=form.email.data,
+            password=bcrypt.generate_password_hash(form.password.data).decode("utf-8")
+        )
+        db.session.add(new_user)
+        db.session.commit()
+
+        # Log in the new user
+        login_user(new_user)
+
+        flash("Registration successful!", "success")
+        return redirect(url_for("profile")) 
+    return render_template("signup.html", form=form)
+
 
 # User ROUTES
 # -----------------------------------------------------------------------------------------#
@@ -286,34 +314,42 @@ def get_doghouse_by_id(doghouse_id):
         return jsonify({"message": "Dog house deleted"}), 204
 
 
-# Route to create a DogHouse
 @app.route("/doghouses", methods=["POST"])
 def create_dog_house_listing():
-    data = request.json
+    try:
+        data = request.json
 
-    # Serialize the amenities list to a string
-    amenities = data.get("amenities")
-    if amenities:
-        data["amenities"] = ",".join(amenities)
+        # Ensure required fields are present
+        required_fields = ["name", "location", "description", "price_per_night"]
+        for field in required_fields:
+            if field not in data:
+                return jsonify({"message": f"'{field}' is required"}), 400
 
-    # Handling image uploads to Cloudinary
-    image = request.files.get("image")
-    if image:
-        result = upload(image)
-        image_url = result["secure_url"]  # Getting the Cloudinary URL
-        data["image_url"] = image_url
+        # Validate the "is_booked" attribute
+        if "is_booked" in data and data["is_booked"] not in ["Booked", "Available"]:
+            return jsonify({"message": "Invalid value for 'is_booked'. It must be 'Booked' or 'Available'"}), 400
 
-    errors = doghouse_schema.validate(data)
-    if errors:
-        return jsonify(errors), 400
+        # Serialize the amenities list to a string
+        amenities = data.get("amenities")
+        if amenities:
+            data["amenities"] = ",".join(amenities)
 
-    # Create a new DogHouse object and save it to the database
-    new_doghouse = DogHouse(**data)
-    db.session.add(new_doghouse)
-    db.session.commit()
 
-    result = doghouse_schema.dump(new_doghouse)
-    return jsonify(result), 201
+        errors = doghouse_schema.validate(data)
+        if errors:
+            return jsonify({"message": "Validation error", "errors": errors}), 400
+
+        # Create a new DogHouse object and save it to the database
+        new_doghouse = DogHouse(**data)
+        db.session.add(new_doghouse)
+        db.session.commit()
+
+        result = doghouse_schema.dump(new_doghouse)
+        return jsonify(result), 201
+    except Exception as e:
+        # Handle any exceptions and return an error response
+        return jsonify({"message": str(e)}), 500
+
 
 
 # Reviews ROUTES

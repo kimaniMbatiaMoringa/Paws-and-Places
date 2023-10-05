@@ -90,6 +90,38 @@
         "documentation": {}
     },
     {
+        "label": "render_template",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "redirect",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "url_for",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "flash",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
         "label": "load_dotenv",
         "importPath": "dotenv",
         "description": "dotenv",
@@ -651,7 +683,7 @@
         "kind": 6,
         "importPath": "server.app",
         "description": "server.app",
-        "peekOfCode": "class CreateNewReviewForm(FlaskForm):\n    title = StringField(\"Title\", validators=[InputRequired(), Length(min=1, max=100)])\n    body = TextAreaField(\"Body\", validators=[InputRequired(), Length(min=1, max=500)])\n    user_id = IntegerField(\"User ID\", validators=[InputRequired(), NumberRange(min=1)])\n    doghouse_id = IntegerField(\"Dog House ID\", validators=[InputRequired(), NumberRange(min=1)])\n    status = SelectField(\"Status\", choices=[(\"Booked\", \"Booked\"), (\"Available\", \"Available\"), (\"Draft\", \"Draft\")])\n    submit = SubmitField(\"Create Review\")\nclass UserSchema(ma.Schema):\n    class Meta:\n        model = User",
+        "peekOfCode": "class CreateNewReviewForm(FlaskForm):\n    title = StringField(\"Title\", validators=[InputRequired(), Length(min=1, max=100)])\n    body = TextAreaField(\"Body\", validators=[InputRequired(), Length(min=1, max=500)])\n    user_id = IntegerField(\"User ID\", validators=[InputRequired(), NumberRange(min=1)])\n    doghouse_id = IntegerField(\"Dog House ID\", validators=[InputRequired(), NumberRange(min=1)])\n    # is_booked = SelectField(\"is_booked\", choices=[(\"Booked\", \"Booked\"), (\"Available\", \"Available\"), (\"Draft\", \"Draft\")])\n    submit = SubmitField(\"Create Review\")\nclass UserSchema(ma.Schema):\n    class Meta:\n        model = User",
         "detail": "server.app",
         "documentation": {}
     },
@@ -714,7 +746,7 @@
         "kind": 2,
         "importPath": "server.app",
         "description": "server.app",
-        "peekOfCode": "def profile():\n    return jsonify({\"user_id\": current_user.id, \"username\": current_user.username}), 200\n@app.route(\"/logout\")\n@login_required\ndef logout():\n    logout_user()\n    return jsonify({\"message\": \"Logout successful\"}), 200\n# User ROUTES\n# -----------------------------------------------------------------------------------------#\n# Route GET users",
+        "peekOfCode": "def profile():\n    return jsonify({\"user_id\": current_user.id, \"username\": current_user.username}), 200\n@app.route(\"/logout\")\n@login_required\ndef logout():\n    logout_user()\n    return jsonify({\"message\": \"Logout successful\"}), 200\n#----------------------------Routes for SignUp----------------------------------#\nfrom flask import render_template, redirect, url_for, flash\n@app.route(\"/signup\", methods=[\"GET\", \"POST\"])",
         "detail": "server.app",
         "documentation": {}
     },
@@ -723,7 +755,16 @@
         "kind": 2,
         "importPath": "server.app",
         "description": "server.app",
-        "peekOfCode": "def logout():\n    logout_user()\n    return jsonify({\"message\": \"Logout successful\"}), 200\n# User ROUTES\n# -----------------------------------------------------------------------------------------#\n# Route GET users\n@app.route(\"/users\", methods=[\"GET\"])\ndef get_user():\n    users = [user.to_dict() for user in User.query.all()]\n    result = users_schema.dump(users)",
+        "peekOfCode": "def logout():\n    logout_user()\n    return jsonify({\"message\": \"Logout successful\"}), 200\n#----------------------------Routes for SignUp----------------------------------#\nfrom flask import render_template, redirect, url_for, flash\n@app.route(\"/signup\", methods=[\"GET\", \"POST\"])\ndef signup():\n    form = UserRegistrationForm()\n    if form.validate_on_submit():\n        # Create a new user and add them to the database",
+        "detail": "server.app",
+        "documentation": {}
+    },
+    {
+        "label": "signup",
+        "kind": 2,
+        "importPath": "server.app",
+        "description": "server.app",
+        "peekOfCode": "def signup():\n    form = UserRegistrationForm()\n    if form.validate_on_submit():\n        # Create a new user and add them to the database\n        new_user = User(\n            username=form.username.data,\n            email=form.email.data,\n            password=bcrypt.generate_password_hash(form.password.data).decode(\"utf-8\")\n        )\n        db.session.add(new_user)",
         "detail": "server.app",
         "documentation": {}
     },
@@ -777,7 +818,7 @@
         "kind": 2,
         "importPath": "server.app",
         "description": "server.app",
-        "peekOfCode": "def create_dog_house_listing():\n    data = request.json\n    # Serialize the amenities list to a string\n    amenities = data.get(\"amenities\")\n    if amenities:\n        data[\"amenities\"] = \",\".join(amenities)\n    # Handling image uploads to Cloudinary\n    image = request.files.get(\"image\")\n    if image:\n        result = upload(image)",
+        "peekOfCode": "def create_dog_house_listing():\n    try:\n        data = request.json\n        # Ensure required fields are present\n        required_fields = [\"name\", \"location\", \"description\", \"price_per_night\"]\n        for field in required_fields:\n            if field not in data:\n                return jsonify({\"message\": f\"'{field}' is required\"}), 400\n        # Validate the \"is_booked\" attribute\n        if \"is_booked\" in data and data[\"is_booked\"] not in [\"Booked\", \"Available\"]:",
         "detail": "server.app",
         "documentation": {}
     },
@@ -993,7 +1034,7 @@
         "kind": 6,
         "importPath": "server.models",
         "description": "server.models",
-        "peekOfCode": "class Review(db.Model, SerializerMixin):\n    __tablename__ = \"reviews\"\n    id = db.Column(db.Integer(), primary_key=True)\n    title = db.Column(db.String(100))\n    body = db.Column(db.String(500))\n    rating = db.Column(db.Integer())\n    user_id = db.Column(db.Integer(), ForeignKey(\"users.id\"))\n    doghouse_id = db.Column(db.Integer(), ForeignKey(column=\"doghouses.id\"))\n    status = db.Column(db.String(150))\n    created_at = db.Column(db.DateTime, default=db.func.current_timestamp())",
+        "peekOfCode": "class Review(db.Model, SerializerMixin):\n    __tablename__ = \"reviews\"\n    id = db.Column(db.Integer(), primary_key=True)\n    title = db.Column(db.String(100))\n    body = db.Column(db.String(500))\n    rating = db.Column(db.Integer())\n    user_id = db.Column(db.Integer(), ForeignKey(\"users.id\"))\n    doghouse_id = db.Column(db.Integer(), ForeignKey(column=\"doghouses.id\"))\n    created_at = db.Column(db.DateTime, default=db.func.current_timestamp())\n    updated_at = db.Column(db.DateTime, default=db.func.current_timestamp(), onupdate=db.func.current_timestamp())",
         "detail": "server.models",
         "documentation": {}
     },
