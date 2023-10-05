@@ -10,6 +10,7 @@ Flask-RESTful
 Flask-SQLAlchemy
 Flask-WTF
 Flask-Login
+flask-login
 gunicorn
 honcho
 importlib-metadata
@@ -22,7 +23,7 @@ python-dotenv
 SQLAlchemy
 SQLAlchemy-serializer
 urllib3
-Werkzeug
+Werkzeug==2.3.0
 WTForms
 zipp
 flask-bcrypt
