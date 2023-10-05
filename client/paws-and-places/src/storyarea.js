@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import {useNavigate} from 'react-router-dom'
+
 
 const mainBackground ={
     backgroundColor:"#FCFBF3",
@@ -65,26 +67,13 @@ const buttonStyle={
     border: "2pt solid white",
 }
 
-function StoryArea() {
-  const [places, setPlaces] = useState([]);
-  const [showMore, setShowMore]= useState(false)
+function StoryArea({places, setPlacefunc}) {
+  
+  const [displayMore, setdisplayMore]= useState(false)
   const [searchFilter, setSearchFilter] = useState("")
 
-  const BASE_URL = "https://paws-and-places-server.onrender.com/doghouses"
 
-  useEffect(() => {
-    fetch(BASE_URL)
-    .then((response)=> response.json())
-    .then((data)=>{
-        setPlaces(data)
-    })
-  }, []);
 
-  function runShowMore(event){
-    //setShowMore(true)
-    //alert(event.id)
-
-  }
 
   return (
     <div className='container-fluid' style={mainBackground}>
@@ -103,7 +92,7 @@ function StoryArea() {
             <p>Date Created: {place.date_created}</p> */}
           </div>
           <div className='container' style={cardFooterStyle} id={place.id}>
-            <button style={buttonStyle}>Show More</button>
+            <button id={place.id} style={buttonStyle} onClick={setPlacefunc}>Show More</button>
           </div>
         </div>
       ))}
