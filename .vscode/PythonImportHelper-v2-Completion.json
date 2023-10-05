@@ -226,6 +226,14 @@
         "documentation": {}
     },
     {
+        "label": "check_password_hash",
+        "importPath": "werkzeug.security",
+        "description": "werkzeug.security",
+        "isExtraImport": true,
+        "detail": "werkzeug.security",
+        "documentation": {}
+    },
+    {
         "label": "FlaskForm",
         "importPath": "flask_wtf",
         "description": "flask_wtf",
@@ -335,6 +343,62 @@
         "description": "wtforms.validators",
         "isExtraImport": true,
         "detail": "wtforms.validators",
+        "documentation": {}
+    },
+    {
+        "label": "LoginManager",
+        "importPath": "flask_login",
+        "description": "flask_login",
+        "isExtraImport": true,
+        "detail": "flask_login",
+        "documentation": {}
+    },
+    {
+        "label": "UserMixin",
+        "importPath": "flask_login",
+        "description": "flask_login",
+        "isExtraImport": true,
+        "detail": "flask_login",
+        "documentation": {}
+    },
+    {
+        "label": "login_user",
+        "importPath": "flask_login",
+        "description": "flask_login",
+        "isExtraImport": true,
+        "detail": "flask_login",
+        "documentation": {}
+    },
+    {
+        "label": "login_required",
+        "importPath": "flask_login",
+        "description": "flask_login",
+        "isExtraImport": true,
+        "detail": "flask_login",
+        "documentation": {}
+    },
+    {
+        "label": "logout_user",
+        "importPath": "flask_login",
+        "description": "flask_login",
+        "isExtraImport": true,
+        "detail": "flask_login",
+        "documentation": {}
+    },
+    {
+        "label": "current_user",
+        "importPath": "flask_login",
+        "description": "flask_login",
+        "isExtraImport": true,
+        "detail": "flask_login",
+        "documentation": {}
+    },
+    {
+        "label": "UserMixin",
+        "importPath": "flask_login",
+        "description": "flask_login",
+        "isExtraImport": true,
+        "detail": "flask_login",
         "documentation": {}
     },
     {
@@ -623,7 +687,7 @@
         "kind": 6,
         "importPath": "server.app",
         "description": "server.app",
-        "peekOfCode": "class Index(Resource):\n    def get(self):\n        response_dict = {\n            \"index\": \"Welcome to the Newsletter RESTful API\",\n        }\n        response = make_response(jsonify(response_dict), 200)\n        return response\n# Route Home\n@app.route(\"/\")\ndef home():",
+        "peekOfCode": "class Index(Resource):\n    def get(self):\n        response_dict = {\n            \"index\": \"Welcome to the Paws and Places RESTful API\",\n        }\n        response = make_response(jsonify(response_dict), 200)\n        return response\n# Route Home\n@app.route(\"/\")\ndef home():",
         "detail": "server.app",
         "documentation": {}
     },
@@ -632,7 +696,34 @@
         "kind": 2,
         "importPath": "server.app",
         "description": "server.app",
-        "peekOfCode": "def home():\n    response_dict = {\n        \"index\": \"Welcome to the Newsletter RESTful API\",\n    }\n    response = make_response(jsonify(response_dict), 200)\n    return response\n# User ROUTES\n# -----------------------------------------------------------------------------------------#\n# Route GET users\n@app.route(\"/users\", methods=[\"GET\"])",
+        "peekOfCode": "def home():\n    response_dict = {\n        \"index\": \"Welcome to Paws and Places RESTful API\",\n    }\n    response = make_response(jsonify(response_dict), 200)\n    return response\n#-----------------------------Routes for Login and Logout------------------------------#\n@app.route(\"/login\", methods=[\"POST\"])\ndef login():\n    email = request.json.get(\"email\")",
+        "detail": "server.app",
+        "documentation": {}
+    },
+    {
+        "label": "login",
+        "kind": 2,
+        "importPath": "server.app",
+        "description": "server.app",
+        "peekOfCode": "def login():\n    email = request.json.get(\"email\")\n    password = request.json.get(\"password\")\n    user = User.query.filter_by(email=email).first()\n    if user and check_password_hash(user.password, password):\n        login_user(user)\n        # Return a response indicating successful login\n        return jsonify({\"message\": \"Login successful\"}), 200\n    else:\n        return jsonify({\"message\": \"Invalid login credentials\"}), 401",
+        "detail": "server.app",
+        "documentation": {}
+    },
+    {
+        "label": "profile",
+        "kind": 2,
+        "importPath": "server.app",
+        "description": "server.app",
+        "peekOfCode": "def profile():\n    return jsonify({\"user_id\": current_user.id, \"username\": current_user.username}), 200\n@app.route(\"/logout\")\n@login_required\ndef logout():\n    logout_user()\n    return jsonify({\"message\": \"Logout successful\"}), 200\n# User ROUTES\n# -----------------------------------------------------------------------------------------#\n# Route GET users",
+        "detail": "server.app",
+        "documentation": {}
+    },
+    {
+        "label": "logout",
+        "kind": 2,
+        "importPath": "server.app",
+        "description": "server.app",
+        "peekOfCode": "def logout():\n    logout_user()\n    return jsonify({\"message\": \"Logout successful\"}), 200\n# User ROUTES\n# -----------------------------------------------------------------------------------------#\n# Route GET users\n@app.route(\"/users\", methods=[\"GET\"])\ndef get_user():\n    users = [user.to_dict() for user in User.query.all()]\n    result = users_schema.dump(users)",
         "detail": "server.app",
         "documentation": {}
     },
@@ -731,7 +822,16 @@
         "kind": 2,
         "importPath": "server.app",
         "description": "server.app",
-        "peekOfCode": "def delete_review_by_id(review_id):\n    review = Review.query.filter_by(id=review_id).first()\n    if review is None:\n        return jsonify({\"message\": \"Review not found\"}), 404\n    db.session.delete(review)\n    db.session.commit()\n    return jsonify({\"message\": \"Review deleted\"}), 204\nif __name__ == \"__main__\":\n    app.run(debug=True, port=5555)",
+        "peekOfCode": "def delete_review_by_id(review_id):\n    review = Review.query.filter_by(id=review_id).first()\n    if review is None:\n        return jsonify({\"message\": \"Review not found\"}), 404\n    db.session.delete(review)\n    db.session.commit()\n    return jsonify({\"message\": \"Review deleted\"}), 204\n@app.route(\"/doghouses/<int:doghouse_id>/reviews\", methods=[\"GET\"])\ndef get_doghouse_reviews(doghouse_id):\n    #code to query the db and get the doghouse reviews",
+        "detail": "server.app",
+        "documentation": {}
+    },
+    {
+        "label": "get_doghouse_reviews",
+        "kind": 2,
+        "importPath": "server.app",
+        "description": "server.app",
+        "peekOfCode": "def get_doghouse_reviews(doghouse_id):\n    #code to query the db and get the doghouse reviews\n    reviews = Review.query.filter_by(doghouse_id=doghouse_id).all()\n    reviews_data = [review.to_dict() for review in reviews]\n    return jsonify(reviews_data)\nif __name__ == \"__main__\":\n    app.run(debug=True, port=5555)",
         "detail": "server.app",
         "documentation": {}
     },
@@ -740,7 +840,7 @@
         "kind": 5,
         "importPath": "server.app",
         "description": "server.app",
-        "peekOfCode": "app = Flask(__name__)\nma = Marshmallow(app)\napi = Api(app)\n# app.config[\"SECRET_KEY\"] = \"your_secret_key_here\"\napp.config[\"SQLALCHEMY_DATABASE_URI\"] = os.environ.get(\"DATABASE_URL\")\napp.config[\"SQLALCHEMY_TRACK_MODIFICATIONS\"] = False\napp.config[\"JSONIFY_PRETTYPRINT_REGULAR\"] = True\ncors = CORS(app)\nmigrate = Migrate(app, db)\ndb.init_app(app)",
+        "peekOfCode": "app = Flask(__name__)\nma = Marshmallow(app)\napi = Api(app)\nlogin_manager = LoginManager()\nlogin_manager.login_view = \"login\"\nlogin_manager.init_app(app)\n# app.config[\"SECRET_KEY\"] = \"your_secret_key_here\"\napp.config[\"SQLALCHEMY_DATABASE_URI\"] = os.environ.get(\"DATABASE_URL\")\napp.config[\"SQLALCHEMY_TRACK_MODIFICATIONS\"] = False\napp.config[\"JSONIFY_PRETTYPRINT_REGULAR\"] = True",
         "detail": "server.app",
         "documentation": {}
     },
@@ -749,7 +849,7 @@
         "kind": 5,
         "importPath": "server.app",
         "description": "server.app",
-        "peekOfCode": "ma = Marshmallow(app)\napi = Api(app)\n# app.config[\"SECRET_KEY\"] = \"your_secret_key_here\"\napp.config[\"SQLALCHEMY_DATABASE_URI\"] = os.environ.get(\"DATABASE_URL\")\napp.config[\"SQLALCHEMY_TRACK_MODIFICATIONS\"] = False\napp.config[\"JSONIFY_PRETTYPRINT_REGULAR\"] = True\ncors = CORS(app)\nmigrate = Migrate(app, db)\ndb.init_app(app)\n# # Cloudinary configuration",
+        "peekOfCode": "ma = Marshmallow(app)\napi = Api(app)\nlogin_manager = LoginManager()\nlogin_manager.login_view = \"login\"\nlogin_manager.init_app(app)\n# app.config[\"SECRET_KEY\"] = \"your_secret_key_here\"\napp.config[\"SQLALCHEMY_DATABASE_URI\"] = os.environ.get(\"DATABASE_URL\")\napp.config[\"SQLALCHEMY_TRACK_MODIFICATIONS\"] = False\napp.config[\"JSONIFY_PRETTYPRINT_REGULAR\"] = True\ncors = CORS(app)",
         "detail": "server.app",
         "documentation": {}
     },
@@ -758,7 +858,25 @@
         "kind": 5,
         "importPath": "server.app",
         "description": "server.app",
-        "peekOfCode": "api = Api(app)\n# app.config[\"SECRET_KEY\"] = \"your_secret_key_here\"\napp.config[\"SQLALCHEMY_DATABASE_URI\"] = os.environ.get(\"DATABASE_URL\")\napp.config[\"SQLALCHEMY_TRACK_MODIFICATIONS\"] = False\napp.config[\"JSONIFY_PRETTYPRINT_REGULAR\"] = True\ncors = CORS(app)\nmigrate = Migrate(app, db)\ndb.init_app(app)\n# # Cloudinary configuration\ncloudinary.config(",
+        "peekOfCode": "api = Api(app)\nlogin_manager = LoginManager()\nlogin_manager.login_view = \"login\"\nlogin_manager.init_app(app)\n# app.config[\"SECRET_KEY\"] = \"your_secret_key_here\"\napp.config[\"SQLALCHEMY_DATABASE_URI\"] = os.environ.get(\"DATABASE_URL\")\napp.config[\"SQLALCHEMY_TRACK_MODIFICATIONS\"] = False\napp.config[\"JSONIFY_PRETTYPRINT_REGULAR\"] = True\ncors = CORS(app)\nmigrate = Migrate(app, db)",
+        "detail": "server.app",
+        "documentation": {}
+    },
+    {
+        "label": "login_manager",
+        "kind": 5,
+        "importPath": "server.app",
+        "description": "server.app",
+        "peekOfCode": "login_manager = LoginManager()\nlogin_manager.login_view = \"login\"\nlogin_manager.init_app(app)\n# app.config[\"SECRET_KEY\"] = \"your_secret_key_here\"\napp.config[\"SQLALCHEMY_DATABASE_URI\"] = os.environ.get(\"DATABASE_URL\")\napp.config[\"SQLALCHEMY_TRACK_MODIFICATIONS\"] = False\napp.config[\"JSONIFY_PRETTYPRINT_REGULAR\"] = True\ncors = CORS(app)\nmigrate = Migrate(app, db)\ndb.init_app(app)",
+        "detail": "server.app",
+        "documentation": {}
+    },
+    {
+        "label": "login_manager.login_view",
+        "kind": 5,
+        "importPath": "server.app",
+        "description": "server.app",
+        "peekOfCode": "login_manager.login_view = \"login\"\nlogin_manager.init_app(app)\n# app.config[\"SECRET_KEY\"] = \"your_secret_key_here\"\napp.config[\"SQLALCHEMY_DATABASE_URI\"] = os.environ.get(\"DATABASE_URL\")\napp.config[\"SQLALCHEMY_TRACK_MODIFICATIONS\"] = False\napp.config[\"JSONIFY_PRETTYPRINT_REGULAR\"] = True\ncors = CORS(app)\nmigrate = Migrate(app, db)\ndb.init_app(app)\n# # Cloudinary configuration",
         "detail": "server.app",
         "documentation": {}
     },
@@ -848,7 +966,7 @@
         "kind": 5,
         "importPath": "server.app",
         "description": "server.app",
-        "peekOfCode": "review_schema = ReviewSchema()\nreviews_schema = ReviewSchema(many=True)\n# RESTFUL API Endpoints\napi = Api(app)\nclass Index(Resource):\n    def get(self):\n        response_dict = {\n            \"index\": \"Welcome to the Newsletter RESTful API\",\n        }\n        response = make_response(jsonify(response_dict), 200)",
+        "peekOfCode": "review_schema = ReviewSchema()\nreviews_schema = ReviewSchema(many=True)\n# RESTFUL API Endpoints\napi = Api(app)\nclass Index(Resource):\n    def get(self):\n        response_dict = {\n            \"index\": \"Welcome to the Paws and Places RESTful API\",\n        }\n        response = make_response(jsonify(response_dict), 200)",
         "detail": "server.app",
         "documentation": {}
     },
@@ -857,7 +975,7 @@
         "kind": 5,
         "importPath": "server.app",
         "description": "server.app",
-        "peekOfCode": "reviews_schema = ReviewSchema(many=True)\n# RESTFUL API Endpoints\napi = Api(app)\nclass Index(Resource):\n    def get(self):\n        response_dict = {\n            \"index\": \"Welcome to the Newsletter RESTful API\",\n        }\n        response = make_response(jsonify(response_dict), 200)\n        return response",
+        "peekOfCode": "reviews_schema = ReviewSchema(many=True)\n# RESTFUL API Endpoints\napi = Api(app)\nclass Index(Resource):\n    def get(self):\n        response_dict = {\n            \"index\": \"Welcome to the Paws and Places RESTful API\",\n        }\n        response = make_response(jsonify(response_dict), 200)\n        return response",
         "detail": "server.app",
         "documentation": {}
     },
@@ -866,7 +984,7 @@
         "kind": 5,
         "importPath": "server.app",
         "description": "server.app",
-        "peekOfCode": "api = Api(app)\nclass Index(Resource):\n    def get(self):\n        response_dict = {\n            \"index\": \"Welcome to the Newsletter RESTful API\",\n        }\n        response = make_response(jsonify(response_dict), 200)\n        return response\n# Route Home\n@app.route(\"/\")",
+        "peekOfCode": "api = Api(app)\nclass Index(Resource):\n    def get(self):\n        response_dict = {\n            \"index\": \"Welcome to the Paws and Places RESTful API\",\n        }\n        response = make_response(jsonify(response_dict), 200)\n        return response\n# Route Home\n@app.route(\"/\")",
         "detail": "server.app",
         "documentation": {}
     },
@@ -884,7 +1002,7 @@
         "kind": 6,
         "importPath": "server.models",
         "description": "server.models",
-        "peekOfCode": "class User(db.Model, SerializerMixin):\n    __tablename__ = \"users\"\n    serialize_rules = \"-reviews.user\"\n    id = db.Column(db.Integer(), primary_key=True)\n    username = db.Column(db.String(250), nullable=False)\n    email = db.Column(db.String(120), unique=True, nullable=False)\n    password = db.Column(db.String(), nullable=False)\n    created_at = db.Column(db.DateTime, default=db.func.current_timestamp())\n    updated_at = db.Column(db.DateTime, default=db.func.current_timestamp(), onupdate=db.func.current_timestamp())\n    # one-to-many Relationship between Users and Reviews",
+        "peekOfCode": "class User(db.Model, UserMixin, SerializerMixin):\n    __tablename__ = \"users\"\n    serialize_rules = \"-reviews.user\"\n    id = db.Column(db.Integer(), primary_key=True)\n    username = db.Column(db.String(250), nullable=False)\n    email = db.Column(db.String(120), unique=True, nullable=False)\n    password = db.Column(db.String(), nullable=False)\n    created_at = db.Column(db.DateTime, default=db.func.current_timestamp())\n    updated_at = db.Column(db.DateTime, default=db.func.current_timestamp(), onupdate=db.func.current_timestamp())\n    # one-to-many Relationship between Users and Reviews",
         "detail": "server.models",
         "documentation": {}
     },

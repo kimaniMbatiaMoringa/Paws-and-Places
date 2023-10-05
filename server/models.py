@@ -2,6 +2,7 @@ from datetime import datetime
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import ForeignKey
 from sqlalchemy_serializer import SerializerMixin
+from flask_login import UserMixin
 
 db = SQLAlchemy()
 
@@ -19,6 +20,10 @@ class Review(db.Model, SerializerMixin):
     status = db.Column(db.String(150))
     created_at = db.Column(db.DateTime, default=db.func.current_timestamp())
     updated_at = db.Column(db.DateTime, default=db.func.current_timestamp(), onupdate=db.func.current_timestamp())
+    
+
+    
+    
 
     def to_dict(self):
         return {
@@ -36,7 +41,7 @@ class Review(db.Model, SerializerMixin):
 
 
 # User Model
-class User(db.Model, SerializerMixin):
+class User(db.Model, UserMixin, SerializerMixin):
     __tablename__ = "users"
 
     serialize_rules = "-reviews.user"
@@ -49,7 +54,23 @@ class User(db.Model, SerializerMixin):
 
     # one-to-many Relationship between Users and Reviews
     reviews = db.relationship("Review", backref="user")
+    
+    
+    # User Authentication logic
+    # Methods for Login
+    def get_id(self):
+        return str(self.id)
 
+    def is_authenticated(self):
+        return True  
+
+    def is_active(self):
+        return True 
+    
+    def is_anonymous(self):
+        return False
+    
+    
     def __init__(self, username, email, password):
         self.username = username
         self.email = email
@@ -67,7 +88,7 @@ class User(db.Model, SerializerMixin):
         return f" User: {self.id} | {self.username}"
 
 
-# User DogHouse
+# DogHouse
 class DogHouse(db.Model, SerializerMixin):
     __tablename__ = "doghouses"
 
