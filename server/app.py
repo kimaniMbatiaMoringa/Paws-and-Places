@@ -134,7 +134,7 @@ api = Api(app)
 class Index(Resource):
     def get(self):
         response_dict = {
-            "index": "Welcome to the Newsletter RESTful API",
+            "index": "Welcome to the Paws and Places RESTful API",
         }
 
         response = make_response(jsonify(response_dict), 200)
@@ -146,7 +146,7 @@ class Index(Resource):
 @app.route("/")
 def home():
     response_dict = {
-        "index": "Welcome to the Newsletter RESTful API",
+        "index": "Welcome to Paws and Places RESTful API",
     }
     response = make_response(jsonify(response_dict), 200)
 
@@ -350,6 +350,16 @@ def delete_review_by_id(review_id):
     db.session.commit()
 
     return jsonify({"message": "Review deleted"}), 204
+
+@app.route("/doghouses/<int:doghouse_id>/reviews", methods=["GET"])
+def get_doghouse_reviews(doghouse_id):
+    #code to query the db and get the doghouse reviews
+    reviews = Review.query.filter_by(doghouse_id=doghouse_id).all()
+    
+    reviews_data = [review.to_dict() for review in reviews]
+
+    return jsonify(reviews_data)
+
 
 
 if __name__ == "__main__":
