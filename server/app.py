@@ -104,7 +104,6 @@ class DogHouseSchema(ma.Schema):
         load_instance = True
         # Fields to expose
         fields = (
-            "id",
             "name",
             "location",
             "description",
