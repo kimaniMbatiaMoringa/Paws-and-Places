@@ -1,10 +1,60 @@
 [
     {
-        "label": "load_dotenv",
-        "importPath": "dotenv",
-        "description": "dotenv",
+        "label": "op",
+        "importPath": "alembic",
+        "description": "alembic",
         "isExtraImport": true,
-        "detail": "dotenv",
+        "detail": "alembic",
+        "documentation": {}
+    },
+    {
+        "label": "context",
+        "importPath": "alembic",
+        "description": "alembic",
+        "isExtraImport": true,
+        "detail": "alembic",
+        "documentation": {}
+    },
+    {
+        "label": "sqlalchemy",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "sqlalchemy",
+        "description": "sqlalchemy",
+        "detail": "sqlalchemy",
+        "documentation": {}
+    },
+    {
+        "label": "ForeignKey",
+        "importPath": "sqlalchemy",
+        "description": "sqlalchemy",
+        "isExtraImport": true,
+        "detail": "sqlalchemy",
+        "documentation": {}
+    },
+    {
+        "label": "logging",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "logging",
+        "description": "logging",
+        "detail": "logging",
+        "documentation": {}
+    },
+    {
+        "label": "fileConfig",
+        "importPath": "logging.config",
+        "description": "logging.config",
+        "isExtraImport": true,
+        "detail": "logging.config",
+        "documentation": {}
+    },
+    {
+        "label": "current_app",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
         "documentation": {}
     },
     {
@@ -37,6 +87,14 @@
         "description": "flask",
         "isExtraImport": true,
         "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "load_dotenv",
+        "importPath": "dotenv",
+        "description": "dotenv",
+        "isExtraImport": true,
+        "detail": "dotenv",
         "documentation": {}
     },
     {
@@ -168,6 +226,14 @@
         "documentation": {}
     },
     {
+        "label": "check_password_hash",
+        "importPath": "werkzeug.security",
+        "description": "werkzeug.security",
+        "isExtraImport": true,
+        "detail": "werkzeug.security",
+        "documentation": {}
+    },
+    {
         "label": "FlaskForm",
         "importPath": "flask_wtf",
         "description": "flask_wtf",
@@ -280,6 +346,62 @@
         "documentation": {}
     },
     {
+        "label": "LoginManager",
+        "importPath": "flask_login",
+        "description": "flask_login",
+        "isExtraImport": true,
+        "detail": "flask_login",
+        "documentation": {}
+    },
+    {
+        "label": "UserMixin",
+        "importPath": "flask_login",
+        "description": "flask_login",
+        "isExtraImport": true,
+        "detail": "flask_login",
+        "documentation": {}
+    },
+    {
+        "label": "login_user",
+        "importPath": "flask_login",
+        "description": "flask_login",
+        "isExtraImport": true,
+        "detail": "flask_login",
+        "documentation": {}
+    },
+    {
+        "label": "login_required",
+        "importPath": "flask_login",
+        "description": "flask_login",
+        "isExtraImport": true,
+        "detail": "flask_login",
+        "documentation": {}
+    },
+    {
+        "label": "logout_user",
+        "importPath": "flask_login",
+        "description": "flask_login",
+        "isExtraImport": true,
+        "detail": "flask_login",
+        "documentation": {}
+    },
+    {
+        "label": "current_user",
+        "importPath": "flask_login",
+        "description": "flask_login",
+        "isExtraImport": true,
+        "detail": "flask_login",
+        "documentation": {}
+    },
+    {
+        "label": "UserMixin",
+        "importPath": "flask_login",
+        "description": "flask_login",
+        "isExtraImport": true,
+        "detail": "flask_login",
+        "documentation": {}
+    },
+    {
         "label": "cloudinary",
         "kind": 6,
         "isExtraImport": true,
@@ -340,14 +462,6 @@
         "documentation": {}
     },
     {
-        "label": "ForeignKey",
-        "importPath": "sqlalchemy",
-        "description": "sqlalchemy",
-        "isExtraImport": true,
-        "detail": "sqlalchemy",
-        "documentation": {}
-    },
-    {
         "label": "SerializerMixin",
         "importPath": "sqlalchemy_serializer",
         "description": "sqlalchemy_serializer",
@@ -386,6 +500,132 @@
         "importPath": "random",
         "description": "random",
         "detail": "random",
+        "documentation": {}
+    },
+    {
+        "label": "upgrade",
+        "kind": 2,
+        "importPath": "server.migrations.versions.003cd5a026a7_revised_migration",
+        "description": "server.migrations.versions.003cd5a026a7_revised_migration",
+        "peekOfCode": "def upgrade():\n    # ### commands auto generated by Alembic - please adjust! ###\n    op.create_table('doghouses',\n    sa.Column('id', sa.Integer(), nullable=False),\n    sa.Column('name', sa.String(length=200), nullable=True),\n    sa.Column('location', sa.String(), nullable=True),\n    sa.Column('description', sa.String(length=500), nullable=True),\n    sa.Column('price_per_night', sa.Float(), nullable=True),\n    sa.Column('image_url', sa.String(), nullable=True),\n    sa.Column('amenities', sa.String(), nullable=True),",
+        "detail": "server.migrations.versions.003cd5a026a7_revised_migration",
+        "documentation": {}
+    },
+    {
+        "label": "downgrade",
+        "kind": 2,
+        "importPath": "server.migrations.versions.003cd5a026a7_revised_migration",
+        "description": "server.migrations.versions.003cd5a026a7_revised_migration",
+        "peekOfCode": "def downgrade():\n    # ### commands auto generated by Alembic - please adjust! ###\n    op.drop_table('reviews')\n    op.drop_table('users')\n    op.drop_table('doghouses')\n    # ### end Alembic commands ###",
+        "detail": "server.migrations.versions.003cd5a026a7_revised_migration",
+        "documentation": {}
+    },
+    {
+        "label": "revision",
+        "kind": 5,
+        "importPath": "server.migrations.versions.003cd5a026a7_revised_migration",
+        "description": "server.migrations.versions.003cd5a026a7_revised_migration",
+        "peekOfCode": "revision = '003cd5a026a7'\ndown_revision = None\nbranch_labels = None\ndepends_on = None\ndef upgrade():\n    # ### commands auto generated by Alembic - please adjust! ###\n    op.create_table('doghouses',\n    sa.Column('id', sa.Integer(), nullable=False),\n    sa.Column('name', sa.String(length=200), nullable=True),\n    sa.Column('location', sa.String(), nullable=True),",
+        "detail": "server.migrations.versions.003cd5a026a7_revised_migration",
+        "documentation": {}
+    },
+    {
+        "label": "down_revision",
+        "kind": 5,
+        "importPath": "server.migrations.versions.003cd5a026a7_revised_migration",
+        "description": "server.migrations.versions.003cd5a026a7_revised_migration",
+        "peekOfCode": "down_revision = None\nbranch_labels = None\ndepends_on = None\ndef upgrade():\n    # ### commands auto generated by Alembic - please adjust! ###\n    op.create_table('doghouses',\n    sa.Column('id', sa.Integer(), nullable=False),\n    sa.Column('name', sa.String(length=200), nullable=True),\n    sa.Column('location', sa.String(), nullable=True),\n    sa.Column('description', sa.String(length=500), nullable=True),",
+        "detail": "server.migrations.versions.003cd5a026a7_revised_migration",
+        "documentation": {}
+    },
+    {
+        "label": "branch_labels",
+        "kind": 5,
+        "importPath": "server.migrations.versions.003cd5a026a7_revised_migration",
+        "description": "server.migrations.versions.003cd5a026a7_revised_migration",
+        "peekOfCode": "branch_labels = None\ndepends_on = None\ndef upgrade():\n    # ### commands auto generated by Alembic - please adjust! ###\n    op.create_table('doghouses',\n    sa.Column('id', sa.Integer(), nullable=False),\n    sa.Column('name', sa.String(length=200), nullable=True),\n    sa.Column('location', sa.String(), nullable=True),\n    sa.Column('description', sa.String(length=500), nullable=True),\n    sa.Column('price_per_night', sa.Float(), nullable=True),",
+        "detail": "server.migrations.versions.003cd5a026a7_revised_migration",
+        "documentation": {}
+    },
+    {
+        "label": "depends_on",
+        "kind": 5,
+        "importPath": "server.migrations.versions.003cd5a026a7_revised_migration",
+        "description": "server.migrations.versions.003cd5a026a7_revised_migration",
+        "peekOfCode": "depends_on = None\ndef upgrade():\n    # ### commands auto generated by Alembic - please adjust! ###\n    op.create_table('doghouses',\n    sa.Column('id', sa.Integer(), nullable=False),\n    sa.Column('name', sa.String(length=200), nullable=True),\n    sa.Column('location', sa.String(), nullable=True),\n    sa.Column('description', sa.String(length=500), nullable=True),\n    sa.Column('price_per_night', sa.Float(), nullable=True),\n    sa.Column('image_url', sa.String(), nullable=True),",
+        "detail": "server.migrations.versions.003cd5a026a7_revised_migration",
+        "documentation": {}
+    },
+    {
+        "label": "get_engine",
+        "kind": 2,
+        "importPath": "server.migrations.env",
+        "description": "server.migrations.env",
+        "peekOfCode": "def get_engine():\n    try:\n        # this works with Flask-SQLAlchemy<3 and Alchemical\n        return current_app.extensions['migrate'].db.get_engine()\n    except (TypeError, AttributeError):\n        # this works with Flask-SQLAlchemy>=3\n        return current_app.extensions['migrate'].db.engine\ndef get_engine_url():\n    try:\n        return get_engine().url.render_as_string(hide_password=False).replace(",
+        "detail": "server.migrations.env",
+        "documentation": {}
+    },
+    {
+        "label": "get_engine_url",
+        "kind": 2,
+        "importPath": "server.migrations.env",
+        "description": "server.migrations.env",
+        "peekOfCode": "def get_engine_url():\n    try:\n        return get_engine().url.render_as_string(hide_password=False).replace(\n            '%', '%%')\n    except AttributeError:\n        return str(get_engine().url).replace('%', '%%')\n# add your model's MetaData object here\n# for 'autogenerate' support\n# from myapp import mymodel\n# target_metadata = mymodel.Base.metadata",
+        "detail": "server.migrations.env",
+        "documentation": {}
+    },
+    {
+        "label": "get_metadata",
+        "kind": 2,
+        "importPath": "server.migrations.env",
+        "description": "server.migrations.env",
+        "peekOfCode": "def get_metadata():\n    if hasattr(target_db, 'metadatas'):\n        return target_db.metadatas[None]\n    return target_db.metadata\ndef run_migrations_offline():\n    \"\"\"Run migrations in 'offline' mode.\n    This configures the context with just a URL\n    and not an Engine, though an Engine is acceptable\n    here as well.  By skipping the Engine creation\n    we don't even need a DBAPI to be available.",
+        "detail": "server.migrations.env",
+        "documentation": {}
+    },
+    {
+        "label": "run_migrations_offline",
+        "kind": 2,
+        "importPath": "server.migrations.env",
+        "description": "server.migrations.env",
+        "peekOfCode": "def run_migrations_offline():\n    \"\"\"Run migrations in 'offline' mode.\n    This configures the context with just a URL\n    and not an Engine, though an Engine is acceptable\n    here as well.  By skipping the Engine creation\n    we don't even need a DBAPI to be available.\n    Calls to context.execute() here emit the given string to the\n    script output.\n    \"\"\"\n    url = config.get_main_option(\"sqlalchemy.url\")",
+        "detail": "server.migrations.env",
+        "documentation": {}
+    },
+    {
+        "label": "run_migrations_online",
+        "kind": 2,
+        "importPath": "server.migrations.env",
+        "description": "server.migrations.env",
+        "peekOfCode": "def run_migrations_online():\n    \"\"\"Run migrations in 'online' mode.\n    In this scenario we need to create an Engine\n    and associate a connection with the context.\n    \"\"\"\n    # this callback is used to prevent an auto-migration from being generated\n    # when there are no changes to the schema\n    # reference: http://alembic.zzzcomputing.com/en/latest/cookbook.html\n    def process_revision_directives(context, revision, directives):\n        if getattr(config.cmd_opts, 'autogenerate', False):",
+        "detail": "server.migrations.env",
+        "documentation": {}
+    },
+    {
+        "label": "config",
+        "kind": 5,
+        "importPath": "server.migrations.env",
+        "description": "server.migrations.env",
+        "peekOfCode": "config = context.config\n# Interpret the config file for Python logging.\n# This line sets up loggers basically.\nfileConfig(config.config_file_name)\nlogger = logging.getLogger('alembic.env')\ndef get_engine():\n    try:\n        # this works with Flask-SQLAlchemy<3 and Alchemical\n        return current_app.extensions['migrate'].db.get_engine()\n    except (TypeError, AttributeError):",
+        "detail": "server.migrations.env",
+        "documentation": {}
+    },
+    {
+        "label": "logger",
+        "kind": 5,
+        "importPath": "server.migrations.env",
+        "description": "server.migrations.env",
+        "peekOfCode": "logger = logging.getLogger('alembic.env')\ndef get_engine():\n    try:\n        # this works with Flask-SQLAlchemy<3 and Alchemical\n        return current_app.extensions['migrate'].db.get_engine()\n    except (TypeError, AttributeError):\n        # this works with Flask-SQLAlchemy>=3\n        return current_app.extensions['migrate'].db.engine\ndef get_engine_url():\n    try:",
+        "detail": "server.migrations.env",
+        "documentation": {}
+    },
+    {
+        "label": "target_db",
+        "kind": 5,
+        "importPath": "server.migrations.env",
+        "description": "server.migrations.env",
+        "peekOfCode": "target_db = current_app.extensions['migrate'].db\n# other values from the config, defined by the needs of env.py,\n# can be acquired:\n# my_important_option = config.get_main_option(\"my_important_option\")\n# ... etc.\ndef get_metadata():\n    if hasattr(target_db, 'metadatas'):\n        return target_db.metadatas[None]\n    return target_db.metadata\ndef run_migrations_offline():",
+        "detail": "server.migrations.env",
         "documentation": {}
     },
     {
@@ -447,7 +687,7 @@
         "kind": 6,
         "importPath": "server.app",
         "description": "server.app",
-        "peekOfCode": "class Index(Resource):\n    def get(self):\n        response_dict = {\n            \"index\": \"Welcome to the Newsletter RESTful API\",\n        }\n        response = make_response(jsonify(response_dict), 200)\n        return response\n# Route Home\n@app.route(\"/\")\ndef home():",
+        "peekOfCode": "class Index(Resource):\n    def get(self):\n        response_dict = {\n            \"index\": \"Welcome to the Paws and Places RESTful API\",\n        }\n        response = make_response(jsonify(response_dict), 200)\n        return response\n# Route Home\n@app.route(\"/\")\ndef home():",
         "detail": "server.app",
         "documentation": {}
     },
@@ -456,7 +696,34 @@
         "kind": 2,
         "importPath": "server.app",
         "description": "server.app",
-        "peekOfCode": "def home():\n    response_dict = {\n        \"index\": \"Welcome to the Newsletter RESTful API\",\n    }\n    response = make_response(jsonify(response_dict), 200)\n    return response\n# User ROUTES\n# -----------------------------------------------------------------------------------------#\n# Route GET users\n@app.route(\"/users\", methods=[\"GET\"])",
+        "peekOfCode": "def home():\n    response_dict = {\n        \"index\": \"Welcome to Paws and Places RESTful API\",\n    }\n    response = make_response(jsonify(response_dict), 200)\n    return response\n#-----------------------------Routes for Login and Logout------------------------------#\n@app.route(\"/login\", methods=[\"POST\"])\ndef login():\n    email = request.json.get(\"email\")",
+        "detail": "server.app",
+        "documentation": {}
+    },
+    {
+        "label": "login",
+        "kind": 2,
+        "importPath": "server.app",
+        "description": "server.app",
+        "peekOfCode": "def login():\n    email = request.json.get(\"email\")\n    password = request.json.get(\"password\")\n    user = User.query.filter_by(email=email).first()\n    if user and check_password_hash(user.password, password):\n        login_user(user)\n        # Return a response indicating successful login\n        return jsonify({\"message\": \"Login successful\"}), 200\n    else:\n        return jsonify({\"message\": \"Invalid login credentials\"}), 401",
+        "detail": "server.app",
+        "documentation": {}
+    },
+    {
+        "label": "profile",
+        "kind": 2,
+        "importPath": "server.app",
+        "description": "server.app",
+        "peekOfCode": "def profile():\n    return jsonify({\"user_id\": current_user.id, \"username\": current_user.username}), 200\n@app.route(\"/logout\")\n@login_required\ndef logout():\n    logout_user()\n    return jsonify({\"message\": \"Logout successful\"}), 200\n# User ROUTES\n# -----------------------------------------------------------------------------------------#\n# Route GET users",
+        "detail": "server.app",
+        "documentation": {}
+    },
+    {
+        "label": "logout",
+        "kind": 2,
+        "importPath": "server.app",
+        "description": "server.app",
+        "peekOfCode": "def logout():\n    logout_user()\n    return jsonify({\"message\": \"Logout successful\"}), 200\n# User ROUTES\n# -----------------------------------------------------------------------------------------#\n# Route GET users\n@app.route(\"/users\", methods=[\"GET\"])\ndef get_user():\n    users = [user.to_dict() for user in User.query.all()]\n    result = users_schema.dump(users)",
         "detail": "server.app",
         "documentation": {}
     },
@@ -555,7 +822,16 @@
         "kind": 2,
         "importPath": "server.app",
         "description": "server.app",
-        "peekOfCode": "def delete_review_by_id(review_id):\n    review = Review.query.filter_by(id=review_id).first()\n    if review is None:\n        return jsonify({\"message\": \"Review not found\"}), 404\n    db.session.delete(review)\n    db.session.commit()\n    return jsonify({\"message\": \"Review deleted\"}), 204\nif __name__ == \"__main__\":\n    app.run(debug=True, port=5555)",
+        "peekOfCode": "def delete_review_by_id(review_id):\n    review = Review.query.filter_by(id=review_id).first()\n    if review is None:\n        return jsonify({\"message\": \"Review not found\"}), 404\n    db.session.delete(review)\n    db.session.commit()\n    return jsonify({\"message\": \"Review deleted\"}), 204\n@app.route(\"/doghouses/<int:doghouse_id>/reviews\", methods=[\"GET\"])\ndef get_doghouse_reviews(doghouse_id):\n    #code to query the db and get the doghouse reviews",
+        "detail": "server.app",
+        "documentation": {}
+    },
+    {
+        "label": "get_doghouse_reviews",
+        "kind": 2,
+        "importPath": "server.app",
+        "description": "server.app",
+        "peekOfCode": "def get_doghouse_reviews(doghouse_id):\n    #code to query the db and get the doghouse reviews\n    reviews = Review.query.filter_by(doghouse_id=doghouse_id).all()\n    reviews_data = [review.to_dict() for review in reviews]\n    return jsonify(reviews_data)\nif __name__ == \"__main__\":\n    app.run(debug=True, port=5555)",
         "detail": "server.app",
         "documentation": {}
     },
@@ -564,7 +840,7 @@
         "kind": 5,
         "importPath": "server.app",
         "description": "server.app",
-        "peekOfCode": "app = Flask(__name__)\nma = Marshmallow(app)\napi = Api(app)\n# app.config[\"SECRET_KEY\"] = \"your_secret_key_here\"\napp.config[\"SQLALCHEMY_DATABASE_URI\"] = os.environ.get(\"DATABASE_URL\")\napp.config[\"SQLALCHEMY_TRACK_MODIFICATIONS\"] = False\napp.config[\"JSONIFY_PRETTYPRINT_REGULAR\"] = True\ncors = CORS(app)\nmigrate = Migrate(app, db)\ndb.init_app(app)",
+        "peekOfCode": "app = Flask(__name__)\nma = Marshmallow(app)\napi = Api(app)\nlogin_manager = LoginManager()\nlogin_manager.login_view = \"login\"\nlogin_manager.init_app(app)\n# app.config[\"SECRET_KEY\"] = \"your_secret_key_here\"\napp.config[\"SQLALCHEMY_DATABASE_URI\"] = os.environ.get(\"DATABASE_URL\")\napp.config[\"SQLALCHEMY_TRACK_MODIFICATIONS\"] = False\napp.config[\"JSONIFY_PRETTYPRINT_REGULAR\"] = True",
         "detail": "server.app",
         "documentation": {}
     },
@@ -573,7 +849,7 @@
         "kind": 5,
         "importPath": "server.app",
         "description": "server.app",
-        "peekOfCode": "ma = Marshmallow(app)\napi = Api(app)\n# app.config[\"SECRET_KEY\"] = \"your_secret_key_here\"\napp.config[\"SQLALCHEMY_DATABASE_URI\"] = os.environ.get(\"DATABASE_URL\")\napp.config[\"SQLALCHEMY_TRACK_MODIFICATIONS\"] = False\napp.config[\"JSONIFY_PRETTYPRINT_REGULAR\"] = True\ncors = CORS(app)\nmigrate = Migrate(app, db)\ndb.init_app(app)\n# # Cloudinary configuration",
+        "peekOfCode": "ma = Marshmallow(app)\napi = Api(app)\nlogin_manager = LoginManager()\nlogin_manager.login_view = \"login\"\nlogin_manager.init_app(app)\n# app.config[\"SECRET_KEY\"] = \"your_secret_key_here\"\napp.config[\"SQLALCHEMY_DATABASE_URI\"] = os.environ.get(\"DATABASE_URL\")\napp.config[\"SQLALCHEMY_TRACK_MODIFICATIONS\"] = False\napp.config[\"JSONIFY_PRETTYPRINT_REGULAR\"] = True\ncors = CORS(app)",
         "detail": "server.app",
         "documentation": {}
     },
@@ -582,7 +858,25 @@
         "kind": 5,
         "importPath": "server.app",
         "description": "server.app",
-        "peekOfCode": "api = Api(app)\n# app.config[\"SECRET_KEY\"] = \"your_secret_key_here\"\napp.config[\"SQLALCHEMY_DATABASE_URI\"] = os.environ.get(\"DATABASE_URL\")\napp.config[\"SQLALCHEMY_TRACK_MODIFICATIONS\"] = False\napp.config[\"JSONIFY_PRETTYPRINT_REGULAR\"] = True\ncors = CORS(app)\nmigrate = Migrate(app, db)\ndb.init_app(app)\n# # Cloudinary configuration\ncloudinary.config(",
+        "peekOfCode": "api = Api(app)\nlogin_manager = LoginManager()\nlogin_manager.login_view = \"login\"\nlogin_manager.init_app(app)\n# app.config[\"SECRET_KEY\"] = \"your_secret_key_here\"\napp.config[\"SQLALCHEMY_DATABASE_URI\"] = os.environ.get(\"DATABASE_URL\")\napp.config[\"SQLALCHEMY_TRACK_MODIFICATIONS\"] = False\napp.config[\"JSONIFY_PRETTYPRINT_REGULAR\"] = True\ncors = CORS(app)\nmigrate = Migrate(app, db)",
+        "detail": "server.app",
+        "documentation": {}
+    },
+    {
+        "label": "login_manager",
+        "kind": 5,
+        "importPath": "server.app",
+        "description": "server.app",
+        "peekOfCode": "login_manager = LoginManager()\nlogin_manager.login_view = \"login\"\nlogin_manager.init_app(app)\n# app.config[\"SECRET_KEY\"] = \"your_secret_key_here\"\napp.config[\"SQLALCHEMY_DATABASE_URI\"] = os.environ.get(\"DATABASE_URL\")\napp.config[\"SQLALCHEMY_TRACK_MODIFICATIONS\"] = False\napp.config[\"JSONIFY_PRETTYPRINT_REGULAR\"] = True\ncors = CORS(app)\nmigrate = Migrate(app, db)\ndb.init_app(app)",
+        "detail": "server.app",
+        "documentation": {}
+    },
+    {
+        "label": "login_manager.login_view",
+        "kind": 5,
+        "importPath": "server.app",
+        "description": "server.app",
+        "peekOfCode": "login_manager.login_view = \"login\"\nlogin_manager.init_app(app)\n# app.config[\"SECRET_KEY\"] = \"your_secret_key_here\"\napp.config[\"SQLALCHEMY_DATABASE_URI\"] = os.environ.get(\"DATABASE_URL\")\napp.config[\"SQLALCHEMY_TRACK_MODIFICATIONS\"] = False\napp.config[\"JSONIFY_PRETTYPRINT_REGULAR\"] = True\ncors = CORS(app)\nmigrate = Migrate(app, db)\ndb.init_app(app)\n# # Cloudinary configuration",
         "detail": "server.app",
         "documentation": {}
     },
@@ -672,7 +966,7 @@
         "kind": 5,
         "importPath": "server.app",
         "description": "server.app",
-        "peekOfCode": "review_schema = ReviewSchema()\nreviews_schema = ReviewSchema(many=True)\n# RESTFUL API Endpoints\napi = Api(app)\nclass Index(Resource):\n    def get(self):\n        response_dict = {\n            \"index\": \"Welcome to the Newsletter RESTful API\",\n        }\n        response = make_response(jsonify(response_dict), 200)",
+        "peekOfCode": "review_schema = ReviewSchema()\nreviews_schema = ReviewSchema(many=True)\n# RESTFUL API Endpoints\napi = Api(app)\nclass Index(Resource):\n    def get(self):\n        response_dict = {\n            \"index\": \"Welcome to the Paws and Places RESTful API\",\n        }\n        response = make_response(jsonify(response_dict), 200)",
         "detail": "server.app",
         "documentation": {}
     },
@@ -681,7 +975,7 @@
         "kind": 5,
         "importPath": "server.app",
         "description": "server.app",
-        "peekOfCode": "reviews_schema = ReviewSchema(many=True)\n# RESTFUL API Endpoints\napi = Api(app)\nclass Index(Resource):\n    def get(self):\n        response_dict = {\n            \"index\": \"Welcome to the Newsletter RESTful API\",\n        }\n        response = make_response(jsonify(response_dict), 200)\n        return response",
+        "peekOfCode": "reviews_schema = ReviewSchema(many=True)\n# RESTFUL API Endpoints\napi = Api(app)\nclass Index(Resource):\n    def get(self):\n        response_dict = {\n            \"index\": \"Welcome to the Paws and Places RESTful API\",\n        }\n        response = make_response(jsonify(response_dict), 200)\n        return response",
         "detail": "server.app",
         "documentation": {}
     },
@@ -690,7 +984,7 @@
         "kind": 5,
         "importPath": "server.app",
         "description": "server.app",
-        "peekOfCode": "api = Api(app)\nclass Index(Resource):\n    def get(self):\n        response_dict = {\n            \"index\": \"Welcome to the Newsletter RESTful API\",\n        }\n        response = make_response(jsonify(response_dict), 200)\n        return response\n# Route Home\n@app.route(\"/\")",
+        "peekOfCode": "api = Api(app)\nclass Index(Resource):\n    def get(self):\n        response_dict = {\n            \"index\": \"Welcome to the Paws and Places RESTful API\",\n        }\n        response = make_response(jsonify(response_dict), 200)\n        return response\n# Route Home\n@app.route(\"/\")",
         "detail": "server.app",
         "documentation": {}
     },
@@ -708,7 +1002,7 @@
         "kind": 6,
         "importPath": "server.models",
         "description": "server.models",
-        "peekOfCode": "class User(db.Model, SerializerMixin):\n    __tablename__ = \"users\"\n    serialize_rules = \"-reviews.user\"\n    id = db.Column(db.Integer(), primary_key=True)\n    username = db.Column(db.String(250), nullable=False)\n    email = db.Column(db.String(120), unique=True, nullable=False)\n    password = db.Column(db.String(), nullable=False)\n    created_at = db.Column(db.DateTime, default=db.func.current_timestamp())\n    updated_at = db.Column(db.DateTime, default=db.func.current_timestamp(), onupdate=db.func.current_timestamp())\n    # one-to-many Relationship between Users and Reviews",
+        "peekOfCode": "class User(db.Model, UserMixin, SerializerMixin):\n    __tablename__ = \"users\"\n    serialize_rules = \"-reviews.user\"\n    id = db.Column(db.Integer(), primary_key=True)\n    username = db.Column(db.String(250), nullable=False)\n    email = db.Column(db.String(120), unique=True, nullable=False)\n    password = db.Column(db.String(), nullable=False)\n    created_at = db.Column(db.DateTime, default=db.func.current_timestamp())\n    updated_at = db.Column(db.DateTime, default=db.func.current_timestamp(), onupdate=db.func.current_timestamp())\n    # one-to-many Relationship between Users and Reviews",
         "detail": "server.models",
         "documentation": {}
     },
