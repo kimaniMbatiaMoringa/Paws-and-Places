@@ -696,7 +696,7 @@
         "kind": 2,
         "importPath": "server.app",
         "description": "server.app",
-        "peekOfCode": "def home():\n    response_dict = {\n        \"index\": \"Welcome to Paws and Places RESTful API\",\n    }\n    response = make_response(jsonify(response_dict), 200)\n    return response\n#-----------------------------Routes for Login and Logout------------------------------#\n@app.route(\"/login\", methods=[\"POST\"])\ndef login():\n    email = request.json.get(\"email\")",
+        "peekOfCode": "def home():\n    response_dict = {\n        \"index\": \"Welcome to Paws and Places RESTful API.\",\n    }\n    response = make_response(jsonify(response_dict), 200)\n    return response\n#-----------------------------Routes for Login and Logout------------------------------#\n@app.route(\"/login\", methods=[\"POST\"])\ndef login():\n    email = request.json.get(\"email\")",
         "detail": "server.app",
         "documentation": {}
     },
