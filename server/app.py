@@ -10,12 +10,14 @@ from flask_restful import Api, Resource, reqparse
 from models import db, DogHouse, User, Review
 from flask_cors import CORS
 from flask_marshmallow import Marshmallow
-from werkzeug.security import check_password_hash
+
 # --------------------------------------------------------#
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField, BooleanField, TextAreaField, SelectField, IntegerField
 from wtforms.validators import InputRequired, Length, Email, EqualTo, ValidationError, NumberRange
-from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
+
+# from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
+
 # ---------------------------------------------------------#
 
 import cloudinary
@@ -28,10 +30,6 @@ import os
 app = Flask(__name__)
 ma = Marshmallow(app)
 api = Api(app)
-
-login_manager = LoginManager()
-login_manager.login_view = "login"
-login_manager.init_app(app)
 
 # app.config["SECRET_KEY"] = "your_secret_key_here"
 app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("DATABASE_URL")
@@ -154,65 +152,6 @@ def home():
     response = make_response(jsonify(response_dict), 200)
 
     return response
-
-
-#-----------------------------Routes for Login and Logout------------------------------#
-@app.route("/login", methods=["POST"])
-def login():
-    email = request.json.get("email")
-    password = request.json.get("password")
-
-    user = User.query.filter_by(email=email).first()
-
-    if user and check_password_hash(user.password, password):
-        login_user(user)
-
-        # Return a response indicating successful login
-        return jsonify({"message": "Login successful"}), 200
-    else:
-        return jsonify({"message": "Invalid login credentials"}), 401
-    
-    
-# Users will be redirected to the login page if they haven't logged in
-@app.route("/profile")
-@login_required
-def profile():
-    return jsonify({"user_id": current_user.id, "username": current_user.username}), 200
-
-
-
-@app.route("/logout")
-@login_required
-def logout():
-    logout_user()
-    return jsonify({"message": "Logout successful"}), 200
-
-
-
-#----------------------------Routes for SignUp----------------------------------#
-
-from flask import render_template, redirect, url_for, flash
-
-@app.route("/signup", methods=["GET", "POST"])
-def signup():
-    form = UserRegistrationForm()
-    if form.validate_on_submit():
-        # Create a new user and add them to the database
-        new_user = User(
-            username=form.username.data,
-            email=form.email.data,
-            password=bcrypt.generate_password_hash(form.password.data).decode("utf-8")
-        )
-        db.session.add(new_user)
-        db.session.commit()
-
-        # Log in the new user
-        login_user(new_user)
-
-        flash("Registration successful!", "success")
-        return redirect(url_for("profile")) 
-    return render_template("signup.html", form=form)
-
 
 # User ROUTES
 # -----------------------------------------------------------------------------------------#
