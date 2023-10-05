@@ -86,7 +86,7 @@ class CreateNewReviewForm(FlaskForm):
     body = TextAreaField("Body", validators=[InputRequired(), Length(min=1, max=500)])
     user_id = IntegerField("User ID", validators=[InputRequired(), NumberRange(min=1)])
     doghouse_id = IntegerField("Dog House ID", validators=[InputRequired(), NumberRange(min=1)])
-    is_booked = SelectField("is_booked", choices=[("Booked", "Booked"), ("Available", "Available"), ("Draft", "Draft")])
+    #is_booked = SelectField("is_booked", choices=[("Booked", "Booked"), ("Available", "Available"), ("Draft", "Draft")])
     submit = SubmitField("Create Review")
 
 
