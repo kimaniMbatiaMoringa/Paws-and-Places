@@ -23,6 +23,7 @@ sqlalchemy = "*"
 honcho = "*"
 importlib-metadata = "*"
 flask-login = "*"
+flask-bcrypt = "*"
 
 [dev-packages]
 

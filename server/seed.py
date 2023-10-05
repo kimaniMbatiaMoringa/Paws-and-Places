@@ -83,6 +83,8 @@ with app.app_context():
             price_per_night=price_per_night,
             image_url=image_url,
             amenities=amenities,
+            is_booked = random.choice(["Booked", "Available"])
+
         )
         dog_houses.append(dog_house)
 
