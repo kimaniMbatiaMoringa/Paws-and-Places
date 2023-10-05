@@ -1,13 +1,42 @@
-import datetime
+from datetime import datetime
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import ForeignKey
 from sqlalchemy_serializer import SerializerMixin
+from flask_login import UserMixin
 
 db = SQLAlchemy()
 
 
+# Reviews Model
+class Review(db.Model, SerializerMixin):
+    __tablename__ = "reviews"
+
+    id = db.Column(db.Integer(), primary_key=True)
+    title = db.Column(db.String(100))
+    body = db.Column(db.String(500))
+    rating = db.Column(db.Integer())
+    user_id = db.Column(db.Integer(), ForeignKey("users.id"))
+    doghouse_id = db.Column(db.Integer(), ForeignKey(column="doghouses.id"))
+    created_at = db.Column(db.DateTime, default=db.func.current_timestamp())
+    updated_at = db.Column(db.DateTime, default=db.func.current_timestamp(), onupdate=db.func.current_timestamp())
+    
+
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "title": self.title,
+            "body": self.body,
+            "rating": self.rating,
+            "user_id": self.user_id,
+            "doghouse_id": self.doghouse_id,
+        }
+
+    def __repr__(self):
+        return f"Review: {self.id} | {self.title}"
+
+
 # User Model
-class User(db.Model, SerializerMixin):
+class User(db.Model, UserMixin, SerializerMixin):
     __tablename__ = "users"
 
     serialize_rules = "-reviews.user"
@@ -15,11 +44,32 @@ class User(db.Model, SerializerMixin):
     username = db.Column(db.String(250), nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
     password = db.Column(db.String(), nullable=False)
-    created_at = db.Column(db.DateTime(), default=datetime.utcnow)
-    updated_at = db.Column(db.DateTime(), default=datetime.utcnow)
+    created_at = db.Column(db.DateTime, default=db.func.current_timestamp())
+    updated_at = db.Column(db.DateTime, default=db.func.current_timestamp(), onupdate=db.func.current_timestamp())
 
     # one-to-many Relationship between Users and Reviews
-    reviews = db.relationship("Reviews", backref="user")
+    reviews = db.relationship("Review", backref="user")
+    
+    
+    # User Authentication logic
+    # Methods for Login
+    def get_id(self):
+        return str(self.id)
+
+    def is_authenticated(self):
+        return True  
+
+    def is_active(self):
+        return True 
+    
+    def is_anonymous(self):
+        return False
+    
+    
+    def __init__(self, username, email, password):
+        self.username = username
+        self.email = email
+        self.password = password
 
     def to_dict(self):
         return {
@@ -33,7 +83,7 @@ class User(db.Model, SerializerMixin):
         return f" User: {self.id} | {self.username}"
 
 
-# User DogHouse
+# DogHouse
 class DogHouse(db.Model, SerializerMixin):
     __tablename__ = "doghouses"
 
@@ -43,13 +93,14 @@ class DogHouse(db.Model, SerializerMixin):
     location = db.Column(db.String())
     description = db.Column(db.String(500))
     price_per_night = db.Column(db.Float())
-    images = db.Column(db.String())
+    image_url = db.Column(db.String())
     amenities = db.Column(db.String())
-    created_at = db.Column(db.DateTime(), default=datetime.utcnow)
-    updated_at = db.Column(db.DateTime(), default=datetime.utcnow)
+    is_booked = db.Column(db.String(150))
+    created_at = db.Column(db.DateTime, default=db.func.current_timestamp())
+    updated_at = db.Column(db.DateTime, default=db.func.current_timestamp(), onupdate=db.func.current_timestamp())
 
     # one-to-many Relationship between DogHouse and Reviews
-    reviews = db.relationship("Reviews", backref="doghouse")
+    reviews = db.relationship("Review", backref="doghouse")
 
     def to_dict(self):
         return {
@@ -58,33 +109,10 @@ class DogHouse(db.Model, SerializerMixin):
             "location": self.location,
             "description": self.description,
             "price_per_night": self.price_per_night,
-            "images": self.images,
+            "image_url": self.image_url,
             "amenities": self.amenities,
+            "is_booked": self.is_booked,
         }
 
     def __repr__(self):
-        return f" DogHouse: {self.id} | {self.name} | {self.location} "
-
-
-# Reviews Model
-class Review(db.Model, SerializerMixin):
-    __tablename__ = "reviews"
-
-    id = db.Column(db.Integer(), primary_key=True)
-    title = db.Column(db.String(100))
-    body = db.Column(db.String(500))
-    user_id = db.Column(db.Integer(), ForeignKey("users.id"))
-    doghouse_id = db.Column(db.Integer(), ForeignKey(column="doghouses.id"))
-    status = db.Column(db.String(150))
-    created_at = db.Column(db.DateTime(), default=datetime.utcnow)
-    updated_at = db.Column(db.DateTime(), default=datetime.utcnow)
-
-    def to_dict(self):
-        return {
-            "id": self.id,
-            "title": self.title,
-            "body": self.body,
-            "user_id": self.user_id,
-            "doghouse_id": self.doghouse_id,
-            "status": self.status,
-        }
+        return f" DogHouse: {self.id} | {self.name} | {self.location} {self.is_booked}"
