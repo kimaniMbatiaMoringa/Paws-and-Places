@@ -22,6 +22,7 @@ python-dotenv = "*"
 sqlalchemy = "*"
 honcho = "*"
 importlib-metadata = "*"
+flask-login = "*"
 
 [dev-packages]
 
