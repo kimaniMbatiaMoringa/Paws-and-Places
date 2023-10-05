@@ -24,6 +24,7 @@ honcho = "*"
 importlib-metadata = "*"
 flask-login = "*"
 flask-bcrypt = "*"
+flask-jwt-extended = "*"
 
 [dev-packages]
 
