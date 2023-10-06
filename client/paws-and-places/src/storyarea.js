@@ -67,14 +67,36 @@ const buttonStyle={
     border: "2pt solid white",
 }
 
-function StoryArea({places, setPlacefunc}) {
+function StoryArea({ setPlacefunc}) {
   
   const [displayMore, setdisplayMore]= useState(false)
   const [searchFilter, setSearchFilter] = useState("")
+  const [places, setPlaces] = useState([]);
 
-
-
-
+  useEffect(() => {
+    // Fetch data from the API
+    fetch('https://paws-and-places-server.onrender.com/doghouses')
+      .then(response => response.json())
+      .then(data => {
+        setPlaces(data); // Set the fetched data in the state
+      })
+      .catch(error => {
+        console.error('Error fetching data:', error);
+      });
+  }, []);
+  const reloadDogHousesData = async () => {
+    try {
+      const response = await fetch('https://paws-and-places-server.onrender.com/doghouses');
+      if (response.ok) {
+        const data = await response.json();
+        setPlaces(data); // Update the places state with the new data
+      } else {
+        console.error('Failed to fetch dog houses data');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
   return (
     <div className='container-fluid' style={mainBackground}>
         <div className='row'>
@@ -86,10 +108,8 @@ function StoryArea({places, setPlacefunc}) {
           <div className='container' style={cardInfoStyle}>
             <h3>{place.name}</h3>
             <h6>{place.location}</h6>
-            <p>{place.description}</p><p>Price per night: ${place.price_per_night}</p>
-            {/* <p style={{fontSize:"12px"}}>Amenities: {place.amenities}</p> */}
-            {/* <p>Email: {place.email}</p>
-            <p>Date Created: {place.date_created}</p> */}
+            <p>{place.description}</p>
+            <p>Price per night: ${place.price_per_night}</p>
           </div>
           <div className='container' style={cardFooterStyle} id={place.id}>
             <button id={place.id} style={buttonStyle} onClick={setPlacefunc}>Show More</button>
