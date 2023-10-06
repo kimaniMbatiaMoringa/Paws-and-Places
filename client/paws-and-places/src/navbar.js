@@ -91,12 +91,18 @@ return (
 <div className='col'>
   <div className='container' style={colcontainer}>
             <h4>Hello guest</h4>
-     <button style={buttonStyle} onClick={openAuthModal}>
-              Login/Sign Up
-            </button>
-      <button style={buttonStyle} onClick={createDogHouse}>Add a Place</button>         
-        
-            
+            <div className='row'>
+              <div className='col'>
+                <button style={buttonStyle} onClick={openAuthModal}>
+                  Login/Sign Up
+                </button>
+              </div>
+              <div className='col'>
+                <button style={buttonStyle} onClick={createDogHouse}>Add a Place</button>   
+              </div>
+            </div>
+
+                
   </div>
 </div>
 </div>

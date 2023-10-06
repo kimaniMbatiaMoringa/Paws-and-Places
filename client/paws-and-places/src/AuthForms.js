@@ -267,6 +267,20 @@ function AuthModal({ isOpen, onClose, onLogin, onSignup, onLogout }) {
     onClose();
   };
 
+  const buttonStyle={
+    backgroundColor: "white",
+    width: "100px",
+    height:'50px',
+    border: "5pt solid white",
+    color: "white",
+    top: '50px',
+    borderRadius: '20px',
+    fontFamily:'Nirmala-Bold',
+    color: "#87a630",
+    cursor:"pointer",
+    margin: "5px",
+}
+
   return (
     <Modal
       isOpen={isOpen}
@@ -276,7 +290,7 @@ function AuthModal({ isOpen, onClose, onLogin, onSignup, onLogout }) {
     >
       {showLogin && (
         <>
-          <h2>Login</h2>
+          <h2 style={{color:"white"}}>Login</h2>
           <input
             type="text"
             placeholder="Username"
@@ -290,9 +304,9 @@ function AuthModal({ isOpen, onClose, onLogin, onSignup, onLogout }) {
             onChange={(e) => setLoginPassword(e.target.value)}
           />
           <br />
-          <button onClick={handleLogin}>Login</button>
+          <button style={buttonStyle} onClick={handleLogin}>Login</button>
           <h6>Don't have an account?</h6>
-          <button onClick={toggleForm}>Sign Up</button>
+          <button style={buttonStyle} onClick={toggleForm}>Sign Up</button>
         </>
       )}
 
@@ -324,12 +338,12 @@ function AuthModal({ isOpen, onClose, onLogin, onSignup, onLogout }) {
             onChange={(e) => setSignupPassword(e.target.value)}
           />
           <br />
-          <button onClick={handleSignup}>Sign Up</button>
-          <button onClick={toggleForm}>Back to Login</button>
+          <button style={buttonStyle} onClick={handleSignup}>Sign Up</button>
+          <button style={buttonStyle} onClick={toggleForm}>Back to Login</button>
         </>
       )}
 
-      <button onClick={handleLogout}>Logout</button>
+      <button style={buttonStyle} onClick={handleLogout}>Logout</button>
     </Modal>
   );
 }
