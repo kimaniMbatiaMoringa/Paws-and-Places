@@ -10,7 +10,8 @@ function ShowMore({selectedPlace, reviews_obj,userIds}){
 
     const mainContainer={
         //border:"2px solid black",
-        height:"550px"
+        height:"550px",
+        marginTop:"30px"
     }
 
     const cardImageStyle = {
@@ -95,9 +96,12 @@ function ShowMore({selectedPlace, reviews_obj,userIds}){
                                 </div>
                             </div>
                         ))}
-                        <button style={buttonStyle} onClick={addReview}>Add review</button>
+                        {/* <button style={buttonStyle} onClick={addReview}>Add review</button> */}
                     </div>
-                    <CreateReview selectedPlace={selectedPlace} />
+                    <div className='container' style={{height:"400px"}}>
+                        <CreateReview selectedPlace={selectedPlace} />
+                    </div>
+                    
         </div>
   )
 

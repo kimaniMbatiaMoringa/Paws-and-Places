@@ -73,6 +73,8 @@ function StoryArea({ setPlacefunc}) {
   const [searchFilter, setSearchFilter] = useState("")
   const [places, setPlaces] = useState([]);
 
+  const navigate = useNavigate();
+
   useEffect(() => {
     // Fetch data from the API
     fetch('https://paws-and-places-server.onrender.com/doghouses')
@@ -97,6 +99,8 @@ function StoryArea({ setPlacefunc}) {
       console.error('Error:', error);
     }
   };
+
+
   return (
     <div className='container-fluid' style={mainBackground}>
         <div className='row'>

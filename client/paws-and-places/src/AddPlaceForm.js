@@ -230,6 +230,8 @@ function AddPlaceForm({ isOpen, onClose, onSubmit }) {
       }}
       contentLabel="Add a Place Modal"
     >
+
+      <div className='container'>
       <h2>Paws & Places</h2>
       <h3>Create a Place</h3>
       <form onSubmit={handleSubmit}>
@@ -297,6 +299,8 @@ function AddPlaceForm({ isOpen, onClose, onSubmit }) {
           <button type="submit">Submit</button>
         </div>
       </form>
+      </div>
+      
     </Modal>
   );
 }

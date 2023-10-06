@@ -6,6 +6,7 @@ import Navbar from './navbar';
 import StoryArea from './storyarea';
 import ShowMore from './showMore';
 import Footer from './footer';
+import AddPlaceForm from './AddPlaceForm';
 import { useState, useEffect } from 'react';
 
 function App() {
@@ -98,10 +99,10 @@ function App() {
       <Routes>
         < Route path="/" element={<StoryArea places={places} setPlacefunc={setPlacefunc} />}></Route>
         placeIsSelected?(< Route path="/showMore" element={<ShowMore selectedPlace={place} reviews_obj={reviews_obj} userIds={userIds} />}></Route>:)
+        <Route path="/addPlace" element={<AddPlaceForm />}></Route>
+        </Routes>
         {/* <Link to="/addPlace">
-      <button style={buttonStyle}>Add a Place</button>
       </Link> */}
-      </Routes>
       <Footer />
       </>
   

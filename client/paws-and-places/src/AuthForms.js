@@ -184,7 +184,7 @@ const modalStyle = {
     boxShadow: '10px 10px 10px 10px rgba(0,0,0,0.5)',
     backgroundColor: 'white',
     fontsize: '50px',
-    backgroundColor: 'pink',
+    backgroundColor: "#87a630",
     fontcolor: ' dark-black',
   },
 };

@@ -33,7 +33,7 @@ function CreateReview(selectedPlace){
         //  console.error('Error fetching reviews:', error);
         }
     return(
-        <div className='container'>
+        <div className='container' style={{textAlign:"center"}}>
             <h1>Add a review</h1>
             <div className='row' style={{height:""}}>
                 <label htmlFor='title'></label>
@@ -63,7 +63,7 @@ function CreateReview(selectedPlace){
                     <option value="4">4</option>
                     <option value="5">5</option>
                 </select>
-                <button style={buttonStyle} onClick={handleFormSubmit}>Submit</button>           
+                <button style={buttonStyle} onClick={handleFormSubmit}>Add Review</button>           
         </div>
     )
 }

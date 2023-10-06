@@ -2,11 +2,13 @@ import React from 'react';
 import logo from './assets/Asset 1.png'
 import logo2 from './assets/Asset 2.png'
 import AuthModal from './AuthForms';
+import {useNavigate} from 'react-router-dom'
 
 
 function Navbar({ setPlacefunc }){
   const [authModalIsOpen, setAuthModalIsOpen] = React.useState(false);
   
+  const navigate = useNavigate();
 
   const openAuthModal = () => {
     setAuthModalIsOpen(true);
@@ -14,6 +16,11 @@ function Navbar({ setPlacefunc }){
  const closeAuthModal = () => {
     setAuthModalIsOpen(false);
   };
+
+  function createDogHouse(){
+    navigate('addPlace')
+  }
+
 
 
     const navbarStyle={
@@ -87,6 +94,8 @@ return (
      <button style={buttonStyle} onClick={openAuthModal}>
               Login/Sign Up
             </button>
+      <button style={buttonStyle} onClick={createDogHouse}>Add a Place</button>         
+        
             
   </div>
 </div>
