@@ -250,6 +250,14 @@
         "documentation": {}
     },
     {
+        "label": "User",
+        "importPath": "models",
+        "description": "models",
+        "isExtraImport": true,
+        "detail": "models",
+        "documentation": {}
+    },
+    {
         "label": "Marshmallow",
         "importPath": "flask_marshmallow",
         "description": "flask_marshmallow",
@@ -434,6 +442,38 @@
         "documentation": {}
     },
     {
+        "label": "JWTManager",
+        "importPath": "flask_jwt_extended",
+        "description": "flask_jwt_extended",
+        "isExtraImport": true,
+        "detail": "flask_jwt_extended",
+        "documentation": {}
+    },
+    {
+        "label": "create_access_token",
+        "importPath": "flask_jwt_extended",
+        "description": "flask_jwt_extended",
+        "isExtraImport": true,
+        "detail": "flask_jwt_extended",
+        "documentation": {}
+    },
+    {
+        "label": "jwt_required",
+        "importPath": "flask_jwt_extended",
+        "description": "flask_jwt_extended",
+        "isExtraImport": true,
+        "detail": "flask_jwt_extended",
+        "documentation": {}
+    },
+    {
+        "label": "get_jwt_identity",
+        "importPath": "flask_jwt_extended",
+        "description": "flask_jwt_extended",
+        "isExtraImport": true,
+        "detail": "flask_jwt_extended",
+        "documentation": {}
+    },
+    {
         "label": "cloudinary",
         "kind": 6,
         "isExtraImport": true,
@@ -474,6 +514,30 @@
         "importPath": "os",
         "description": "os",
         "detail": "os",
+        "documentation": {}
+    },
+    {
+        "label": "Bcrypt",
+        "importPath": "flask_bcrypt",
+        "description": "flask_bcrypt",
+        "isExtraImport": true,
+        "detail": "flask_bcrypt",
+        "documentation": {}
+    },
+    {
+        "label": "check_password_hash",
+        "importPath": "flask_bcrypt",
+        "description": "flask_bcrypt",
+        "isExtraImport": true,
+        "detail": "flask_bcrypt",
+        "documentation": {}
+    },
+    {
+        "label": "Bcrypt",
+        "importPath": "flask_bcrypt",
+        "description": "flask_bcrypt",
+        "isExtraImport": true,
+        "detail": "flask_bcrypt",
         "documentation": {}
     },
     {
@@ -518,6 +582,22 @@
         "documentation": {}
     },
     {
+        "label": "app",
+        "importPath": "app",
+        "description": "app",
+        "isExtraImport": true,
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "db",
+        "importPath": "app",
+        "description": "app",
+        "isExtraImport": true,
+        "detail": "app",
+        "documentation": {}
+    },
+    {
         "label": "Faker",
         "importPath": "faker",
         "description": "faker",
@@ -532,6 +612,14 @@
         "importPath": "random",
         "description": "random",
         "detail": "random",
+        "documentation": {}
+    },
+    {
+        "label": "sha256",
+        "importPath": "hashlib",
+        "description": "hashlib",
+        "isExtraImport": true,
+        "detail": "hashlib",
         "documentation": {}
     },
     {
@@ -665,7 +753,7 @@
         "kind": 6,
         "importPath": "server.app",
         "description": "server.app",
-        "peekOfCode": "class UserRegistrationForm(FlaskForm):\n    username = StringField(\"Username\", validators=[InputRequired(), Length(min=4, max=30)])\n    email = StringField(\"Email\", validators=[InputRequired(), Email(), Length(max=120)])\n    password = PasswordField(\"Password\", validators=[InputRequired(), Length(min=6)])\n    confirm_password = PasswordField(\"ConfirmPassword\", validators=[InputRequired(), EqualTo(\"password\")])\n    submit = SubmitField(\"Sign Up\")\n    def validate_username(self, field):\n        if User.query.filter_by(username=field.data).first():\n            raise ValidationError(\"Username already exists\")\n    def validate_email(self, field):",
+        "peekOfCode": "class UserRegistrationForm(FlaskForm):\n    username = StringField(\n        \"Username\", validators=[InputRequired(), Length(min=4, max=30)]\n    )\n    email = StringField(\"Email\", validators=[InputRequired(), Email(), Length(max=120)])\n    password = PasswordField(\"Password\", validators=[InputRequired(), Length(min=6)])\n    confirm_password = PasswordField(\n        \"ConfirmPassword\", validators=[InputRequired(), EqualTo(\"password\")]\n    )\n    submit = SubmitField(\"Sign Up\")",
         "detail": "server.app",
         "documentation": {}
     },
@@ -674,7 +762,7 @@
         "kind": 6,
         "importPath": "server.app",
         "description": "server.app",
-        "peekOfCode": "class LoginForm(FlaskForm):\n    email = StringField(\"Email\", validators=[InputRequired(), Email(), Length(max=120)])\n    password = PasswordField(\"Password\", validators=[InputRequired(), Length(6)])\n    remember = BooleanField(\"Remember Me\")\n    submit = SubmitField(\"Login\")\nclass CreateNewReviewForm(FlaskForm):\n    title = StringField(\"Title\", validators=[InputRequired(), Length(min=1, max=100)])\n    body = TextAreaField(\"Body\", validators=[InputRequired(), Length(min=1, max=500)])\n    user_id = IntegerField(\"User ID\", validators=[InputRequired(), NumberRange(min=1)])\n    doghouse_id = IntegerField(\"Dog House ID\", validators=[InputRequired(), NumberRange(min=1)])",
+        "peekOfCode": "class LoginForm(FlaskForm):\n    email = StringField(\"Email\", validators=[InputRequired(), Email(), Length(max=120)])\n    password = PasswordField(\"Password\", validators=[InputRequired(), Length(6)])\n    remember = BooleanField(\"Remember Me\")\n    submit = SubmitField(\"Login\")\nclass CreateNewReviewForm(FlaskForm):\n    title = StringField(\"Title\", validators=[InputRequired(), Length(min=1, max=100)])\n    body = TextAreaField(\"Body\", validators=[InputRequired(), Length(min=1, max=500)])\n    user_id = IntegerField(\"User ID\", validators=[InputRequired(), NumberRange(min=1)])\n    doghouse_id = IntegerField(",
         "detail": "server.app",
         "documentation": {}
     },
@@ -683,7 +771,7 @@
         "kind": 6,
         "importPath": "server.app",
         "description": "server.app",
-        "peekOfCode": "class CreateNewReviewForm(FlaskForm):\n    title = StringField(\"Title\", validators=[InputRequired(), Length(min=1, max=100)])\n    body = TextAreaField(\"Body\", validators=[InputRequired(), Length(min=1, max=500)])\n    user_id = IntegerField(\"User ID\", validators=[InputRequired(), NumberRange(min=1)])\n    doghouse_id = IntegerField(\"Dog House ID\", validators=[InputRequired(), NumberRange(min=1)])\n    # is_booked = SelectField(\"is_booked\", choices=[(\"Booked\", \"Booked\"), (\"Available\", \"Available\"), (\"Draft\", \"Draft\")])\n    submit = SubmitField(\"Create Review\")\nclass UserSchema(ma.Schema):\n    class Meta:\n        model = User",
+        "peekOfCode": "class CreateNewReviewForm(FlaskForm):\n    title = StringField(\"Title\", validators=[InputRequired(), Length(min=1, max=100)])\n    body = TextAreaField(\"Body\", validators=[InputRequired(), Length(min=1, max=500)])\n    user_id = IntegerField(\"User ID\", validators=[InputRequired(), NumberRange(min=1)])\n    doghouse_id = IntegerField(\n        \"Dog House ID\", validators=[InputRequired(), NumberRange(min=1)]\n    )\n    # is_booked = SelectField(\"is_booked\", choices=[(\"Booked\", \"Booked\"), (\"Available\", \"Available\"), (\"Draft\", \"Draft\")])\n    submit = SubmitField(\"Create Review\")\nclass UserSchema(ma.Schema):",
         "detail": "server.app",
         "documentation": {}
     },
@@ -728,16 +816,25 @@
         "kind": 2,
         "importPath": "server.app",
         "description": "server.app",
-        "peekOfCode": "def home():\n    response_dict = {\n        \"index\": \"Welcome to Paws and Places RESTful API.\",\n    }\n    response = make_response(jsonify(response_dict), 200)\n    return response\n#-----------------------------Routes for Login and Logout------------------------------#\n@app.route(\"/login\", methods=[\"POST\"])\ndef login():\n    email = request.json.get(\"email\")",
+        "peekOfCode": "def home():\n    response_dict = {\n        \"index\": \"Welcome to Paws and Places RESTful API.\",\n    }\n    response = make_response(jsonify(response_dict), 200)\n    return response\n# -----------------------------Routes for Login and Logout------------------------------#\nfrom flask_bcrypt import check_password_hash\n@app.route(\"/jwt-login\", methods=[\"POST\"])\ndef jwt_login():",
         "detail": "server.app",
         "documentation": {}
     },
     {
-        "label": "login",
+        "label": "jwt_login",
         "kind": 2,
         "importPath": "server.app",
         "description": "server.app",
-        "peekOfCode": "def login():\n    email = request.json.get(\"email\")\n    password = request.json.get(\"password\")\n    user = User.query.filter_by(email=email).first()\n    if user and check_password_hash(user.password, password):\n        login_user(user)\n        # Return a response indicating successful login\n        return jsonify({\"message\": \"Login successful\"}), 200\n    else:\n        return jsonify({\"message\": \"Invalid login credentials\"}), 401",
+        "peekOfCode": "def jwt_login():\n    data = request.json\n    email = data.get(\"email\")\n    password = data.get(\"password\")\n    if not email or not password:\n        return jsonify({\"message\": \"Email and password are required\"}), 400\n    user = User.query.filter_by(email=email).first()\n    if user:\n        stored_password_hash = (\n            user.password",
+        "detail": "server.app",
+        "documentation": {}
+    },
+    {
+        "label": "protected_route",
+        "kind": 2,
+        "importPath": "server.app",
+        "description": "server.app",
+        "peekOfCode": "def protected_route():\n    current_user = get_jwt_identity()\n    return jsonify(message=f\"Hello, {current_user}! This is a protected route.\"), 200\n# Users will be redirected to the login page if they haven't logged in\n@app.route(\"/profile\")\n@login_required\ndef profile():\n    return jsonify({\"user_id\": current_user.id, \"username\": current_user.username}), 200\n@app.route(\"/logout\")\n@login_required",
         "detail": "server.app",
         "documentation": {}
     },
@@ -746,7 +843,7 @@
         "kind": 2,
         "importPath": "server.app",
         "description": "server.app",
-        "peekOfCode": "def profile():\n    return jsonify({\"user_id\": current_user.id, \"username\": current_user.username}), 200\n@app.route(\"/logout\")\n@login_required\ndef logout():\n    logout_user()\n    return jsonify({\"message\": \"Logout successful\"}), 200\n#----------------------------Routes for SignUp----------------------------------#\nfrom flask import render_template, redirect, url_for, flash\n@app.route(\"/signup\", methods=[\"GET\", \"POST\"])",
+        "peekOfCode": "def profile():\n    return jsonify({\"user_id\": current_user.id, \"username\": current_user.username}), 200\n@app.route(\"/logout\")\n@login_required\ndef logout():\n    logout_user()\n    return jsonify({\"message\": \"Logout successful\"}), 200\n# ----------------------------Routes for SignUp----------------------------------#\nfrom flask import render_template, redirect, url_for, flash\n@app.route(\"/signup\", methods=[\"POST\"])",
         "detail": "server.app",
         "documentation": {}
     },
@@ -755,7 +852,7 @@
         "kind": 2,
         "importPath": "server.app",
         "description": "server.app",
-        "peekOfCode": "def logout():\n    logout_user()\n    return jsonify({\"message\": \"Logout successful\"}), 200\n#----------------------------Routes for SignUp----------------------------------#\nfrom flask import render_template, redirect, url_for, flash\n@app.route(\"/signup\", methods=[\"GET\", \"POST\"])\ndef signup():\n    form = UserRegistrationForm()\n    if form.validate_on_submit():\n        # Create a new user and add them to the database",
+        "peekOfCode": "def logout():\n    logout_user()\n    return jsonify({\"message\": \"Logout successful\"}), 200\n# ----------------------------Routes for SignUp----------------------------------#\nfrom flask import render_template, redirect, url_for, flash\n@app.route(\"/signup\", methods=[\"POST\"])\ndef signup():\n    data = request.json\n    username = data.get(\"username\")\n    email = data.get(\"email\")",
         "detail": "server.app",
         "documentation": {}
     },
@@ -764,7 +861,7 @@
         "kind": 2,
         "importPath": "server.app",
         "description": "server.app",
-        "peekOfCode": "def signup():\n    form = UserRegistrationForm()\n    if form.validate_on_submit():\n        # Create a new user and add them to the database\n        new_user = User(\n            username=form.username.data,\n            email=form.email.data,\n            password=bcrypt.generate_password_hash(form.password.data).decode(\"utf-8\")\n        )\n        db.session.add(new_user)",
+        "peekOfCode": "def signup():\n    data = request.json\n    username = data.get(\"username\")\n    email = data.get(\"email\")\n    password = data.get(\"password\")\n    # Hash the password using bcrypt\n    hashed_password = bcrypt.generate_password_hash(password).decode(\"utf-8\")\n    # Create a new user with the hashed password\n    new_user = User(username=username, email=email, password=hashed_password)\n    db.session.add(new_user)",
         "detail": "server.app",
         "documentation": {}
     },
@@ -773,7 +870,7 @@
         "kind": 2,
         "importPath": "server.app",
         "description": "server.app",
-        "peekOfCode": "def get_user():\n    users = [user.to_dict() for user in User.query.all()]\n    result = users_schema.dump(users)\n    return jsonify(result), 200\n# Route to GET, PATCH, DELETE a user by ID\n@app.route(\"/users/<int:user_id>\", methods=[\"GET\", \"PATCH\"])\ndef get_user_by_id(user_id):\n    user = User.query.filter_by(id=user_id).first()\n    if user is None:  # Does not exist\n        return jsonify({\"message\": \"User not found\"}), 404",
+        "peekOfCode": "def get_user():\n    users = [user.to_dict() for user in User.query.all()]\n    result = users_schema.dump(users)\n    return jsonify(result), 200\n# Route to GET, PATCH, DELETE a user by ID\n@app.route(\"/users/<int:user_id>\", methods=[\"GET\", \"PATCH\", \"DELETE\"])\ndef get_user_by_id(user_id):\n    user = User.query.filter_by(id=user_id).first()\n    if user is None:  # Does not exist\n        return jsonify({\"message\": \"User not found\"}), 404",
         "detail": "server.app",
         "documentation": {}
     },
@@ -791,7 +888,7 @@
         "kind": 2,
         "importPath": "server.app",
         "description": "server.app",
-        "peekOfCode": "def create_user():\n    data = request.json()\n    errors = user_schema.validate(data)\n    if errors:\n        return jsonify(errors), 400\n    new_user = User(**data)\n    db.session.add(new_user)\n    db.session.commit()\n    result = user_schema.dump(new_user)\n    return jsonify(result), 201",
+        "peekOfCode": "def create_user():\n    data = request.json\n    errors = user_schema.validate(data)\n    if errors:\n        return jsonify(errors), 400\n    # Hash the password using bcrypt\n    hashed_password = bcrypt.generate_password_hash(data[\"password\"]).decode(\"utf-8\")\n    # Create a new user with the hashed password\n    new_user = User(\n        username=data[\"username\"], email=data[\"email\"], password=hashed_password",
         "detail": "server.app",
         "documentation": {}
     },
@@ -818,7 +915,7 @@
         "kind": 2,
         "importPath": "server.app",
         "description": "server.app",
-        "peekOfCode": "def create_dog_house_listing():\n    try:\n        data = request.json\n        # Ensure required fields are present\n        required_fields = [\"name\", \"location\", \"description\", \"price_per_night\"]\n        for field in required_fields:\n            if field not in data:\n                return jsonify({\"message\": f\"'{field}' is required\"}), 400\n        # Validate the \"is_booked\" attribute\n        if \"is_booked\" in data and data[\"is_booked\"] not in [\"Booked\", \"Available\"]:",
+        "peekOfCode": "def create_dog_house_listing():\n    data = request.json\n    # Validate the \"is_booked\" attribute\n    if \"is_booked\" in data and data[\"is_booked\"] not in [\"Booked\", \"Available\"]:\n        return (\n            jsonify(\n                {\n                    \"message\": \"Invalid value for 'is_booked'. It must be 'Booked' or 'Available'\"\n                }\n            ),",
         "detail": "server.app",
         "documentation": {}
     },
@@ -863,7 +960,7 @@
         "kind": 2,
         "importPath": "server.app",
         "description": "server.app",
-        "peekOfCode": "def delete_review_by_id(review_id):\n    review = Review.query.filter_by(id=review_id).first()\n    if review is None:\n        return jsonify({\"message\": \"Review not found\"}), 404\n    db.session.delete(review)\n    db.session.commit()\n    return jsonify({\"message\": \"Review deleted\"}), 204\n@app.route(\"/doghouses/<int:doghouse_id>/reviews\", methods=[\"GET\"])\ndef get_doghouse_reviews(doghouse_id):\n    #code to query the db and get the doghouse reviews",
+        "peekOfCode": "def delete_review_by_id(review_id):\n    review = Review.query.filter_by(id=review_id).first()\n    if review is None:\n        return jsonify({\"message\": \"Review not found\"}), 404\n    db.session.delete(review)\n    db.session.commit()\n    return jsonify({\"message\": \"Review deleted\"}), 204\n@app.route(\"/doghouses/<int:doghouse_id>/reviews\", methods=[\"GET\"])\ndef get_doghouse_reviews(doghouse_id):\n    # code to query the db and get the doghouse reviews",
         "detail": "server.app",
         "documentation": {}
     },
@@ -872,7 +969,7 @@
         "kind": 2,
         "importPath": "server.app",
         "description": "server.app",
-        "peekOfCode": "def get_doghouse_reviews(doghouse_id):\n    #code to query the db and get the doghouse reviews\n    reviews = Review.query.filter_by(doghouse_id=doghouse_id).all()\n    reviews_data = [review.to_dict() for review in reviews]\n    return jsonify(reviews_data)\nif __name__ == \"__main__\":\n    app.run(debug=True, port=5555)",
+        "peekOfCode": "def get_doghouse_reviews(doghouse_id):\n    # code to query the db and get the doghouse reviews\n    reviews = Review.query.filter_by(doghouse_id=doghouse_id).all()\n    reviews_data = [review.to_dict() for review in reviews]\n    return jsonify(reviews_data)\nif __name__ == \"__main__\":\n    app.run(debug=True, port=5555)",
         "detail": "server.app",
         "documentation": {}
     },
@@ -881,16 +978,7 @@
         "kind": 5,
         "importPath": "server.app",
         "description": "server.app",
-        "peekOfCode": "app = Flask(__name__)\nma = Marshmallow(app)\napi = Api(app)\nlogin_manager = LoginManager()\nlogin_manager.login_view = \"login\"\nlogin_manager.init_app(app)\n# app.config[\"SECRET_KEY\"] = \"your_secret_key_here\"\napp.config[\"SQLALCHEMY_DATABASE_URI\"] = os.environ.get(\"DATABASE_URL\")\napp.config[\"SQLALCHEMY_TRACK_MODIFICATIONS\"] = False\napp.config[\"JSONIFY_PRETTYPRINT_REGULAR\"] = True",
-        "detail": "server.app",
-        "documentation": {}
-    },
-    {
-        "label": "ma",
-        "kind": 5,
-        "importPath": "server.app",
-        "description": "server.app",
-        "peekOfCode": "ma = Marshmallow(app)\napi = Api(app)\nlogin_manager = LoginManager()\nlogin_manager.login_view = \"login\"\nlogin_manager.init_app(app)\n# app.config[\"SECRET_KEY\"] = \"your_secret_key_here\"\napp.config[\"SQLALCHEMY_DATABASE_URI\"] = os.environ.get(\"DATABASE_URL\")\napp.config[\"SQLALCHEMY_TRACK_MODIFICATIONS\"] = False\napp.config[\"JSONIFY_PRETTYPRINT_REGULAR\"] = True\ncors = CORS(app)",
+        "peekOfCode": "app = Flask(__name__)\napi = Api(app)\nbcrypt = Bcrypt(app)\nlogger = logging.getLogger(__name__)\nlogin_manager = LoginManager()\nlogin_manager.login_view = \"login\"\nlogin_manager.init_app(app)\n# Generating a random 32-character hexadecimal string as the secret key\nsecret_key = os.urandom(32).hex()\n# app.config[\"SECRET_KEY\"] = \"your_secret_key_here\"",
         "detail": "server.app",
         "documentation": {}
     },
@@ -899,7 +987,25 @@
         "kind": 5,
         "importPath": "server.app",
         "description": "server.app",
-        "peekOfCode": "api = Api(app)\nlogin_manager = LoginManager()\nlogin_manager.login_view = \"login\"\nlogin_manager.init_app(app)\n# app.config[\"SECRET_KEY\"] = \"your_secret_key_here\"\napp.config[\"SQLALCHEMY_DATABASE_URI\"] = os.environ.get(\"DATABASE_URL\")\napp.config[\"SQLALCHEMY_TRACK_MODIFICATIONS\"] = False\napp.config[\"JSONIFY_PRETTYPRINT_REGULAR\"] = True\ncors = CORS(app)\nmigrate = Migrate(app, db)",
+        "peekOfCode": "api = Api(app)\nbcrypt = Bcrypt(app)\nlogger = logging.getLogger(__name__)\nlogin_manager = LoginManager()\nlogin_manager.login_view = \"login\"\nlogin_manager.init_app(app)\n# Generating a random 32-character hexadecimal string as the secret key\nsecret_key = os.urandom(32).hex()\n# app.config[\"SECRET_KEY\"] = \"your_secret_key_here\"\napp.config[\"SQLALCHEMY_DATABASE_URI\"] = os.environ.get(\"DATABASE_URL\")",
+        "detail": "server.app",
+        "documentation": {}
+    },
+    {
+        "label": "bcrypt",
+        "kind": 5,
+        "importPath": "server.app",
+        "description": "server.app",
+        "peekOfCode": "bcrypt = Bcrypt(app)\nlogger = logging.getLogger(__name__)\nlogin_manager = LoginManager()\nlogin_manager.login_view = \"login\"\nlogin_manager.init_app(app)\n# Generating a random 32-character hexadecimal string as the secret key\nsecret_key = os.urandom(32).hex()\n# app.config[\"SECRET_KEY\"] = \"your_secret_key_here\"\napp.config[\"SQLALCHEMY_DATABASE_URI\"] = os.environ.get(\"DATABASE_URL\")\napp.config[\"SQLALCHEMY_TRACK_MODIFICATIONS\"] = False",
+        "detail": "server.app",
+        "documentation": {}
+    },
+    {
+        "label": "logger",
+        "kind": 5,
+        "importPath": "server.app",
+        "description": "server.app",
+        "peekOfCode": "logger = logging.getLogger(__name__)\nlogin_manager = LoginManager()\nlogin_manager.login_view = \"login\"\nlogin_manager.init_app(app)\n# Generating a random 32-character hexadecimal string as the secret key\nsecret_key = os.urandom(32).hex()\n# app.config[\"SECRET_KEY\"] = \"your_secret_key_here\"\napp.config[\"SQLALCHEMY_DATABASE_URI\"] = os.environ.get(\"DATABASE_URL\")\napp.config[\"SQLALCHEMY_TRACK_MODIFICATIONS\"] = False\napp.config[\"JSONIFY_PRETTYPRINT_REGULAR\"] = True",
         "detail": "server.app",
         "documentation": {}
     },
@@ -908,7 +1014,7 @@
         "kind": 5,
         "importPath": "server.app",
         "description": "server.app",
-        "peekOfCode": "login_manager = LoginManager()\nlogin_manager.login_view = \"login\"\nlogin_manager.init_app(app)\n# app.config[\"SECRET_KEY\"] = \"your_secret_key_here\"\napp.config[\"SQLALCHEMY_DATABASE_URI\"] = os.environ.get(\"DATABASE_URL\")\napp.config[\"SQLALCHEMY_TRACK_MODIFICATIONS\"] = False\napp.config[\"JSONIFY_PRETTYPRINT_REGULAR\"] = True\ncors = CORS(app)\nmigrate = Migrate(app, db)\ndb.init_app(app)",
+        "peekOfCode": "login_manager = LoginManager()\nlogin_manager.login_view = \"login\"\nlogin_manager.init_app(app)\n# Generating a random 32-character hexadecimal string as the secret key\nsecret_key = os.urandom(32).hex()\n# app.config[\"SECRET_KEY\"] = \"your_secret_key_here\"\napp.config[\"SQLALCHEMY_DATABASE_URI\"] = os.environ.get(\"DATABASE_URL\")\napp.config[\"SQLALCHEMY_TRACK_MODIFICATIONS\"] = False\napp.config[\"JSONIFY_PRETTYPRINT_REGULAR\"] = True\napp.config[\"JWT_SECRET_KEY\"] = secret_key",
         "detail": "server.app",
         "documentation": {}
     },
@@ -917,7 +1023,16 @@
         "kind": 5,
         "importPath": "server.app",
         "description": "server.app",
-        "peekOfCode": "login_manager.login_view = \"login\"\nlogin_manager.init_app(app)\n# app.config[\"SECRET_KEY\"] = \"your_secret_key_here\"\napp.config[\"SQLALCHEMY_DATABASE_URI\"] = os.environ.get(\"DATABASE_URL\")\napp.config[\"SQLALCHEMY_TRACK_MODIFICATIONS\"] = False\napp.config[\"JSONIFY_PRETTYPRINT_REGULAR\"] = True\ncors = CORS(app)\nmigrate = Migrate(app, db)\ndb.init_app(app)\n# # Cloudinary configuration",
+        "peekOfCode": "login_manager.login_view = \"login\"\nlogin_manager.init_app(app)\n# Generating a random 32-character hexadecimal string as the secret key\nsecret_key = os.urandom(32).hex()\n# app.config[\"SECRET_KEY\"] = \"your_secret_key_here\"\napp.config[\"SQLALCHEMY_DATABASE_URI\"] = os.environ.get(\"DATABASE_URL\")\napp.config[\"SQLALCHEMY_TRACK_MODIFICATIONS\"] = False\napp.config[\"JSONIFY_PRETTYPRINT_REGULAR\"] = True\napp.config[\"JWT_SECRET_KEY\"] = secret_key\ncors = CORS(app)",
+        "detail": "server.app",
+        "documentation": {}
+    },
+    {
+        "label": "secret_key",
+        "kind": 5,
+        "importPath": "server.app",
+        "description": "server.app",
+        "peekOfCode": "secret_key = os.urandom(32).hex()\n# app.config[\"SECRET_KEY\"] = \"your_secret_key_here\"\napp.config[\"SQLALCHEMY_DATABASE_URI\"] = os.environ.get(\"DATABASE_URL\")\napp.config[\"SQLALCHEMY_TRACK_MODIFICATIONS\"] = False\napp.config[\"JSONIFY_PRETTYPRINT_REGULAR\"] = True\napp.config[\"JWT_SECRET_KEY\"] = secret_key\ncors = CORS(app)\nma = Marshmallow(app)\njwt = JWTManager(app)\nmigrate = Migrate(app, db)",
         "detail": "server.app",
         "documentation": {}
     },
@@ -926,7 +1041,7 @@
         "kind": 5,
         "importPath": "server.app",
         "description": "server.app",
-        "peekOfCode": "app.config[\"SQLALCHEMY_DATABASE_URI\"] = os.environ.get(\"DATABASE_URL\")\napp.config[\"SQLALCHEMY_TRACK_MODIFICATIONS\"] = False\napp.config[\"JSONIFY_PRETTYPRINT_REGULAR\"] = True\ncors = CORS(app)\nmigrate = Migrate(app, db)\ndb.init_app(app)\n# # Cloudinary configuration\ncloudinary.config(\n    cloud_name=os.environ.get(\"CLOUDINARY_CLOUD_NAME\"),\n    api_key=os.environ.get(\"CLOUDINARY_API_KEY\"),",
+        "peekOfCode": "app.config[\"SQLALCHEMY_DATABASE_URI\"] = os.environ.get(\"DATABASE_URL\")\napp.config[\"SQLALCHEMY_TRACK_MODIFICATIONS\"] = False\napp.config[\"JSONIFY_PRETTYPRINT_REGULAR\"] = True\napp.config[\"JWT_SECRET_KEY\"] = secret_key\ncors = CORS(app)\nma = Marshmallow(app)\njwt = JWTManager(app)\nmigrate = Migrate(app, db)\ndb.init_app(app)\n# # Cloudinary configuration",
         "detail": "server.app",
         "documentation": {}
     },
@@ -935,7 +1050,7 @@
         "kind": 5,
         "importPath": "server.app",
         "description": "server.app",
-        "peekOfCode": "app.config[\"SQLALCHEMY_TRACK_MODIFICATIONS\"] = False\napp.config[\"JSONIFY_PRETTYPRINT_REGULAR\"] = True\ncors = CORS(app)\nmigrate = Migrate(app, db)\ndb.init_app(app)\n# # Cloudinary configuration\ncloudinary.config(\n    cloud_name=os.environ.get(\"CLOUDINARY_CLOUD_NAME\"),\n    api_key=os.environ.get(\"CLOUDINARY_API_KEY\"),\n    api_secret=os.environ.get(\"CLOUDINARY_API_SECRET\"),",
+        "peekOfCode": "app.config[\"SQLALCHEMY_TRACK_MODIFICATIONS\"] = False\napp.config[\"JSONIFY_PRETTYPRINT_REGULAR\"] = True\napp.config[\"JWT_SECRET_KEY\"] = secret_key\ncors = CORS(app)\nma = Marshmallow(app)\njwt = JWTManager(app)\nmigrate = Migrate(app, db)\ndb.init_app(app)\n# # Cloudinary configuration\ncloudinary.config(",
         "detail": "server.app",
         "documentation": {}
     },
@@ -944,7 +1059,16 @@
         "kind": 5,
         "importPath": "server.app",
         "description": "server.app",
-        "peekOfCode": "app.config[\"JSONIFY_PRETTYPRINT_REGULAR\"] = True\ncors = CORS(app)\nmigrate = Migrate(app, db)\ndb.init_app(app)\n# # Cloudinary configuration\ncloudinary.config(\n    cloud_name=os.environ.get(\"CLOUDINARY_CLOUD_NAME\"),\n    api_key=os.environ.get(\"CLOUDINARY_API_KEY\"),\n    api_secret=os.environ.get(\"CLOUDINARY_API_SECRET\"),\n)",
+        "peekOfCode": "app.config[\"JSONIFY_PRETTYPRINT_REGULAR\"] = True\napp.config[\"JWT_SECRET_KEY\"] = secret_key\ncors = CORS(app)\nma = Marshmallow(app)\njwt = JWTManager(app)\nmigrate = Migrate(app, db)\ndb.init_app(app)\n# # Cloudinary configuration\ncloudinary.config(\n    cloud_name=os.environ.get(\"CLOUDINARY_CLOUD_NAME\"),",
+        "detail": "server.app",
+        "documentation": {}
+    },
+    {
+        "label": "app.config[\"JWT_SECRET_KEY\"]",
+        "kind": 5,
+        "importPath": "server.app",
+        "description": "server.app",
+        "peekOfCode": "app.config[\"JWT_SECRET_KEY\"] = secret_key\ncors = CORS(app)\nma = Marshmallow(app)\njwt = JWTManager(app)\nmigrate = Migrate(app, db)\ndb.init_app(app)\n# # Cloudinary configuration\ncloudinary.config(\n    cloud_name=os.environ.get(\"CLOUDINARY_CLOUD_NAME\"),\n    api_key=os.environ.get(\"CLOUDINARY_API_KEY\"),",
         "detail": "server.app",
         "documentation": {}
     },
@@ -953,7 +1077,25 @@
         "kind": 5,
         "importPath": "server.app",
         "description": "server.app",
-        "peekOfCode": "cors = CORS(app)\nmigrate = Migrate(app, db)\ndb.init_app(app)\n# # Cloudinary configuration\ncloudinary.config(\n    cloud_name=os.environ.get(\"CLOUDINARY_CLOUD_NAME\"),\n    api_key=os.environ.get(\"CLOUDINARY_API_KEY\"),\n    api_secret=os.environ.get(\"CLOUDINARY_API_SECRET\"),\n)\n# ----------------------------------------Forms for Input Validation---------------------------------------------------#",
+        "peekOfCode": "cors = CORS(app)\nma = Marshmallow(app)\njwt = JWTManager(app)\nmigrate = Migrate(app, db)\ndb.init_app(app)\n# # Cloudinary configuration\ncloudinary.config(\n    cloud_name=os.environ.get(\"CLOUDINARY_CLOUD_NAME\"),\n    api_key=os.environ.get(\"CLOUDINARY_API_KEY\"),\n    api_secret=os.environ.get(\"CLOUDINARY_API_SECRET\"),",
+        "detail": "server.app",
+        "documentation": {}
+    },
+    {
+        "label": "ma",
+        "kind": 5,
+        "importPath": "server.app",
+        "description": "server.app",
+        "peekOfCode": "ma = Marshmallow(app)\njwt = JWTManager(app)\nmigrate = Migrate(app, db)\ndb.init_app(app)\n# # Cloudinary configuration\ncloudinary.config(\n    cloud_name=os.environ.get(\"CLOUDINARY_CLOUD_NAME\"),\n    api_key=os.environ.get(\"CLOUDINARY_API_KEY\"),\n    api_secret=os.environ.get(\"CLOUDINARY_API_SECRET\"),\n)",
+        "detail": "server.app",
+        "documentation": {}
+    },
+    {
+        "label": "jwt",
+        "kind": 5,
+        "importPath": "server.app",
+        "description": "server.app",
+        "peekOfCode": "jwt = JWTManager(app)\nmigrate = Migrate(app, db)\ndb.init_app(app)\n# # Cloudinary configuration\ncloudinary.config(\n    cloud_name=os.environ.get(\"CLOUDINARY_CLOUD_NAME\"),\n    api_key=os.environ.get(\"CLOUDINARY_API_KEY\"),\n    api_secret=os.environ.get(\"CLOUDINARY_API_SECRET\"),\n)\n# ----------------------------------------Forms for Input Validation---------------------------------------------------#",
         "detail": "server.app",
         "documentation": {}
     },
@@ -1066,12 +1208,39 @@
         "documentation": {}
     },
     {
+        "label": "image_urls",
+        "kind": 5,
+        "importPath": "server.seed",
+        "description": "server.seed",
+        "peekOfCode": "image_urls = [\n    \"https://iili.io/J2oH7jf.png\",\n    \"https://iili.io/Jdm8pSe.png\",\n    \"https://iili.io/JdmSzOJ.png\",\n    \"https://iili.io/Jdm8ZV2.png\",\n    \"https://iili.io/J2oHlG2.png\",\n    \"https://iili.io/J2oHlG2.png\",\n    \"https://iili.io/Jdm8wAJ.png\",\n    \"https://iili.io/Jdm8Nwv.png\",\n    \"https://iili.io/Jdm8gcX.png\",",
+        "detail": "server.seed",
+        "documentation": {}
+    },
+    {
         "label": "fake",
         "kind": 5,
         "importPath": "server.seed",
         "description": "server.seed",
-        "peekOfCode": "fake = Faker()\n# Create a Flask application context\nwith app.app_context():\n    # Delete existing records in the tables\n    User.query.delete()\n    DogHouse.query.delete()\n    Review.query.delete()\n    # Create fake users\n    users = []\n    for _ in range(10):",
+        "peekOfCode": "fake = Faker()\n# a set to keep track of generated email addresses\ngenerated_emails = set()\n# Create a Flask application context\nwith app.app_context():\n    # Delete existing records in the tables\n    Review.query.delete()\n    User.query.delete()\n    DogHouse.query.delete()\n    # Create fake users",
         "detail": "server.seed",
+        "documentation": {}
+    },
+    {
+        "label": "generated_emails",
+        "kind": 5,
+        "importPath": "server.seed",
+        "description": "server.seed",
+        "peekOfCode": "generated_emails = set()\n# Create a Flask application context\nwith app.app_context():\n    # Delete existing records in the tables\n    Review.query.delete()\n    User.query.delete()\n    DogHouse.query.delete()\n    # Create fake users\n    users = []\n    for _ in range(10):",
+        "detail": "server.seed",
+        "documentation": {}
+    },
+    {
+        "label": "bcrypt",
+        "kind": 5,
+        "importPath": "run_update_password_hashing",
+        "description": "run_update_password_hashing",
+        "peekOfCode": "bcrypt = Bcrypt(app)  # Initializing bcrypt\n# Iterate through existing users and update password hashes\nwith app.app_context():\n    for user in User.query.all():\n        hashed_password = bcrypt.generate_password_hash(user.password).decode(\"utf-8\")\n        user.password = hashed_password\n    db.session.commit()\nprint(\"Password hashes updated successfully\")",
+        "detail": "run_update_password_hashing",
         "documentation": {}
     }
 ]
