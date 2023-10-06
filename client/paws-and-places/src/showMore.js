@@ -5,7 +5,6 @@ import CreateReview from './createReview';
 function ShowMore({selectedPlace, reviews_obj,userIds}){
     //const [place, setPlace] = useState([]);
     
-    const imageUrl = selectedPlace.image_url;
 
     const navigate = useNavigate();
 
