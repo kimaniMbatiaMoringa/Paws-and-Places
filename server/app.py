@@ -11,12 +11,40 @@ from models import db, DogHouse, User, Review
 from flask_cors import CORS
 from flask_marshmallow import Marshmallow
 from werkzeug.security import check_password_hash
+
 # --------------------------------------------------------#
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField, BooleanField, TextAreaField, SelectField, IntegerField
-from wtforms.validators import InputRequired, Length, Email, EqualTo, ValidationError, NumberRange
-from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
-from flask_bcrypt import Bcrypt
+from wtforms import (
+    StringField,
+    PasswordField,
+    SubmitField,
+    BooleanField,
+    TextAreaField,
+    SelectField,
+    IntegerField,
+)
+from wtforms.validators import (
+    InputRequired,
+    Length,
+    Email,
+    EqualTo,
+    ValidationError,
+    NumberRange,
+)
+from flask_login import (
+    LoginManager,
+    UserMixin,
+    login_user,
+    login_required,
+    logout_user,
+    current_user,
+)
+from flask_jwt_extended import (
+    JWTManager,
+    create_access_token,
+    jwt_required,
+    get_jwt_identity,
+)
 
 # ---------------------------------------------------------#
 import logging
@@ -25,25 +53,33 @@ from cloudinary.uploader import upload
 from cloudinary.utils import cloudinary_url
 import cloudinary.api
 import os
+from flask_bcrypt import Bcrypt
 
 
 app = Flask(__name__)
-ma = Marshmallow(app)
 api = Api(app)
+bcrypt = Bcrypt(app)
 
 logger = logging.getLogger(__name__)
-bcrypt = Bcrypt(app) 
 
 login_manager = LoginManager()
 login_manager.login_view = "login"
 login_manager.init_app(app)
 
+
+# Generating a random 32-character hexadecimal string as the secret key
+secret_key = os.urandom(32).hex()
+
+
 # app.config["SECRET_KEY"] = "your_secret_key_here"
 app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("DATABASE_URL")
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 app.config["JSONIFY_PRETTYPRINT_REGULAR"] = True
-cors = CORS(app)
+app.config["JWT_SECRET_KEY"] = secret_key
 
+cors = CORS(app)
+ma = Marshmallow(app)
+jwt = JWTManager(app)
 migrate = Migrate(app, db)
 db.init_app(app)
 
@@ -59,10 +95,14 @@ cloudinary.config(
 # ----------------------------------------Forms for Input Validation---------------------------------------------------#
 # Forms for Input Validation
 class UserRegistrationForm(FlaskForm):
-    username = StringField("Username", validators=[InputRequired(), Length(min=4, max=30)])
+    username = StringField(
+        "Username", validators=[InputRequired(), Length(min=4, max=30)]
+    )
     email = StringField("Email", validators=[InputRequired(), Email(), Length(max=120)])
     password = PasswordField("Password", validators=[InputRequired(), Length(min=6)])
-    confirm_password = PasswordField("ConfirmPassword", validators=[InputRequired(), EqualTo("password")])
+    confirm_password = PasswordField(
+        "ConfirmPassword", validators=[InputRequired(), EqualTo("password")]
+    )
     submit = SubmitField("Sign Up")
 
     def validate_username(self, field):
@@ -85,8 +125,13 @@ class CreateNewReviewForm(FlaskForm):
     title = StringField("Title", validators=[InputRequired(), Length(min=1, max=100)])
     body = TextAreaField("Body", validators=[InputRequired(), Length(min=1, max=500)])
     user_id = IntegerField("User ID", validators=[InputRequired(), NumberRange(min=1)])
-    doghouse_id = IntegerField("Dog House ID", validators=[InputRequired(), NumberRange(min=1)])
-    #is_booked = SelectField("is_booked", choices=[("Booked", "Booked"), ("Available", "Available"), ("Draft", "Draft")])
+
+    doghouse_id = IntegerField(
+        "Dog House ID", validators=[InputRequired(), NumberRange(min=1)]
+    )
+    # is_booked = SelectField("is_booked", choices=[("Booked", "Booked"), ("Available", "Available"), ("Draft", "Draft")])
+
+
     submit = SubmitField("Create Review")
 
 
@@ -116,7 +161,7 @@ class DogHouseSchema(ma.Schema):
             "price_per_night",
             "image_url",
             "amenities",
-            "is_booked"
+            "is_booked",
         )
 
 
@@ -161,29 +206,52 @@ def home():
     return response
 
 
-#-----------------------------Routes for Login and Logout------------------------------#
-@app.route("/login", methods=["POST"])
-def login():
-    email = request.json.get("email")
-    password = request.json.get("password")
+# -----------------------------Routes for Login and Logout------------------------------#
+from flask_bcrypt import check_password_hash
+
+
+@app.route("/jwt-login", methods=["POST"])
+def jwt_login():
+    data = request.json
+    email = data.get("email")
+    password = data.get("password")
+
+    if not email or not password:
+        return jsonify({"message": "Email and password are required"}), 400
 
     user = User.query.filter_by(email=email).first()
 
-    if user and check_password_hash(user.password, password):
-        login_user(user)
+    if user:
+        stored_password_hash = (
+            user.password
+        )  # Retrieving the hashed password from the database
 
-        # Return a response indicating successful login
-        return jsonify({"message": "Login successful"}), 200
+        # Comparing the hashed login password with the stored password hash
+        if check_password_hash(stored_password_hash, password):
+            # Successful login, generate an access token
+            access_token = create_access_token(identity=user.id)
+            return jsonify({"access_token": access_token}), 200
+        else:
+            # Invalid password
+            return jsonify({"message": "Invalid login credentials"}), 401
     else:
+        # User with provided email not found
         return jsonify({"message": "Invalid login credentials"}), 401
-    
-    
+
+
+# Protected route
+@app.route("/protected", methods=["GET"])
+@jwt_required()
+def protected_route():
+    current_user = get_jwt_identity()
+    return jsonify(message=f"Hello, {current_user}! This is a protected route."), 200
+
+
 # Users will be redirected to the login page if they haven't logged in
 @app.route("/profile")
 @login_required
 def profile():
     return jsonify({"user_id": current_user.id, "username": current_user.username}), 200
-
 
 
 @app.route("/logout")
@@ -193,40 +261,28 @@ def logout():
     return jsonify({"message": "Logout successful"}), 200
 
 
-
-#----------------------------Routes for SignUp----------------------------------#
+# ----------------------------Routes for SignUp----------------------------------#
 
 from flask import render_template, redirect, url_for, flash
 
-@app.route("/signup", methods=["GET", "POST"])
+
+@app.route("/signup", methods=["POST"])
 def signup():
     data = request.json
-    form = UserRegistrationForm(data=data)
-    if form.validate_on_submit():
-            # Creating a new user and adding them to the database
-            new_user = User(
-                username=form.username.data,
-                email=form.email.data,
-                password=bcrypt.generate_password_hash(form.password.data).decode("utf-8")
-            )
-            db.session.add(new_user)
-            db.session.commit()
+    username = data.get("username")
+    email = data.get("email")
+    password = data.get("password")
 
-            # This will Log the registration event
-            logger.info(f"User registered: {new_user.username}, {new_user.email}")
+    # Hash the password using bcrypt
+    hashed_password = bcrypt.generate_password_hash(password).decode("utf-8")
 
-            # Return a success response
-            return jsonify({"message": "Registration successful"}), 201
-    else:
-        # This will Log registration errors
-        errors = form.errors
-        logger.error(f"Registration failed due to errors: {errors}")
+    # Create a new user with the hashed password
+    new_user = User(username=username, email=email, password=hashed_password)
 
-        # Return an error response with status code 400
-        return jsonify({"message": "Registration failed", "errors": errors}), 400
+    db.session.add(new_user)
+    db.session.commit()
 
-    
-    
+    return jsonify({"message": "User registered successfully"}), 201
 
 
 # User ROUTES
@@ -240,7 +296,7 @@ def get_user():
 
 
 # Route to GET, PATCH, DELETE a user by ID
-@app.route("/users/<int:user_id>", methods=["GET", "PATCH"])
+@app.route("/users/<int:user_id>", methods=["GET", "PATCH", "DELETE"])
 def get_user_by_id(user_id):
     user = User.query.filter_by(id=user_id).first()
     if user is None:  # Does not exist
@@ -274,13 +330,20 @@ def get_user_by_id(user_id):
 # Route to POST create a user
 @app.route("/users", methods=["POST"])
 def create_user():
-    data = request.json()
+    data = request.json
     errors = user_schema.validate(data)
 
     if errors:
         return jsonify(errors), 400
 
-    new_user = User(**data)
+    # Hash the password using bcrypt
+    hashed_password = bcrypt.generate_password_hash(data["password"]).decode("utf-8")
+
+    # Create a new user with the hashed password
+    new_user = User(
+        username=data["username"], email=data["email"], password=hashed_password
+    )
+
     db.session.add(new_user)
     db.session.commit()
 
@@ -328,26 +391,31 @@ def get_doghouse_by_id(doghouse_id):
         db.session.commit()
         return jsonify({"message": "Dog house deleted"}), 204
 
+
 # Route to POST a doghouse
 @app.route("/doghouses", methods=["POST"])
 def create_dog_house_listing():
+    data = request.json
 
-        data = request.json
+    # Validate the "is_booked" attribute
+    if "is_booked" in data and data["is_booked"] not in ["Booked", "Available"]:
+        return (
+            jsonify(
+                {
+                    "message": "Invalid value for 'is_booked'. It must be 'Booked' or 'Available'"
+                }
+            ),
+            400,
+        )
 
-        # Validate the "is_booked" attribute
-        if "is_booked" in data and data["is_booked"] not in ["Booked", "Available"]:
-            return jsonify({"message": "Invalid value for 'is_booked'. It must be 'Booked' or 'Available'"}), 400
+    # Create a new DogHouse object and save it to the database
+    new_doghouse = DogHouse(**data)
 
+    db.session.add(new_doghouse)
+    db.session.commit()
 
-        # Create a new DogHouse object and save it to the database
-        new_doghouse = DogHouse(**data)
-
-
-        db.session.add(new_doghouse)
-        db.session.commit()
-
-        result = doghouse_schema.dump(new_doghouse)
-        return jsonify(result), 201
+    result = doghouse_schema.dump(new_doghouse)
+    return jsonify(result), 201
 
 
 # Reviews ROUTES
@@ -418,15 +486,15 @@ def delete_review_by_id(review_id):
 
     return jsonify({"message": "Review deleted"}), 204
 
+
 @app.route("/doghouses/<int:doghouse_id>/reviews", methods=["GET"])
 def get_doghouse_reviews(doghouse_id):
-    #code to query the db and get the doghouse reviews
+    # code to query the db and get the doghouse reviews
     reviews = Review.query.filter_by(doghouse_id=doghouse_id).all()
-    
+
     reviews_data = [review.to_dict() for review in reviews]
 
     return jsonify(reviews_data)
-
 
 
 if __name__ == "__main__":

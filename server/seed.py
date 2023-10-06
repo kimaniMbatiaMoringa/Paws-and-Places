@@ -3,8 +3,30 @@ from models import User, DogHouse, Review
 from faker import Faker
 import random
 import datetime
+from hashlib import sha256
+
+image_urls = [
+    "https://iili.io/J2oH7jf.png",
+    "https://iili.io/Jdm8pSe.png",
+    "https://iili.io/JdmSzOJ.png",
+    "https://iili.io/Jdm8ZV2.png",
+    "https://iili.io/J2oHlG2.png",
+    "https://iili.io/J2oHlG2.png",
+    "https://iili.io/Jdm8wAJ.png",
+    "https://iili.io/Jdm8Nwv.png",
+    "https://iili.io/Jdm8gcX.png",
+    "https://iili.io/Jdm8tPS.png",
+    "https://iili.io/JdmS9Hu.png",
+    "https://iili.io/JdmSKiB.png",
+    "https://iili.io/JdmSRiN.png",
+    "https://iili.io/J2zifV9.png",
+]
+
 
 fake = Faker()
+
+# a set to keep track of generated email addresses
+generated_emails = set()
 
 # Create a Flask application context
 with app.app_context():
@@ -18,14 +40,22 @@ with app.app_context():
     users = []
     for _ in range(10):
         username = fake.user_name()
-        email = fake.email()
-        password = fake.password()
-        user = User(username=username, email=email, password=password)
-        users.append(user)
 
+        # Generate a unique email address
+        while True:
+            email = fake.email()
+            if email not in generated_emails:
+                generated_emails.add(email)
+                break
+
+        password = fake.password()
+        hashed_password = sha256(password.encode("utf-8")).hexdigest()
+
+        user = User(username=username, email=email, password=hashed_password)
+        users.append(user)
     # Create fake dog houses
     dog_houses = []
-    for _ in range(10):
+    for i in range(10):
         name = fake.company()
         location = fake.city()
         description = fake.catch_phrase()
@@ -51,7 +81,7 @@ with app.app_context():
 
         description = descriptions.pop()
 
-        image_url = fake.image_url()
+        image_url = image_urls[i]
         amenities = [
             "Cozy Dog Beds",
             "Food and Water Bowls",
@@ -84,8 +114,7 @@ with app.app_context():
             price_per_night=price_per_night,
             image_url=image_url,
             amenities=amenities,
-            is_booked = random.choice(["Booked", "Available"])
-
+            is_booked=random.choice(["Booked", "Available"]),
         )
         dog_houses.append(dog_house)
 
@@ -113,7 +142,9 @@ with app.app_context():
             review_text = review_texts.pop()
 
             dog_house = random.choice(dog_houses)
-            created_at = fake.date_time_between_dates(datetime_start=dog_house.created_at, datetime_end="now")
+            created_at = fake.date_time_between_dates(
+                datetime_start=dog_house.created_at, datetime_end="now"
+            )
             review = Review(
                 title=title,
                 body=review_text,
