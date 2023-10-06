@@ -210,7 +210,7 @@ def home():
 from flask_bcrypt import check_password_hash
 
 
-@app.route("/jwt-login", methods=["POST"])
+@app.route('/jwt-login', methods=['POST'])
 def jwt_login():
     data = request.json
     email = data.get("email")
@@ -230,7 +230,9 @@ def jwt_login():
         if check_password_hash(stored_password_hash, password):
             # Successful login, generate an access token
             access_token = create_access_token(identity=user.id)
-            return jsonify({"access_token": access_token}), 200
+            response = jsonify({"access_token": access_token, "message": "Login successful"})
+            response.headers.add('Access-Control-Allow-Origin', 'https://paws-and-places.onrender.com')
+            return response, 200
         else:
             # Invalid password
             return jsonify({"message": "Invalid login credentials"}), 401
